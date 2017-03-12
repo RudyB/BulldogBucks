@@ -23,17 +23,29 @@ enum KeychainKey: String {
     case pin = "PIN"
 }
 
-/// Serves as the point of authentication for Bulldog Bucks App
-class Authentication {
+public let UserLoggedOutNotification = "UserLoggedOut"
+public let UserLoggedInNotificaiton = "UserLoggedIn"
+
+enum BDBKeychain {
     
-    /// App Static Keychain Service
-    static let keychain = Keychain(service: "co.rudybermudez.Bulldog-Bucks").accessibility(.afterFirstUnlock)
+    case phoneKeychain
+    case watchKeychain
+    
+    private var keychain: Keychain {
+        switch self {
+        case .phoneKeychain:
+            return Keychain(service: "co.rudybermudez.Bulldog-Bucks").accessibility(.afterFirstUnlock)
+            
+        case .watchKeychain:
+            return Keychain(service: "co.rudybermudez.Bulldog-Bucks.watchkitapp.watchkitextension").accessibility(.afterFirstUnlock)
+        }
+    }
     
     /**
      Check UserDefaults to see if `studentID` and `PIN` exist and are not nil
      - Returns: Boolean representing whether the user is logged in
      */
-    static func isLoggedIn() -> Bool {
+    func isLoggedIn() -> Bool {
         return keychain[KeychainKey.studentID.rawValue] != nil && keychain[KeychainKey.pin.rawValue] != nil
     }
     
@@ -43,7 +55,7 @@ class Authentication {
      - studentID: `String` representation of the User's StudentID
      - PIN: `String` representation of the User's PIN
      */
-    static func addCredentials(studentID: String, PIN: String) -> Bool {
+    func addCredentials(studentID: String, PIN: String) -> Bool {
         do {
             try keychain.set(studentID, key: KeychainKey.studentID.rawValue)
             try keychain.set(PIN, key: KeychainKey.pin.rawValue)
@@ -56,7 +68,7 @@ class Authentication {
     }
     
     /// Loads credentials to memory if they exist, else returns nil
-    static func getCredentials() -> (studentID: String, PIN: String)? {
+    func getCredentials() -> (studentID: String, PIN: String)? {
         if isLoggedIn() {
             return (keychain[KeychainKey.studentID.rawValue]!, keychain[KeychainKey.pin.rawValue]!)
         } else {
@@ -65,7 +77,7 @@ class Authentication {
     }
     
     /// Deletes credentials from instance of `keychain`
-    static func deleteCredentials() -> Bool {
+    func deleteCredentials() -> Bool {
         do {
             try keychain.removeAll()
             return true
@@ -75,3 +87,5 @@ class Authentication {
         }
     }
 }
+
+
