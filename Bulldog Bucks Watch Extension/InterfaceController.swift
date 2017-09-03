@@ -56,8 +56,8 @@ class InterfaceController: WKInterfaceController {
         }
         
         
-        // Check to see if it has been 60 minutes from the last update,
-        if NSDate().minutes(fromDate: lastBalance.date as NSDate) > 60 {
+        // Check to see if it has been 30 minutes from the last update,
+        if NSDate().minutes(fromDate: lastBalance.date as NSDate) > 30 {
             // If it has been, then update
             updateDisplay()
         } else {
@@ -91,23 +91,26 @@ class InterfaceController: WKInterfaceController {
                     self.amountLabel.setText("$\(amount)")
                     let date = NSDate()
                     
-                    DispatchQueue.main.async {
-                        let newBalance = Balance(amount: amount, date: date as Date)
-                        BalanceListManager.addBalance(balance: newBalance)
-                    }
+                    let newBalance = Balance(amount: amount, date: date as Date)
+                    BalanceListManager.addBalance(balance: newBalance)
                     
                     self.footerLabel.setText("Updated: \(date.timeAgoInWords)")
                     self.loadingGroup.setHidden(true)
                     self.detailGroup.setHidden(false)
-                    self.reloadOrExtendData()
+                    self.updateComplication()
                     }.catch { (_) in
-                        self.showError(msg: "Trouble Getting Data. Force touch to try again.")
+                        self.showError(msg: "Trouble Getting Data.\n\nForce touch to try again.")
                     }
                 
             } else {
                 self.showError()
             }
         }
+    }
+    
+    func updateComplication() {
+        let complicationController = ComplicationController()
+        complicationController.reloadOrExtendData()
     }
     
     func showError(msg: String = "Open App to Update") {
@@ -128,25 +131,6 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
-    func reloadOrExtendData() {
-        
-        let server = CLKComplicationServer.sharedInstance()
-        
-        guard let complications = server.activeComplications,
-            complications.count > 0 else { return }
-        
-        if BalanceListManager.balances.last?.date.compare(server.latestTimeTravelDate) == .orderedDescending {
-            for complication in complications {
-                server.extendTimeline(for: complication)
-            }
-        } else {
-            
-            for complication in complications  {
-                server.reloadTimeline(for: complication)
-            }
-        }
-        
-    }
     
     // MARK: - Notification Center
     
