@@ -53,6 +53,7 @@
 		47BC3AB71DA09D29001C3FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC3AB61DA09D29001C3FD2 /* ViewController.swift */; };
 		47BF33091F5CF52C005D162E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33081F5CF52C005D162E /* TransactionViewController.swift */; };
 		47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */; };
+		47BF330E1F5DDC0D005D162E /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330D1F5DDC0D005D162E /* DetailCollectionViewCell.swift */; };
 		47D10B401DE11B4B0041064C /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47DAF0771DE5166E00499185 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
@@ -180,6 +181,7 @@
 		47BC3AB61DA09D29001C3FD2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47BF33081F5CF52C005D162E /* TransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		47BF330D1F5DDC0D005D162E /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		47D10B421DE1735D0041064C /* Bulldog Bucks Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks Widget.entitlements"; sourceTree = "<group>"; };
 		47ED9C761F5A178000AE4426 /* Bulldog BucksMainAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bulldog BucksMainAppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47ED9C781F5A178000AE4426 /* Bulldog_BucksMainAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulldog_BucksMainAppTests.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */,
+				47BF330D1F5DDC0D005D162E /* DetailCollectionViewCell.swift */,
 			);
 			path = "Cell Models";
 			sourceTree = "<group>";
@@ -931,6 +934,7 @@
 			files = (
 				477BE1681DE618B300F39E46 /* NetworkReachability.swift in Sources */,
 				47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */,
+				47BF330E1F5DDC0D005D162E /* DetailCollectionViewCell.swift in Sources */,
 				47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */,
 				472F33131DE2BC6A001D4B4C /* FadeTransition.swift in Sources */,
 				472F33141DE2BC6A001D4B4C /* SpinerLayer.swift in Sources */,
