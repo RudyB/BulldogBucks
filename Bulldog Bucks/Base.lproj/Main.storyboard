@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hkQ-Yy-RwG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginPageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-4a-DZ9" userLabel="Background Image">
+                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainPageBackground15pxBlur" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-4a-DZ9" userLabel="Background Image">
                                 <rect key="frame" x="16" y="0.0" width="288" height="480"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bulldog Bucks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sR2-7n-llm" userLabel="Main Label">
@@ -264,7 +265,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpM-U6-jiw" userLabel="ErrorMessage">
-                                <rect key="frame" x="20" y="147.5" width="281" height="66.5"/>
+                                <rect key="frame" x="20" y="147" width="281" height="66.5"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Server is not responding
@@ -379,11 +380,88 @@ Please try again</string>
             </objects>
             <point key="canvasLocation" x="1729" y="131"/>
         </scene>
+        <!--Transaction View Controller-->
+        <scene sceneID="5EA-9w-Csj">
+            <objects>
+                <viewController storyboardIdentifier="TransactionViewControllerID" id="2wL-LS-GXk" customClass="TransactionViewController" customModule="Bulldog_Bucks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4ha-nM-laC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qyu-2I-WID"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Ha-Up-WHq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1JC-vR-rVi">
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkN-NJ-NYC">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="153.5"/>
+                                    </scrollView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-Tb-byW">
+                                        <rect key="frame" x="0.0" y="153.5" width="320" height="306.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="transactionCell" id="rNV-eB-4tF" customClass="TransactionTableViewCell" customModule="Bulldog_Bucks" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rNV-eB-4tF" id="gkb-pt-KOy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marketplace" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndg-oX-eyh">
+                                                            <rect key="frame" x="15" y="11" width="94.5" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-$17.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5I-ra-Jz1">
+                                                            <rect key="frame" x="244" y="11" width="58" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.5607843137254902" green="0.55686274509803924" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Z5I-ra-Jz1" firstAttribute="centerY" secondItem="gkb-pt-KOy" secondAttribute="centerY" id="7Xn-nD-iIC"/>
+                                                        <constraint firstItem="Ndg-oX-eyh" firstAttribute="leading" secondItem="gkb-pt-KOy" secondAttribute="leadingMargin" constant="7" id="cjg-zG-BaM"/>
+                                                        <constraint firstItem="Z5I-ra-Jz1" firstAttribute="trailing" secondItem="gkb-pt-KOy" secondAttribute="trailingMargin" constant="-10" id="khd-Gx-9oN"/>
+                                                        <constraint firstItem="Ndg-oX-eyh" firstAttribute="centerY" secondItem="gkb-pt-KOy" secondAttribute="centerY" id="sox-zc-yGf"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="amountLabel" destination="Z5I-ra-Jz1" id="PgG-uV-zyN"/>
+                                                    <outlet property="venueLabel" destination="Ndg-oX-eyh" id="e2c-C1-mG0"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="JkN-NJ-NYC" firstAttribute="height" secondItem="1JC-vR-rVi" secondAttribute="height" multiplier="1:3" id="w6H-Nm-zY1"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36862745098039218" green="0.54117647058823526" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1JC-vR-rVi" firstAttribute="leading" secondItem="0Ha-Up-WHq" secondAttribute="leading" id="77I-ug-91u"/>
+                            <constraint firstItem="1JC-vR-rVi" firstAttribute="top" secondItem="4ha-nM-laC" secondAttribute="bottom" id="IFo-00-CHK"/>
+                            <constraint firstItem="Qyu-2I-WID" firstAttribute="top" secondItem="1JC-vR-rVi" secondAttribute="bottom" id="lLG-l9-480"/>
+                            <constraint firstAttribute="trailing" secondItem="1JC-vR-rVi" secondAttribute="trailing" id="qg1-pa-Nc0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="YV8-Tb-byW" id="bOb-yw-dlP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AS8-34-WMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2645.625" y="135"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="25" height="25"/>
         <image name="forward" width="25" height="25"/>
-        <image name="loginPageBackground" width="2592" height="3872"/>
         <image name="mainPageBackground15pxBlur" width="1382" height="2022"/>
         <image name="pinIcon" width="75" height="75"/>
         <image name="separator" width="316" height="1"/>

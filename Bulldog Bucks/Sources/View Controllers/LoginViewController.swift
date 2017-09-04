@@ -20,11 +20,12 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 	@IBOutlet weak var userPinTextField: UITextField!
 	@IBOutlet weak var loginButton: TKTransitionSubmitButton!
     
-	
+	public static let storyboardIdentifier = "LoginViewController"
+    
 	// MARK: - Properties
     private let keychain = BDBKeychain.phoneKeychain
     
-	var delegate: LoginViewControllerDelegate?
+	var delegate: AuthenticationStateDelegate?
 	
 	lazy var notificationCenter: NotificationCenter = {
 		return NotificationCenter.default

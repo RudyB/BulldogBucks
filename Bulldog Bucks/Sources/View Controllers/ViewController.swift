@@ -217,7 +217,7 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
     /// Instantiates and shows `LoginViewController`
     private func showLoginPage(animated: Bool) {
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-		vc.delegate = self
+		vc.delegate = self as! AuthenticationStateDelegate
         self.present(vc, animated: animated, completion: nil)
 	}
 	
@@ -242,7 +242,7 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
             
             // For Debugging
             print("Card State: \(cardState.rawValue)")
-            //transactions.forEach { print($0.description) }
+            transactions.forEach { print($0.description) }
             
             // Get the result and then break it up into dollars and cents
 			let array = result.components(separatedBy: ".")
