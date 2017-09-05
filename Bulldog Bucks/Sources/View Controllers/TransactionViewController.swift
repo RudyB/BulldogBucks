@@ -28,6 +28,7 @@ class TransactionViewController: UIViewController {
     var transactions: [Transaction]?
     var bulldogBuckBalance: String?
     var swipesRemaining: String?
+    var cardState: CardState?
     
     var sections = Dictionary<Date, Array<Transaction>>()
     
@@ -42,6 +43,7 @@ class TransactionViewController: UIViewController {
         tableView.dataSource = self
 		collectionView.dataSource = self
         collectionView.delegate = self
+        pageControl.numberOfPages = collectionView.numberOfSections
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         getData()
@@ -74,6 +76,7 @@ class TransactionViewController: UIViewController {
                 self.transactions = transactions
 				self.bulldogBuckBalance = amount
                 self.swipesRemaining = swipesRemaining
+                self.cardState = cardState
                 
                 self.sortTransactions()
                 self.tableView.reloadData()
@@ -95,12 +98,12 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let bulldogBuckBalance = bulldogBuckBalance, let swipesRemaining = swipesRemaining else {
+        guard let bulldogBuckBalance = bulldogBuckBalance, let swipesRemaining = swipesRemaining, let cardState = cardState else {
             return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
         }
         
@@ -116,6 +119,45 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             cell.amountLabel.text = swipesRemaining
             cell.titleLabel.text = "Swipes Remaining"
             return cell
+        case 2:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.reuseIdentifier, for: indexPath) as! ButtonCollectionViewCell
+            
+            cell.logoutAction = { () -> () in
+                self.client.logout().then { (_) -> Void in
+                    self.delegate?.didLogoutSuccessfully()
+                }.catch { (error) in
+                    print(error)
+                }
+            }
+            
+            
+            cell.toggleCardStatusAction = { (cardState, onCompetion) -> Void in
+                
+                guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
+                    onCompetion(false)
+                    return
+                }
+                self.client.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
+                    onCompetion(true)
+                    return
+                }.catch { (error) in
+                    onCompetion(false)
+                    return
+                }
+                
+                }
+            
+            switch cardState {
+            case .active:
+                cell.statusLabel.text = "ZAGCARD Active"
+                cell.switchOutlet.isOn = true
+            case .frozen:
+                cell.statusLabel.text = "ZAGCARD Frozen"
+                cell.switchOutlet.isOn = false
+            }
+            
+            // TODO: Implement closure for switch and button
+            return cell
         default:
             return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
         }
@@ -130,6 +172,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
         self.pageControl.currentPage = indexPath.section
     }
 
+    
     
 }
 
