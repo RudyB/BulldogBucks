@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
 
-// TODO: Pull to refresh
+// TODO: Loading View
 
 class TransactionViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+	@IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     
@@ -47,16 +49,42 @@ class TransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupPullToRefresh()
+        
+        // Configure Delegates
+        scrollView.delegate = self
         tableView.dataSource = self
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         pageControl.numberOfPages = collectionView.numberOfSections
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //scrollView.setContentOffset(CGPoint(x: 0, y: -DGElasticPullToRefreshConstants.MinOffsetToPull), animated: true)
         getData()
     }
     
+    deinit {
+        scrollView.dg_removePullToRefresh()
+    }
+    
+    func setupPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.scrollView.dg_addPullToRefreshWithActionHandler({
+            self.getData()
+            self.scrollView.dg_stopLoading()
+        }, loadingView: loadingView)
+        
+        self.scrollView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        scrollView.dg_setPullToRefreshBackgroundColor(self.view.backgroundColor!)
+    }
+    
     func sortTransactions() {
+        
+        sections = [:]
+        sortedSections = []
         
         guard let transactions = transactions else {
             return
@@ -79,6 +107,11 @@ class TransactionViewController: UIViewController {
             self.logout()
             return
         }
+        transactions = nil
+        bulldogBuckBalance = nil
+        swipesRemaining = nil
+        cardState = nil
+        
         client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN)
             .then { (amount, transactions, cardState , swipesRemaining) -> Void in
                 self.transactions = transactions
@@ -147,12 +180,13 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let bulldogBuckBalance = bulldogBuckBalance, let swipesRemaining = swipesRemaining, let cardState = cardState else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.reuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
         }
         
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.reuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
+            cell.titleLabel.text = "Bulldog Bucks Remaining"
             cell.amountLabel.text = "$\(bulldogBuckBalance)"
             
             let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
@@ -160,17 +194,39 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
                 let dailyBalance = Double(bulldogBuckBalance)! / Double(weeksUntilEndOfSchoolYear)
                 cell.weeklyLabel.text = String(format: "Budget $%.2f per week", dailyBalance)
             }
+            return cell
             
-            return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwipesCollectionViewCell.reuseIdentifier, for: indexPath) as! SwipesCollectionViewCell
+            guard let swipesRemainingAsInt = Int(swipesRemaining) else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reuseIdentifier, for: indexPath) as! GenericCollectionViewCell
+                cell.amountLabel.text = swipesRemaining
+                return cell
+            }
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
+            cell.titleLabel.text = "Swipes Remaining"
             cell.amountLabel.text = swipesRemaining
+            
+            //This is the code that would be used if we make it per day
+//            let daysUntilEndOfSemester = NSDate().days(to: self.lastDayOfSemester)
+//            
+//            if daysUntilEndOfSemester > 0 {
+//                let dailyBalance = swipesRemainingAsInt / daysUntilEndOfSemester
+//                let properGrammar = dailyBalance > 1 ? "swipes" : "swipe"
+//                cell.weeklyLabel.text = "Budget \(dailyBalance) \(properGrammar) per day"
+//            }
+            
+            let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
+            if weeksUntilEndOfSchoolYear > 0 {
+                let weeklyBalance = swipesRemainingAsInt / weeksUntilEndOfSchoolYear
+                cell.weeklyLabel.text = "Budget \(weeklyBalance) per week"
+            }
             return cell
+            
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.reuseIdentifier, for: indexPath) as! ButtonCollectionViewCell
             
             cell.logoutAction = logout
-            
             
             cell.toggleCardStatusAction = { (cardState, onCompetion) -> Void in
                 
@@ -199,7 +255,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             
             return cell
         default:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.reuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
         }
     }
     
@@ -257,5 +313,23 @@ extension TransactionViewController: UITableViewDataSource {
         
         
         return sections[sortedSections[section]]?.first?.sectionHeaderDate
+    }
+}
+
+extension TransactionViewController: UIScrollViewDelegate {
+    
+    // Make it so the user can only pull down, not up
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y > 0) {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            scrollView.bounces = false
+        }
+        
+        if (scrollView.contentOffset.y == 0){
+            scrollView.bounces = true
+        }
+        else {
+            scrollView.bounces = true
+        }
     }
 }

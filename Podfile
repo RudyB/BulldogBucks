@@ -9,6 +9,7 @@
    pod 'Alamofire'
    pod "PromiseKit"
    pod 'KeychainAccess'
+   pod 'DGElasticPullToRefresh'
    # Pods for Bulldog Bucks
 
  end
