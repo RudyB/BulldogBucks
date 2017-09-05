@@ -8,9 +8,9 @@
 
 import UIKit
 
-class SwipesCollectionViewCell: UICollectionViewCell {
+class GenericCollectionViewCell: UICollectionViewCell {
     
-    public static let reuseIdentifier = "SwipesCollectionViewCell"
+    public static let reuseIdentifier = "GenericCollectionViewCell"
     
     @IBOutlet weak var amountLabel: UILabel!
     
