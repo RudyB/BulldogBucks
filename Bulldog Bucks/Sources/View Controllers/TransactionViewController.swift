@@ -8,12 +8,14 @@
 
 import UIKit
 
+// TODO: Pull to refresh & Add Budgeting
+
 class TransactionViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var collectionView: UICollectionView!
-	
-	@IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var pageControl: UIPageControl!
     
     
     public static let storyboardIdentifier = "TransactionViewControllerID"
@@ -23,6 +25,11 @@ class TransactionViewController: UIViewController {
     lazy var client: ZagwebClient = {
         return ZagwebClient()
     }()
+    
+    /// Last Day of the Current of Semester in UNIX time
+    /// This is used to calculate the amount of money remaining per week
+    /// Updated for the 2017 - 2018 Academic School year
+    let lastDayOfSemester = Date(timeIntervalSince1970: 1513296000)
     
     
     var transactions: [Transaction]?
@@ -41,7 +48,7 @@ class TransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-		collectionView.dataSource = self
+        collectionView.dataSource = self
         collectionView.delegate = self
         pageControl.numberOfPages = collectionView.numberOfSections
         
@@ -74,15 +81,35 @@ class TransactionViewController: UIViewController {
         client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN)
             .then { (amount, transactions, cardState , swipesRemaining) -> Void in
                 self.transactions = transactions
-				self.bulldogBuckBalance = amount
+                self.bulldogBuckBalance = amount
                 self.swipesRemaining = swipesRemaining
                 self.cardState = cardState
                 
                 self.sortTransactions()
                 self.tableView.reloadData()
                 self.collectionView.reloadData()
-        }.catch { (error) in
-            print(error.localizedDescription)
+            }.catch { (error) in
+                print(error.localizedDescription)
+        }
+    }
+    
+    func logout() -> () {
+        
+        let cookieStorage: HTTPCookieStorage = HTTPCookieStorage.shared
+        let cookies = cookieStorage.cookies(for: URL(string: "zagweb.gonzaga.edu")!)
+        
+        if let cookies = cookies {
+            for cookie in cookies {
+                cookieStorage.deleteCookie(cookie as HTTPCookie)
+            }
+        }
+        
+        let logoutSuccess = BDBKeychain.phoneKeychain.deleteCredentials()
+        if logoutSuccess {
+            delegate?.didLogoutSuccessfully()
+        } else {
+            // This should never happen, but it is good to handle the error just in case.
+            showAlert(target: self, title: "Houston we have a problem!", message: "Logout failed. Please try again.")
         }
     }
     
@@ -92,7 +119,7 @@ class TransactionViewController: UIViewController {
 
 extension TransactionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
- 
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -104,31 +131,29 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let bulldogBuckBalance = bulldogBuckBalance, let swipesRemaining = swipesRemaining, let cardState = cardState else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: SwipesCollectionViewCell.reuseIdentifier, for: indexPath) as! SwipesCollectionViewCell
         }
-        
         
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.reuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
             cell.amountLabel.text = "$\(bulldogBuckBalance)"
-            cell.titleLabel.text = "Bulldog Bucks Remaining"
+            
+            let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
+            if weeksUntilEndOfSchoolYear > 0 {
+                let dailyBalance = Double(bulldogBuckBalance)! / Double(weeksUntilEndOfSchoolYear)
+                cell.weeklyLabel.text = String(format: "Budget $%.2f per week", dailyBalance)
+            }
+            
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwipesCollectionViewCell.reuseIdentifier, for: indexPath) as! SwipesCollectionViewCell
             cell.amountLabel.text = swipesRemaining
-            cell.titleLabel.text = "Swipes Remaining"
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.reuseIdentifier, for: indexPath) as! ButtonCollectionViewCell
             
-            cell.logoutAction = { () -> () in
-                self.client.logout().then { (_) -> Void in
-                    self.delegate?.didLogoutSuccessfully()
-                }.catch { (error) in
-                    print(error)
-                }
-            }
+            cell.logoutAction = logout
             
             
             cell.toggleCardStatusAction = { (cardState, onCompetion) -> Void in
@@ -140,12 +165,12 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
                 self.client.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
                     onCompetion(true)
                     return
-                }.catch { (error) in
-                    onCompetion(false)
-                    return
+                    }.catch { (error) in
+                        onCompetion(false)
+                        return
                 }
                 
-                }
+            }
             
             switch cardState {
             case .active:
@@ -156,10 +181,9 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
                 cell.switchOutlet.isOn = false
             }
             
-            // TODO: Implement closure for switch and button
             return cell
         default:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: SwipesCollectionViewCell.reuseIdentifier, for: indexPath) as! SwipesCollectionViewCell
         }
     }
     
@@ -171,7 +195,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.pageControl.currentPage = indexPath.section
     }
-
+    
     
     
 }

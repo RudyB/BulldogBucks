@@ -191,7 +191,7 @@ extension AppDelegate: WCSessionDelegate {
 extension AppDelegate: AuthenticationStateDelegate {
     
     func didLoginSuccessfully() {
-        
+        self.notificationCenter.post(name: Notification.Name(UserLoggedInNotificaiton), object: nil)
         let transactionsVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
         
         transactionsVC.delegate = self
@@ -199,6 +199,7 @@ extension AppDelegate: AuthenticationStateDelegate {
     }
     
     func didLogoutSuccessfully() {
+        self.notificationCenter.post(name: Notification.Name(UserLoggedOutNotification), object: nil)
         let _ = navigationController?.popToRootViewController(animated: true)
     }
     

@@ -50,11 +50,11 @@
 		479448071D9A4409007847BE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 479448051D9A4409007847BE /* MainInterface.storyboard */; };
 		4794480B1D9A4409007847BE /* Bulldog Bucks - Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 479447FE1D9A4409007847BE /* Bulldog Bucks - Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4797116C1E75CC940060DC97 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
-		47BC3AB71DA09D29001C3FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC3AB61DA09D29001C3FD2 /* ViewController.swift */; };
 		47BF33091F5CF52C005D162E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33081F5CF52C005D162E /* TransactionViewController.swift */; };
 		47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */; };
-		47BF330E1F5DDC0D005D162E /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330D1F5DDC0D005D162E /* DetailCollectionViewCell.swift */; };
+		47BF330E1F5DDC0D005D162E /* SwipesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330D1F5DDC0D005D162E /* SwipesCollectionViewCell.swift */; };
 		47BF33101F5E1400005D162E /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330F1F5E1400005D162E /* ButtonCollectionViewCell.swift */; };
+		47BF33121F5E313C005D162E /* BalanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33111F5E313C005D162E /* BalanceCollectionViewCell.swift */; };
 		47D10B401DE11B4B0041064C /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47DAF0771DE5166E00499185 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
@@ -179,11 +179,11 @@
 		479448081D9A4409007847BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4794B0191DE5061C00F71077 /* Bulldog Bucks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks.entitlements"; sourceTree = "<group>"; };
 		479C4D0E1E76826F005DAC22 /* Bulldog Bucks - Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks - Watch Extension.entitlements"; sourceTree = "<group>"; };
-		47BC3AB61DA09D29001C3FD2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47BF33081F5CF52C005D162E /* TransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
-		47BF330D1F5DDC0D005D162E /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		47BF330D1F5DDC0D005D162E /* SwipesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipesCollectionViewCell.swift; sourceTree = "<group>"; };
 		47BF330F1F5E1400005D162E /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		47BF33111F5E313C005D162E /* BalanceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceCollectionViewCell.swift; sourceTree = "<group>"; };
 		47D10B421DE1735D0041064C /* Bulldog Bucks Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks Widget.entitlements"; sourceTree = "<group>"; };
 		47ED9C761F5A178000AE4426 /* Bulldog BucksMainAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bulldog BucksMainAppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47ED9C781F5A178000AE4426 /* Bulldog_BucksMainAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulldog_BucksMainAppTests.swift; sourceTree = "<group>"; };
@@ -451,7 +451,6 @@
 			isa = PBXGroup;
 			children = (
 				479447CE1D99F2C1007847BE /* LoginViewController.swift */,
-				47BC3AB61DA09D29001C3FD2 /* ViewController.swift */,
 				47BF33081F5CF52C005D162E /* TransactionViewController.swift */,
 			);
 			path = "View Controllers";
@@ -461,8 +460,9 @@
 			isa = PBXGroup;
 			children = (
 				47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */,
-				47BF330D1F5DDC0D005D162E /* DetailCollectionViewCell.swift */,
+				47BF330D1F5DDC0D005D162E /* SwipesCollectionViewCell.swift */,
 				47BF330F1F5E1400005D162E /* ButtonCollectionViewCell.swift */,
+				47BF33111F5E313C005D162E /* BalanceCollectionViewCell.swift */,
 			);
 			path = "Cell Models";
 			sourceTree = "<group>";
@@ -937,12 +937,11 @@
 			files = (
 				477BE1681DE618B300F39E46 /* NetworkReachability.swift in Sources */,
 				47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */,
-				47BF330E1F5DDC0D005D162E /* DetailCollectionViewCell.swift in Sources */,
+				47BF330E1F5DDC0D005D162E /* SwipesCollectionViewCell.swift in Sources */,
 				47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */,
 				472F33131DE2BC6A001D4B4C /* FadeTransition.swift in Sources */,
 				472F33141DE2BC6A001D4B4C /* SpinerLayer.swift in Sources */,
 				4761DF0C1E47D9C8004755EB /* BDBKeychain.swift in Sources */,
-				47BC3AB71DA09D29001C3FD2 /* ViewController.swift in Sources */,
 				479447CF1D99F2C1007847BE /* LoginViewController.swift in Sources */,
 				472F33151DE2BC6A001D4B4C /* TransitionSubmitButton.swift in Sources */,
 				47BF33091F5CF52C005D162E /* TransactionViewController.swift in Sources */,
@@ -954,6 +953,7 @@
 				47234DA41DE19ABF00C25C8F /* CustomAlert.swift in Sources */,
 				47BF33101F5E1400005D162E /* ButtonCollectionViewCell.swift in Sources */,
 				4705B2581F5BAB4D004FAEAF /* Transaction.swift in Sources */,
+				47BF33121F5E313C005D162E /* BalanceCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

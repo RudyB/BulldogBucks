@@ -8,13 +8,12 @@
 
 import UIKit
 
-class DetailCollectionViewCell: UICollectionViewCell {
+class SwipesCollectionViewCell: UICollectionViewCell {
     
-    public static let reuseIdentifier = "DetailCollectionViewCell"
+    public static let reuseIdentifier = "SwipesCollectionViewCell"
     
     @IBOutlet weak var amountLabel: UILabel!
     
-    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
