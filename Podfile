@@ -8,10 +8,7 @@
    pod 'Kanna'
    pod 'Alamofire'
    pod "PromiseKit"
-   pod "SwiftSpinner"
-   pod "KCFloatingActionButton"
    pod 'KeychainAccess'
-   pod 'RealmSwift'
    # Pods for Bulldog Bucks
 
  end
@@ -44,7 +41,6 @@ target 'Bulldog Bucks - Widget' do
   pod 'Alamofire'
   pod "PromiseKit"
   pod 'KeychainAccess'
-  pod 'RealmSwift'
   # Pods for Bulldog Bucks - Widget
 
 end

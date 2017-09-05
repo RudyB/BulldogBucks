@@ -11,8 +11,6 @@
 		4705B2591F5BAB5D004FAEAF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705B2571F5BAB4D004FAEAF /* Transaction.swift */; };
 		4705B25A1F5BAB5E004FAEAF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705B2571F5BAB4D004FAEAF /* Transaction.swift */; };
 		4705B25B1F5BAB5F004FAEAF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705B2571F5BAB4D004FAEAF /* Transaction.swift */; };
-		470B05A01F51EF8000D48EF2 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B059E1F51EF8000D48EF2 /* Balance.swift */; };
-		470B05A31F51EF9300D48EF2 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B059E1F51EF8000D48EF2 /* Balance.swift */; };
 		47234DA41DE19ABF00C25C8F /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47234DA31DE19ABF00C25C8F /* CustomAlert.swift */; };
 		472F33121DE2BC6A001D4B4C /* CGRectEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F330E1DE2BC6A001D4B4C /* CGRectEx.swift */; };
 		472F33131DE2BC6A001D4B4C /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F330F1DE2BC6A001D4B4C /* FadeTransition.swift */; };
@@ -22,8 +20,6 @@
 		472F331D1DE3DBAB001D4B4C /* DINPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 472F331C1DE3DBAB001D4B4C /* DINPro-Regular.ttf */; };
 		4761DF0C1E47D9C8004755EB /* BDBKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761DF0B1E47D9C8004755EB /* BDBKeychain.swift */; };
 		4761DF0D1E47D9C8004755EB /* BDBKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761DF0B1E47D9C8004755EB /* BDBKeychain.swift */; };
-		4767B3BA1F5395BE006AD1BE /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767B3B81F5395B7006AD1BE /* Balance.swift */; };
-		4767B3BC1F539742006AD1BE /* BalanceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767B3BB1F539742006AD1BE /* BalanceList.swift */; };
 		476E50F61E74FDD5005CD02C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 476E50F41E74FDD5005CD02C /* Interface.storyboard */; };
 		476E50F81E74FDD5005CD02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 476E50F71E74FDD5005CD02C /* Assets.xcassets */; };
 		476E50FF1E74FDD5005CD02C /* Bulldog Bucks - Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 476E50FE1E74FDD5005CD02C /* Bulldog Bucks - Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -55,6 +51,12 @@
 		47BF330E1F5DDC0D005D162E /* SwipesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330D1F5DDC0D005D162E /* SwipesCollectionViewCell.swift */; };
 		47BF33101F5E1400005D162E /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330F1F5E1400005D162E /* ButtonCollectionViewCell.swift */; };
 		47BF33121F5E313C005D162E /* BalanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33111F5E313C005D162E /* BalanceCollectionViewCell.swift */; };
+		47BF33151F5E3FD8005D162E /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33131F5E3FD8005D162E /* Balance.swift */; };
+		47BF33161F5E3FD8005D162E /* BalanceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33141F5E3FD8005D162E /* BalanceList.swift */; };
+		47BF33171F5E3FDC005D162E /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33131F5E3FD8005D162E /* Balance.swift */; };
+		47BF33181F5E3FDD005D162E /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33131F5E3FD8005D162E /* Balance.swift */; };
+		47BF33191F5E3FE2005D162E /* BalanceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33141F5E3FD8005D162E /* BalanceList.swift */; };
+		47BF331A1F5E3FE2005D162E /* BalanceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33141F5E3FD8005D162E /* BalanceList.swift */; };
 		47D10B401DE11B4B0041064C /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47DAF0771DE5166E00499185 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
@@ -138,7 +140,6 @@
 		2D3B0904DC0D5337113456AE /* Pods-Bulldog Bucks - Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulldog Bucks - Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bulldog Bucks - Widget/Pods-Bulldog Bucks - Widget.release.xcconfig"; sourceTree = "<group>"; };
 		419FB610336D91890E621897 /* Pods-Bulldog Bucks - Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulldog Bucks - Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bulldog Bucks - Watch Extension/Pods-Bulldog Bucks - Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		4705B2571F5BAB4D004FAEAF /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		470B059E1F51EF8000D48EF2 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		47234DA31DE19ABF00C25C8F /* CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		472F330E1DE2BC6A001D4B4C /* CGRectEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectEx.swift; sourceTree = "<group>"; };
 		472F330F1DE2BC6A001D4B4C /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
@@ -149,8 +150,6 @@
 		4761DF0B1E47D9C8004755EB /* BDBKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BDBKeychain.swift; sourceTree = "<group>"; };
 		4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZagwebAPI.swift; sourceTree = "<group>"; };
 		4767B3B41F525AF3006AD1BE /* Bulldog Bucks - Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks - Watch.entitlements"; sourceTree = "<group>"; };
-		4767B3B81F5395B7006AD1BE /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
-		4767B3BB1F539742006AD1BE /* BalanceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceList.swift; sourceTree = "<group>"; };
 		476E50F21E74FDD5005CD02C /* Bulldog Bucks - Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bulldog Bucks - Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		476E50F51E74FDD5005CD02C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		476E50F71E74FDD5005CD02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -184,6 +183,8 @@
 		47BF330D1F5DDC0D005D162E /* SwipesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipesCollectionViewCell.swift; sourceTree = "<group>"; };
 		47BF330F1F5E1400005D162E /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		47BF33111F5E313C005D162E /* BalanceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceCollectionViewCell.swift; sourceTree = "<group>"; };
+		47BF33131F5E3FD8005D162E /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		47BF33141F5E3FD8005D162E /* BalanceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceList.swift; sourceTree = "<group>"; };
 		47D10B421DE1735D0041064C /* Bulldog Bucks Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks Widget.entitlements"; sourceTree = "<group>"; };
 		47ED9C761F5A178000AE4426 /* Bulldog BucksMainAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bulldog BucksMainAppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47ED9C781F5A178000AE4426 /* Bulldog_BucksMainAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulldog_BucksMainAppTests.swift; sourceTree = "<group>"; };
@@ -260,8 +261,9 @@
 		470B059D1F51EF8000D48EF2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47BF33131F5E3FD8005D162E /* Balance.swift */,
+				47BF33141F5E3FD8005D162E /* BalanceList.swift */,
 				4705B2571F5BAB4D004FAEAF /* Transaction.swift */,
-				470B059E1F51EF8000D48EF2 /* Balance.swift */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -300,15 +302,6 @@
 			path = Shared/API;
 			sourceTree = "<group>";
 		};
-		4767B3B71F5395B7006AD1BE /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4767B3B81F5395B7006AD1BE /* Balance.swift */,
-				4767B3BB1F539742006AD1BE /* BalanceList.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		476E50F31E74FDD5005CD02C /* Bulldog Bucks Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,7 +315,6 @@
 		476E51021E74FDD5005CD02C /* Bulldog Bucks Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				4767B3B71F5395B7006AD1BE /* Models */,
 				479C4D0E1E76826F005DAC22 /* Bulldog Bucks - Watch Extension.entitlements */,
 				476E51031E74FDD5005CD02C /* InterfaceController.swift */,
 				476E51051E74FDD5005CD02C /* ExtensionDelegate.swift */,
@@ -732,24 +724,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bulldog Bucks/Pods-Bulldog Bucks-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/KCFloatingActionButton/KCFloatingActionButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna-iOS/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit-iOS/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KCFloatingActionButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -920,13 +904,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				476E51061E74FDD5005CD02C /* ExtensionDelegate.swift in Sources */,
+				47BF33191F5E3FE2005D162E /* BalanceList.swift in Sources */,
 				4797116C1E75CC940060DC97 /* Extensions.swift in Sources */,
 				476E511B1E751B01005CD02C /* ZagwebAPI.swift in Sources */,
 				476E51041E74FDD5005CD02C /* InterfaceController.swift in Sources */,
 				476E51081E74FDD5005CD02C /* ComplicationController.swift in Sources */,
-				4767B3BA1F5395BE006AD1BE /* Balance.swift in Sources */,
-				4767B3BC1F539742006AD1BE /* BalanceList.swift in Sources */,
 				476E51191E750A63005CD02C /* BDBKeychain.swift in Sources */,
+				47BF33181F5E3FDD005D162E /* Balance.swift in Sources */,
 				4705B2591F5BAB5D004FAEAF /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,6 +924,8 @@
 				47BF330E1F5DDC0D005D162E /* SwipesCollectionViewCell.swift in Sources */,
 				47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */,
 				472F33131DE2BC6A001D4B4C /* FadeTransition.swift in Sources */,
+				47BF33151F5E3FD8005D162E /* Balance.swift in Sources */,
+				47BF33161F5E3FD8005D162E /* BalanceList.swift in Sources */,
 				472F33141DE2BC6A001D4B4C /* SpinerLayer.swift in Sources */,
 				4761DF0C1E47D9C8004755EB /* BDBKeychain.swift in Sources */,
 				479447CF1D99F2C1007847BE /* LoginViewController.swift in Sources */,
@@ -949,7 +935,6 @@
 				479447CD1D99F2C1007847BE /* AppDelegate.swift in Sources */,
 				472F33121DE2BC6A001D4B4C /* CGRectEx.swift in Sources */,
 				472F331A1DE3D5E5001D4B4C /* Extensions.swift in Sources */,
-				470B05A01F51EF8000D48EF2 /* Balance.swift in Sources */,
 				47234DA41DE19ABF00C25C8F /* CustomAlert.swift in Sources */,
 				47BF33101F5E1400005D162E /* ButtonCollectionViewCell.swift in Sources */,
 				4705B2581F5BAB4D004FAEAF /* Transaction.swift in Sources */,
@@ -966,7 +951,8 @@
 				479448041D9A4409007847BE /* TodayViewController.swift in Sources */,
 				47DAF0771DE5166E00499185 /* Extensions.swift in Sources */,
 				4761DF0D1E47D9C8004755EB /* BDBKeychain.swift in Sources */,
-				470B05A31F51EF9300D48EF2 /* Balance.swift in Sources */,
+				47BF33171F5E3FDC005D162E /* Balance.swift in Sources */,
+				47BF331A1F5E3FE2005D162E /* BalanceList.swift in Sources */,
 				477BE1691DE618B300F39E46 /* NetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

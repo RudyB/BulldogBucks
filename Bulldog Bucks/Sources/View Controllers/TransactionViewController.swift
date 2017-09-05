@@ -8,7 +8,7 @@
 
 import UIKit
 
-// TODO: Pull to refresh & Add Budgeting
+// TODO: Pull to refresh
 
 class TransactionViewController: UIViewController {
     
@@ -76,6 +76,7 @@ class TransactionViewController: UIViewController {
     
     func getData() {
         guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
+            self.logout()
             return
         }
         client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN)
@@ -90,6 +91,21 @@ class TransactionViewController: UIViewController {
                 self.collectionView.reloadData()
             }.catch { (error) in
                 print(error.localizedDescription)
+                
+                if let error = error as? ClientError {
+                    switch error {
+                    case .invalidCredentials:
+                
+                        let action = UIAlertAction(title: "Logout", style: .default){ (_) in
+                            self.logout()
+                        }
+                        showAlert(target: self, title: "Hold Up!", message: "It looks like you have changed your password. Logout and Try Again", actionList: [action])
+                    default:
+                        showAlert(target: self, title: "Error", message: error.domain())
+                    }
+                } else {
+                    showAlert(target: self, title: "Error", message: error.localizedDescription)
+                }
         }
     }
     
@@ -103,7 +119,7 @@ class TransactionViewController: UIViewController {
                 cookieStorage.deleteCookie(cookie as HTTPCookie)
             }
         }
-        
+        BalanceListManager.purgeBalanceList()
         let logoutSuccess = BDBKeychain.phoneKeychain.deleteCredentials()
         if logoutSuccess {
             delegate?.didLogoutSuccessfully()
@@ -131,7 +147,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let bulldogBuckBalance = bulldogBuckBalance, let swipesRemaining = swipesRemaining, let cardState = cardState else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: SwipesCollectionViewCell.reuseIdentifier, for: indexPath) as! SwipesCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.reuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
         }
         
         switch indexPath.section {
@@ -183,7 +199,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             
             return cell
         default:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: SwipesCollectionViewCell.reuseIdentifier, for: indexPath) as! SwipesCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.reuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
         }
     }
     

@@ -8,7 +8,6 @@
 
 import UIKit
 import WatchConnectivity
-import RealmSwift
 
 
 /// `String` constant for `NSNotification.Name() for when the user logs out of the application`
@@ -30,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        setupRealmDB()
         setupWatchConnectivity()
         setupNotificationCenter()
         
@@ -84,17 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    // MARK: - Realm DB
-    
-    private func setupRealmDB() {
-        // Setup Realm DB
-        let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.bdbMeter")
-        let realmPath = directory?.appendingPathComponent("db.realm")
-        var config = Realm.Configuration()
-        config.fileURL = realmPath
-        Realm.Configuration.defaultConfiguration = config
     }
     
     
