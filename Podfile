@@ -10,6 +10,7 @@
    pod "PromiseKit"
    pod 'KeychainAccess'
    pod 'DGElasticPullToRefresh'
+   pod 'MBProgressHUD', '~> 1.0.0'
    # Pods for Bulldog Bucks
 
  end
