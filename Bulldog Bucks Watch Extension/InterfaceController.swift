@@ -14,6 +14,7 @@ class InterfaceController: WKInterfaceController {
 
 	@IBOutlet var headerLabel: WKInterfaceLabel!
 	@IBOutlet var amountLabel: WKInterfaceLabel!
+	@IBOutlet var swipesLabel: WKInterfaceLabel!
 	@IBOutlet var errorLabel: WKInterfaceLabel!
 	@IBOutlet var footerLabel: WKInterfaceLabel!
     @IBOutlet var loadingGroup: WKInterfaceGroup!
@@ -89,6 +90,7 @@ class InterfaceController: WKInterfaceController {
     
                     
                     self.amountLabel.setText("$\(amount)")
+					self.swipesLabel.setText("\(swipes) Swipes")
                     let date = NSDate()
                     
                     let newDataSet = ZagwebDataSet(bucksRemaining: amount, swipesRemaining: swipes, date: date as Date)
