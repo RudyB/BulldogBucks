@@ -170,7 +170,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                     showAlert(target: self, title: error.domain())
                 default:
                     self.loginButton.returnToOriginalState()
-                    showAlert(target: self, title: error.domain())
+                    showAlert(target: self, title: "Networking Error", message: error.domain())
                 }
 				
 			}

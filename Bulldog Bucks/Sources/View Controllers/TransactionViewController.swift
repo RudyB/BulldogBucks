@@ -100,10 +100,17 @@ class TransactionViewController: UIViewController {
     
     func getData() {
         
+        if !isConnectedToNetwork() {
+            showAlert(target: self, title: "Whoa There!", message: "It looks like you don't have an active Internet Connection.\n\nCheck your internet connection and try again.")
+            hideLoadingHUD()
+            return
+        }
+        
         guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
             self.logout()
             return
         }
+        
         transactions = nil
         bulldogBuckBalance = nil
         swipesRemaining = nil
@@ -132,7 +139,7 @@ class TransactionViewController: UIViewController {
                         }
                         showAlert(target: self, title: "Hold Up!", message: "It looks like you have changed your password. Logout and Try Again", actionList: [action])
                     default:
-                        showAlert(target: self, title: "Error", message: error.domain())
+                        showAlert(target: self, title: "Networking Error", message: error.domain())
                     }
                 } else {
                     showAlert(target: self, title: "Error", message: error.localizedDescription)
@@ -192,43 +199,41 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let bulldogBuckBalance = bulldogBuckBalance, let swipesRemaining = swipesRemaining, let cardState = cardState else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
-        }
         
         switch indexPath.section {
         case 0:
+            // Bulldog Buck Balance Section
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
             cell.titleLabel.text = "Bulldog Bucks Remaining"
-            cell.amountLabel.text = "$\(bulldogBuckBalance)"
+            if let bulldogBuckBalance = bulldogBuckBalance {
+                cell.amountLabel.text = "$\(bulldogBuckBalance)"
+            } else {
+                cell.amountLabel.text = "- - -"
+            }
             
             let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
-            if weeksUntilEndOfSchoolYear > 0 {
+            if let bulldogBuckBalance = bulldogBuckBalance, weeksUntilEndOfSchoolYear > 0 {
                 let dailyBalance = Double(bulldogBuckBalance)! / Double(weeksUntilEndOfSchoolYear)
                 cell.weeklyLabel.text = String(format: "Budget $%.2f per week", dailyBalance)
             }
             return cell
             
         case 1:
-            guard let swipesRemainingAsInt = Int(swipesRemaining) else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reuseIdentifier, for: indexPath) as! GenericCollectionViewCell
-                cell.amountLabel.text = swipesRemaining
-                return cell
-            }
-            
+            // Swipes Remaining Section
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
             cell.titleLabel.text = "Swipes Remaining"
-            cell.amountLabel.text = swipesRemaining
+            cell.amountLabel.text = swipesRemaining ?? "- - -"
             
             
             let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
-            if weeksUntilEndOfSchoolYear > 0 {
+            if let swipesRemaining = swipesRemaining, let swipesRemainingAsInt = Int(swipesRemaining), weeksUntilEndOfSchoolYear > 0 {
                 let weeklyBalance = swipesRemainingAsInt / weeksUntilEndOfSchoolYear
                 cell.weeklyLabel.text = "Budget \(weeklyBalance) per week"
             }
             return cell
             
         case 2:
+            // Buttons Section
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.reuseIdentifier, for: indexPath) as! ButtonCollectionViewCell
             
             cell.logoutAction = logout
@@ -249,14 +254,17 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
                 
             }
             
-            switch cardState {
-            case .active:
-                cell.statusLabel.text = "ZAGCARD Active"
-                cell.switchOutlet.isOn = true
-            case .frozen:
-                cell.statusLabel.text = "ZAGCARD Frozen"
-                cell.switchOutlet.isOn = false
+            if let cardState = cardState {
+                switch cardState {
+                case .active:
+                    cell.statusLabel.text = "ZAGCARD Active"
+                    cell.switchOutlet.isOn = true
+                case .frozen:
+                    cell.statusLabel.text = "ZAGCARD Frozen"
+                    cell.switchOutlet.isOn = false
+                }
             }
+            
             
             return cell
         default:

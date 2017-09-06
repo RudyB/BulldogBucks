@@ -73,6 +73,8 @@ extension Transaction: CustomStringConvertible {
     var sectionHeaderDate: String {
         if Calendar.current.compare(date, to: Date(), toGranularity: .day) == .orderedSame {
             return "Today"
+        } else if (date as NSDate).days(to: Date()) == 1 {
+            return "Yesterday"
         } else if Calendar.current.compare(date, to: Date(), toGranularity: .year) == .orderedSame {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMMM d"

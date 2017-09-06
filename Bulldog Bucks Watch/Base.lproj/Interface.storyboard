@@ -32,7 +32,12 @@
                                 <label width="140" alignment="center" verticalAlignment="center" textAlignment="center" id="l0K-g5-cjc" userLabel="amountLabel">
                                     <fontDescription key="font" type="system" pointSize="35"/>
                                 </label>
-                                <label alignment="center" verticalAlignment="center" textAlignment="center" id="NoO-QZ-3yq" userLabel="swipesLabel"/>
+                                <label height="6" alignment="center" verticalAlignment="center" text=" " textAlignment="center" minimumScaleFactor="0.90000000000000002" id="T9s-wh-ZrM" userLabel="Spacer">
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                                <label alignment="center" verticalAlignment="center" textAlignment="center" id="NoO-QZ-3yq" userLabel="swipesLabel">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
                                 <label width="114" height="25" alignment="center" verticalAlignment="bottom" textAlignment="center" minimumScaleFactor="0.5" id="Nu4-8Z-cEz" userLabel="footer">
                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                 </label>
