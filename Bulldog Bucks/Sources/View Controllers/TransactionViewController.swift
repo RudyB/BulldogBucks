@@ -152,7 +152,7 @@ class TransactionViewController: UIViewController {
                 cookieStorage.deleteCookie(cookie as HTTPCookie)
             }
         }
-        BalanceListManager.purgeBalanceList()
+        ZagwebDataSetManager.purgeDataSets()
         let logoutSuccess = BDBKeychain.phoneKeychain.deleteCredentials()
         if logoutSuccess {
             delegate?.didLogoutSuccessfully()

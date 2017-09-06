@@ -45,3 +45,13 @@ target 'Bulldog Bucks - Widget' do
   # Pods for Bulldog Bucks - Widget
 
 end
+
+target 'Bulldog Bucks - Swipes Widget' do
+	use_frameworks!
+	platform :ios, '9.3'
+	pod 'Kanna'
+	pod 'Alamofire'
+	pod "PromiseKit"
+	pod 'KeychainAccess'
+
+end

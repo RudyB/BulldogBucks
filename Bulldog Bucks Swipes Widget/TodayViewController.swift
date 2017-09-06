@@ -1,5 +1,13 @@
 //
 //  TodayViewController.swift
+//  Bulldog Bucks Swipes Widget
+//
+//  Created by Rudy Bermudez on 9/5/17.
+//
+//
+
+//
+//  TodayViewController.swift
 //  Bulldog Bucks Widget
 //
 //  Created by Rudy Bermudez on 9/26/16.
@@ -10,20 +18,20 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-	
+    
     // MARK: - Properties
-	
-	@IBOutlet weak var remainingBdbLabel: UILabel!
-	@IBOutlet weak var timeUpdatedLabel: UILabel!
-	@IBOutlet weak var errorMessageLabel: UILabel!
-	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-	
+    
+    @IBOutlet weak var remainingBdbLabel: UILabel!
+    @IBOutlet weak var timeUpdatedLabel: UILabel!
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     /// Class Instance of ZagwebClient
     let client = ZagwebClient()
     
     let keychain = BDBKeychain.phoneKeychain
     
-	
+    
     // MARK: - UIViewController
     
     override func viewDidLoad() {
@@ -35,9 +43,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimeOfLastUpdate), userInfo: nil, repeats: true)
         }
         
-	}
-	
-	
+    }
+    
+    
     // MARK: - UI Helper Functions
     
     /**
@@ -51,7 +59,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         remainingBdbLabel.isHidden = enabled
         timeUpdatedLabel.isHidden = enabled
     }
-	
+    
     func downloadData() {
         
         guard let credentials = keychain.getCredentials() else {
@@ -59,13 +67,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             return
         }
         
-        client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (result, _, _, swipesRemaining) -> Void in
+        client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (bucks, _, _, swipes) -> Void in
             self.showErrorMessage(false)
             
             let date = NSDate()
-            let newDataSet = ZagwebDataSet(bucksRemaining: result, swipesRemaining: swipesRemaining, date: date as Date)
+            let newDataSet = ZagwebDataSet(bucksRemaining: bucks, swipesRemaining: swipes, date: date as Date)
             ZagwebDataSetManager.add(dataSet: newDataSet)
-        
             
             self.updateRemainderTextLabel()
             
@@ -88,22 +95,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func updateRemainderTextLabel() {
         
         
-        guard let lastBalance = ZagwebDataSetManager.dataSets.last else {
+        guard let lastDataSet = ZagwebDataSetManager.dataSets.last else {
             downloadData()
             return
         }
         
         // Check to see if it has been 5 minutes from the last update,
-        if NSDate().minutes(fromDate: lastBalance.date as NSDate) > 5 {
-             downloadData()
+        if NSDate().minutes(fromDate: lastDataSet.date as NSDate) > 5 {
+            downloadData()
         } else {
             self.activityIndicator.stopAnimating()
-            self.timeUpdatedLabel.text = "Updated: \((lastBalance.date as NSDate).timeAgoInWords)"
-            self.remainingBdbLabel.attributedText = formatAmountLabel(withResult: lastBalance.bucksRemaining)
+            self.timeUpdatedLabel.text = "Updated: \((lastDataSet.date as NSDate).timeAgoInWords)"
+            self.remainingBdbLabel.text = "\(lastDataSet.swipesRemaining) Swipes"
         }
         
     }
-        
+    
     /// Sets labels `textColor = UIColor.white` if User is using iOS 9 and black if on iOS 10
     func setFontColor() {
         if #available(iOS 9, *) {
@@ -120,20 +127,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
-    func formatAmountLabel(withResult result: String) -> NSMutableAttributedString {
-        
-        let dollarSignAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 30, weight: UIFontWeightRegular)]
-        let amountAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 50, weight: UIFontWeightRegular)]
-        
-        let dollarSignPart = NSMutableAttributedString(string: "$ ", attributes: dollarSignAttributes)
-        let amountPart = NSMutableAttributedString(string: result, attributes: amountAttributes)
-        
-        let attributedString = NSMutableAttributedString()
-        attributedString.append(dollarSignPart)
-        attributedString.append(amountPart)
-        
-        return attributedString
-    }
     
     /// Updates the `timeUpdatedLabel` with the amount of time that has passed since the last update
     func updateTimeOfLastUpdate() {
@@ -144,30 +137,30 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.timeUpdatedLabel.text = "Updated: Never"
         }
     }
-	
+    
     /// Launches the Main App only when user taps error message that shows "Please Open the App to Login"
-	@IBAction func openMainApp() {
+    @IBAction func openMainApp() {
         let url = URL(string: "bdb://")!
         extensionContext?.open(url, completionHandler: nil)
-	}
-	
-	
+    }
+    
+    
     // MARK: - ZagwebAPI Helpers
-	
+    
     /// Essentially the main function of the ViewController.
-	func update() {
-		if keychain.isLoggedIn() {
+    func update() {
+        if keychain.isLoggedIn() {
             if isConnectedToNetwork() {
                 activityIndicator.startAnimating()
                 updateRemainderTextLabel()
             } else {
                 showErrorMessage(true, withText: "No Active Connection to Internet")
             }
-		} else {
-			showErrorMessage(true)
-		}
-	}
-	
+        } else {
+            showErrorMessage(true)
+        }
+    }
+    
     // MARK: - NCWidgetProviding
     func widgetPerformUpdate(completionHandler: @escaping ((NCUpdateResult) -> Void)) {
         
@@ -175,5 +168,5 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(.newData)
         
     }
-	
+    
 }
