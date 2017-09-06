@@ -153,6 +153,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             let success = self.keychain.addCredentials(studentID: withStudentID, PIN: withPIN)
             if success {
                 self.loginButton.startFinishAnimation {
+                    self.userIDTextField.text = ""
+                    self.userPinTextField.text = ""
                     self.delegate?.didLoginSuccessfully()
                 }
             } else {

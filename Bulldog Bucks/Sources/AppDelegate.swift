@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         navigationController = UINavigationController()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
         let loginVC = storyboard?.instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier) as! LoginViewController
         

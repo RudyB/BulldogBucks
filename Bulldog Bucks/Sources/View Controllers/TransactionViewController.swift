@@ -59,8 +59,6 @@ class TransactionViewController: UIViewController {
         
         pageControl.numberOfPages = collectionView.numberOfSections
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
         getData()
     }
     
@@ -70,7 +68,7 @@ class TransactionViewController: UIViewController {
     
     func setupPullToRefresh() {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        loadingView.tintColor = UIColor(red: 94.0/255.0, green: 138.0/255.0, blue: 180.0/255.0, alpha: 1.0)
         self.scrollView.dg_addPullToRefreshWithActionHandler({
             self.getData()
         }, loadingView: loadingView)
