@@ -98,7 +98,8 @@ class InterfaceController: WKInterfaceController {
                     self.loadingGroup.setHidden(true)
                     self.detailGroup.setHidden(false)
                     self.updateComplication()
-                    }.catch { (_) in
+                    }.catch { (error) in
+                        NSLog(error.localizedDescription)
                         self.showError(msg: "Trouble Getting Data.\n\nForce touch to try again.")
                     }
                 

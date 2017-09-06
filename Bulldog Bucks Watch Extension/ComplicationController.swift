@@ -214,7 +214,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let modularTemplate = CLKComplicationTemplateModularLargeStandardBody()
             modularTemplate.headerTextProvider = CLKSimpleTextProvider(text: "Bulldog Bucks")
             modularTemplate.body1TextProvider = CLKSimpleTextProvider(text: "$\(dataSet.longTextBucksForComplication)")
-            modularTemplate.body2TextProvider = CLKSimpleTextProvider(text: "\(dataSet.swipesRemaining) swipes remaining")
+            modularTemplate.body2TextProvider = CLKSimpleTextProvider(text: "\(dataSet.swipesRemaining) Swipes")
             return CLKComplicationTimelineEntry(date: dataSet.date, complicationTemplate: modularTemplate)
             
         case .utilitarianSmallFlat:
