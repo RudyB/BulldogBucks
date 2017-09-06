@@ -194,6 +194,7 @@
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxM-mv-r3q">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
+                                                <color key="backgroundColor" red="0.36862745099999999" green="0.54117647059999996" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Oum-OK-IGi">
                                                     <size key="itemSize" width="319" height="145"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
