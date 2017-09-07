@@ -46,6 +46,7 @@
 		479448071D9A4409007847BE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 479448051D9A4409007847BE /* MainInterface.storyboard */; };
 		4794480B1D9A4409007847BE /* Bulldog Bucks - Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 479447FE1D9A4409007847BE /* Bulldog Bucks - Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4797116C1E75CC940060DC97 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
+		47AEC5921F60C85000CAB36A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
 		47BF33091F5CF52C005D162E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33081F5CF52C005D162E /* TransactionViewController.swift */; };
 		47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */; };
 		47BF330E1F5DDC0D005D162E /* GenericCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330D1F5DDC0D005D162E /* GenericCollectionViewCell.swift */; };
@@ -1109,6 +1110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4705B25A1F5BAB5E004FAEAF /* Transaction.swift in Sources */,
+				47AEC5921F60C85000CAB36A /* Extensions.swift in Sources */,
 				47ED9C791F5A178000AE4426 /* Bulldog_BucksMainAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
