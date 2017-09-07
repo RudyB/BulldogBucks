@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ButtonCollectionViewCell: UICollectionViewCell {
     
@@ -26,7 +27,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
             status = CardState.frozen
         }
         if let toggleCardStatusAction = toggleCardStatusAction {
-            
+            MBProgressHUD.showAdded(to: self, animated: true)
             toggleCardStatusAction(status) { (success) in
                 if success {
                     if self.switchOutlet.isOn {
@@ -36,8 +37,10 @@ class ButtonCollectionViewCell: UICollectionViewCell {
                     }
                 } else {
                     print("Toggling Status Failed")
-                    // TODO: Handle Error
+                    // Revert Switch on Failure
+                    self.switchOutlet.setOn(!self.switchOutlet.isOn, animated: true)
                 }
+                MBProgressHUD.hide(for: self, animated: true)
             }
         }
 		

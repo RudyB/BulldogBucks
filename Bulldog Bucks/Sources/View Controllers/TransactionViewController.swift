@@ -168,6 +168,20 @@ class TransactionViewController: UIViewController {
         }
     }
     
+    func userChangedZagcardState(cardState: CardState, onCompletion: @escaping (Bool) -> Void ) {
+        guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
+            onCompletion(false)
+            return
+        }
+        self.client.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
+            onCompletion(true)
+            return
+            }.catch { (error) in
+                onCompletion(false)
+                return
+        }
+    }
+    
     // MARK : - MBProgressHUD Methods
     
     /// Displays a Loading View
@@ -236,23 +250,9 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             // Buttons Section
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.reuseIdentifier, for: indexPath) as! ButtonCollectionViewCell
             
+            // Define Cell Actions
             cell.logoutAction = logout
-            
-            cell.toggleCardStatusAction = { (cardState, onCompetion) -> Void in
-                
-                guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
-                    onCompetion(false)
-                    return
-                }
-                self.client.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
-                    onCompetion(true)
-                    return
-                    }.catch { (error) in
-                        onCompetion(false)
-                        return
-                }
-                
-            }
+            cell.toggleCardStatusAction = userChangedZagcardState(cardState:onCompletion:)
             
             if let cardState = cardState {
                 switch cardState {
@@ -264,9 +264,8 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
                     cell.switchOutlet.isOn = false
                 }
             }
-            
-            
             return cell
+            
         default:
             return collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
         }
