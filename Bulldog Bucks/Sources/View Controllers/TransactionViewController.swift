@@ -28,6 +28,10 @@ class TransactionViewController: UIViewController {
         return ZagwebClient()
     }()
     
+    lazy var notificationCenter: NotificationCenter = {
+        return NotificationCenter.default
+    }()
+    
     /// Last Day of the Current of Semester in UNIX time
     /// This is used to calculate the amount of money remaining per week
     /// Updated for the Fall Semester of the 2017 - 2018 Academic School year
@@ -110,6 +114,8 @@ class TransactionViewController: UIViewController {
             self.logout()
             return
         }
+        
+        self.notificationCenter.post(name: Notification.Name(UserLoggedInNotificaiton), object: nil)
         
         transactions = nil
         bulldogBuckBalance = nil
