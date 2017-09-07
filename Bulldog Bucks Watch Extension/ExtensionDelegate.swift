@@ -47,12 +47,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 if task is WKApplicationRefreshBackgroundTask {
                     NSLog("Application Refresh Background Task Started")
                     downloadData()
+                    NSLog("Application Refresh Background Task Completed")
                 }
             } else {
                 NSLog("Application not in background. Not downloading new data")
                 scheduleBackgroundFetch(inMinutes: 5)
             }
-            
             task.setTaskCompleted()
         }
         
