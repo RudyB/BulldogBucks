@@ -106,7 +106,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineAnimationBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineAnimationBehavior) -> Void) {
-        handler(.always)
+        handler(.never)
     }
     
     func reloadOrExtendData() {
@@ -247,7 +247,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             NSLog("Background: User is not logged in")
             return
         }
-        NSLog("Background: User is logged in, attempting to connect to zagweb")
+        NSLog("In Complication Controller. User is logged in, attempting to connect to zagweb")
         ZagwebClient().getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (bucks, _, _, swipes) -> Void in
             let date = Date()
             NSLog("Background: Data Successfully downloaded in background. \(bucks) at \(date.description)")
@@ -258,6 +258,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             }.catch { (error) in
                 NSLog(error.localizedDescription)
         }
+        NSLog("In Complication Controller. Download Data function complete")
     }
     
     func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {

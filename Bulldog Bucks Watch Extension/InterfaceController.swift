@@ -63,7 +63,7 @@ class InterfaceController: WKInterfaceController {
             updateDisplay()
         } else {
             // If not, update the label with the last balance
-            
+            swipesLabel.setText("\(lastBalance.swipesRemaining) Swipes")
             amountLabel.setText("$\(lastBalance.bucksRemaining)")
             self.detailGroup.setHidden(false)
         }
