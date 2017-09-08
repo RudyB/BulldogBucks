@@ -12,7 +12,6 @@ import WatchConnectivity
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let keychain = BDBKeychain.watchKeychain
-    let client = ZagwebClient()
     
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
@@ -47,12 +46,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 if task is WKApplicationRefreshBackgroundTask {
                     NSLog("Application Refresh Background Task Started")
                     downloadData()
+                    NSLog("Application Refresh Background Task Completed")
                 }
             } else {
                 NSLog("Application not in background. Not downloading new data")
                 scheduleBackgroundFetch(inMinutes: 5)
             }
-            
             task.setTaskCompleted()
         }
         
@@ -66,11 +65,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 return
             }
             NSLog("Background: User is logged in, attempting to connect to zagweb")
-            client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, _) -> Void in                
+            ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, swipes) -> Void in
                 let date = Date()
                 NSLog("Background: Data Successfully downloaded in background. \(amount) at \(date.description)")
-                let newBalance = Balance(amount: amount, date: date)
-                BalanceListManager.addBalance(balance: newBalance)
+                let newDataSet = ZagwebDataSet(bucksRemaining: amount, swipesRemaining: swipes, date: date)
+                ZagwebDataSetManager.add(dataSet: newDataSet)
+    
                 self.updateComplication()
                 self.scheduleBackgroundFetch()
             }.catch { (error) in
@@ -133,7 +133,7 @@ extension ExtensionDelegate: WCSessionDelegate {
         if let shouldLogout = userInfo["logout"] as? Bool{
             if shouldLogout {
                 let _ = keychain.deleteCredentials()
-                BalanceListManager.purgeBalanceList()
+                ZagwebDataSetManager.purgeDataSets()
                 self.notificationCenter.post(name: Notification.Name(InterfaceController.UserLoggedOutNotification), object: nil)
                 self.updateComplication()
                 print("Credentials Removed from Watch")
