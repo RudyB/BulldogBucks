@@ -24,10 +24,6 @@ class TransactionViewController: UIViewController {
     
     var delegate: AuthenticationStateDelegate?
     
-    lazy var client: ZagwebClient = {
-        return ZagwebClient()
-    }()
-    
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
     }()
@@ -122,7 +118,7 @@ class TransactionViewController: UIViewController {
         swipesRemaining = nil
         cardState = nil
         
-        client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN)
+        ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN)
             .then { (amount, transactions, cardState , swipesRemaining) -> Void in
                 self.transactions = transactions
                 self.bulldogBuckBalance = amount
@@ -179,7 +175,7 @@ class TransactionViewController: UIViewController {
             onCompletion(false)
             return
         }
-        self.client.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
+        ZagwebClient.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
             onCompletion(true)
             return
             }.catch { (error) in

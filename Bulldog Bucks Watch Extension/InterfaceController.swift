@@ -32,7 +32,6 @@ class InterfaceController: WKInterfaceController {
     public static let UserLoggedInNotificaiton = "UserLoggedIn"
 	
 	let keychain = BDBKeychain.watchKeychain
-    let client = ZagwebClient()
     
     
     lazy var notificationCenter: NotificationCenter = {
@@ -86,7 +85,7 @@ class InterfaceController: WKInterfaceController {
             self.loadingGroup.setHidden(false)
             if let credentials = self.keychain.getCredentials() {
                 
-                self.client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, swipes) -> Void in
+                ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, swipes) -> Void in
     
                     
                     self.amountLabel.setText("$\(amount)")

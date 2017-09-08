@@ -26,9 +26,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    /// Class Instance of ZagwebClient
-    let client = ZagwebClient()
-    
     let keychain = BDBKeychain.phoneKeychain
     
     
@@ -67,7 +64,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             return
         }
         
-        client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (bucks, _, _, swipes) -> Void in
+        ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (bucks, _, _, swipes) -> Void in
             self.showErrorMessage(false)
             
             let date = NSDate()

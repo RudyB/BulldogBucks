@@ -52,7 +52,7 @@ enum CardState: String {
 
 /// Models all required functions to authenticate and communicate with [zagweb.gonzaga.edu](https://zagweb.gonzaga.edu)
 /// - Important: User must successfully authenticate before calling any other methods
-class ZagwebClient {
+final class ZagwebClient {
 	
     
     
@@ -61,7 +61,7 @@ class ZagwebClient {
     /// Note: This is required to initialize the cookies properly
     ///
     /// - Returns: A `Promise` with an associated Void value
-    private func setupRequest() -> Promise<Void> {
+    private static func setupRequest() -> Promise<Void> {
         return Promise { fulfill, reject in
             
             // Fetch Request
@@ -106,7 +106,7 @@ class ZagwebClient {
      - Returns: A fufilled or rejected `Promise`. If the authentication is successful, the `Promise` will be fufilled and contain `Void`. If the authenication fails, the `Promise` will be rejected and contain a `ClientError`. The possible `ClientError` is noted in the `Throws` Section of documentaion.
      
      */
-	private func authenticationHelper(withStudentID: String, withPIN: String) -> Promise<Void> {
+	private static func authenticationHelper(withStudentID: String, withPIN: String) -> Promise<Void> {
         
 		return Promise { fulfill, reject in
             
@@ -145,7 +145,7 @@ class ZagwebClient {
     ///     - withStudentID: The student ID of the user as a `String`
     ///     - withPIN: The PIN of the user as a `String`
     /// - Returns: A fufilled or rejected `Promise`. If the authentication is successful, the `Promise` will be fufilled and contain `Void`. If the authenication fails, the `Promise` will be rejected and contain a `ClientError`. The possible `ClientError` is noted in the `Throws` Section of documentaion.
-    func authenticate(withStudentID studentID: String, withPIN PIN: String) -> Promise <Void> {
+    static func authenticate(withStudentID studentID: String, withPIN PIN: String) -> Promise <Void> {
         return Promise { fulfill, reject in
             
             setupRequest().then { (_) -> Promise<Void> in
@@ -167,7 +167,7 @@ class ZagwebClient {
      
      - Returns: A fulfilled or rejected `Promise`. If the authentication is successful, the `Promise` will be fulfilled and contain a `String` of the form "235.32" that denotes the amount of Bulldog Bucks Remaining.  If the authentication fails, the `Promise` will be rejected and contain `ClientError.htmlCouldNotBeParsed`. The explanation of this `ClientError` is noted in the `Throws` Section of documentation.
      */
-	private func downloadHTML() -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> {
+	private static func downloadHTML() -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> {
 		return Promise { fulfill, reject in
 			let url = URL(string: "https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions")!
 			Alamofire.request(url, method: .post).validate().responseString(){ (response) in
@@ -219,7 +219,7 @@ class ZagwebClient {
      - Parameter html: HTML source from https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions as a String
      - Returns: If successful, the amount of Bulldog Bucks remaining as String with format "235.21". If fails, returns nil
      */
-	private func parseBalanceHTML(html: String) -> RawDollarBalance? {
+	private static func parseBalanceHTML(html: String) -> RawDollarBalance? {
 		
 		if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8){
 			for name in doc.css("td, pllabel") {
@@ -243,7 +243,7 @@ class ZagwebClient {
      - Parameter html: HTML source from https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions as a String
      - Returns: If successful, the user's `CardState` If fails, returns nil
      */
-    private func parseCardStatusHTML(html: String) -> CardState? {
+    private static func parseCardStatusHTML(html: String) -> CardState? {
         
         if let doc = Kanna.HTML(html: html, encoding: .utf8),
             let body = doc.body?.content {
@@ -263,7 +263,7 @@ class ZagwebClient {
      - Parameter html: HTML source from https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions as a String
      - Returns: If successful, an array of type `Transaction`. If fails, returns nil
      */
-    private func parseTransactionHTML(html: String) -> [Transaction]? {
+    private static func parseTransactionHTML(html: String) -> [Transaction]? {
         var transactions: [Transaction] = []
         
         if let doc = Kanna.HTML(html: html, encoding: .utf8) {
@@ -307,7 +307,7 @@ class ZagwebClient {
         }
     }
     
-    private func parseSwipesRemainingHTML(html: String) -> SwipesRemaining? {
+    private static func parseSwipesRemainingHTML(html: String) -> SwipesRemaining? {
         var labelFound: Bool = false
         
         if let doc = Kanna.HTML(html: html, encoding: .utf8) {
@@ -328,7 +328,7 @@ class ZagwebClient {
     /// Un-authenticates the user from the zagweb service
     ///
     /// - Returns: A fufilled or rejected `Promise`. If the authentication is successful, the `Promise` will be fufilled and contain `Void`. If the authenication fails, the `Promise` will be rejected and contain a `ClientError`. The possible `ClientError` is noted in the `Throws` Section of documentaion.
-    public func logout() -> Promise<Void> {
+    public static func logout() -> Promise<Void> {
         
         return Promise { fulfill, reject in
             
@@ -369,7 +369,7 @@ class ZagwebClient {
      
      - Returns: A fulfilled or rejected `Promise`. If successful, the amount of Bulldog Bucks remaining as String with format "235.21". If failed, a rejected `Promise` with a `ClientError`. The possible `ClientError` is noted in the `Throws` Section of documentation.
      */
-    public func getBulldogBucks(withStudentID: String, withPIN: String) -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> {
+    public static func getBulldogBucks(withStudentID: String, withPIN: String) -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> {
         return Promise { fulfill, reject in
             
             firstly {
@@ -389,7 +389,7 @@ class ZagwebClient {
     }
     
     
-    public func freezeUnfreezeZagcard(withStudentID: String, withPIN: String, desiredCardState: CardState) -> Promise<Void> {
+    public static func freezeUnfreezeZagcard(withStudentID: String, withPIN: String, desiredCardState: CardState) -> Promise<Void> {
         return Promise { fulfill, reject in
             
             firstly {

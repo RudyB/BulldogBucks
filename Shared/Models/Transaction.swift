@@ -44,6 +44,7 @@ struct Transaction {
         self.venue = venue
             .replacingOccurrences(of: "UD ", with: "")
             .replacingOccurrences(of: "BbOne ", with: "")
+            .replacingOccurrences(of: " API", with: "")
         self.date = formattedDate
         self.type = transactionType
     }

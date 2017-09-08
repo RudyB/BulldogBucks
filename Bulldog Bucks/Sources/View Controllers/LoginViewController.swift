@@ -31,9 +31,6 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 		return NotificationCenter.default
 	}()
 	
-    /// Class Instance of ZagwebClient
-	private let client = ZagwebClient()
-	
     
 	// MARK: - UIViewController
 	override var prefersStatusBarHidden: Bool {
@@ -148,7 +145,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         - withPIN: The PIN of the user as a `String`
      */
 	private func checkCredentials(withStudentID: String, withPIN: String) {
-		client.authenticate(withStudentID: withStudentID, withPIN: withPIN).then { (_) -> Void in
+		ZagwebClient.authenticate(withStudentID: withStudentID, withPIN: withPIN).then { (_) -> Void in
             
             let success = self.keychain.addCredentials(studentID: withStudentID, PIN: withPIN)
             if success {

@@ -248,7 +248,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             return
         }
         NSLog("In Complication Controller. User is logged in, attempting to connect to zagweb")
-        ZagwebClient().getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (bucks, _, _, swipes) -> Void in
+        ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (bucks, _, _, swipes) -> Void in
             let date = Date()
             NSLog("Background: Data Successfully downloaded in background. \(bucks) at \(date.description)")
             let newDataSet = ZagwebDataSet(bucksRemaining: bucks, swipesRemaining: swipes, date: date)

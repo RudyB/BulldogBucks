@@ -12,7 +12,6 @@ import WatchConnectivity
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let keychain = BDBKeychain.watchKeychain
-    let client = ZagwebClient()
     
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
@@ -66,7 +65,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 return
             }
             NSLog("Background: User is logged in, attempting to connect to zagweb")
-            client.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, swipes) -> Void in
+            ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, swipes) -> Void in
                 let date = Date()
                 NSLog("Background: Data Successfully downloaded in background. \(amount) at \(date.description)")
                 let newDataSet = ZagwebDataSet(bucksRemaining: amount, swipesRemaining: swipes, date: date)
