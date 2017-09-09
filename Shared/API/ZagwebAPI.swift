@@ -291,7 +291,7 @@ final class ZagwebClient {
                         // 2. Neglect the first row because it solely has labels in it
                         // 3. See if the transaction can be parsed
                         if let rowData = rowData, rowData.count == 7, rowData[0] != "Transaction Date",
-                            let transaction = Transaction(date: rowData[0], venue: rowData[1], amount: rowData[3], type: rowData[6].lowercased() ) {
+                            let transaction = Transaction(date: rowData[0], venue: rowData[1], amount: rowData[3], type: rowData[6]) {
             
                             // Assuming all checks pass, append the data
                             transactions.append(transaction)

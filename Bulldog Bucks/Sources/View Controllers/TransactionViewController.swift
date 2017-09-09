@@ -309,10 +309,10 @@ extension TransactionViewController: UITableViewDataSource {
         
         cell.amountLabel.text = transaction.prettyAmount
         
-        if transaction.type == .deposit {
-            cell.amountLabel.textColor = UIColor(red: 106.0/255.0, green: 148.0/255.0, blue: 88.0/255.0, alpha: 1.0)
-        } else {
+        if transaction.type == .sale {
             cell.amountLabel.textColor = UIColor.gray
+        } else {
+            cell.amountLabel.textColor = UIColor(red: 106.0/255.0, green: 148.0/255.0, blue: 88.0/255.0, alpha: 1.0)
         }
         return cell
         
