@@ -12,6 +12,7 @@ import Foundation
 enum TransactionType: String {
     case sale
     case deposit
+    case `return`
 }
 
 struct Transaction {
@@ -36,7 +37,7 @@ struct Transaction {
             .replacingOccurrences(of: ")", with: "")
             ),
             let formattedDate = dateFormatter.date(from: date),
-            let transactionType = TransactionType(rawValue: type) else {
+            let transactionType = TransactionType(rawValue: type.lowercased()) else {
             return nil
         }
         
@@ -94,6 +95,8 @@ extension Transaction: CustomStringConvertible {
             return String(format: "+$%.2f", amount)
         case .sale:
             return String(format: "-$%.2f", amount)
+        case .return:
+            return String(format: "+$%.2f", amount)
         }
     }
 }
