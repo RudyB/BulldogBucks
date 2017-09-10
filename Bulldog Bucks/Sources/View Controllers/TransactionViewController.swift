@@ -9,7 +9,7 @@
 import UIKit
 import DGElasticPullToRefresh
 import MBProgressHUD
-
+import StoreKit
 
 class TransactionViewController: UIViewController {
     
@@ -26,6 +26,10 @@ class TransactionViewController: UIViewController {
     
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
+    }()
+    
+    lazy var userDefaults : UserDefaults = {
+        return UserDefaults.standard
     }()
     
     /// Last Day of the Current of Semester in UNIX time
@@ -60,6 +64,10 @@ class TransactionViewController: UIViewController {
         pageControl.numberOfPages = collectionView.numberOfSections
         
         getData()
+        
+        if #available(iOS 10.3, *), getNumberOfLaunches() > 5 {
+            SKStoreReviewController.requestReview()
+        }
     }
     
     deinit {
@@ -182,6 +190,13 @@ class TransactionViewController: UIViewController {
                 onCompletion(false)
                 return
         }
+    }
+    
+    func getNumberOfLaunches() -> Int {
+        var launchNumber = userDefaults.integer(forKey: "launchNumber")
+        launchNumber += 1
+        userDefaults.set(launchNumber, forKey: "launchNumber")
+        return launchNumber
     }
     
     // MARK : - MBProgressHUD Methods
