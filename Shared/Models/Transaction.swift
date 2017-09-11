@@ -63,6 +63,7 @@ extension Transaction: CustomStringConvertible {
         return dateFormatter.string(from: date)
     }
     
+    // Just the date without the time
     var dateForSorting: Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy"
@@ -73,18 +74,18 @@ extension Transaction: CustomStringConvertible {
     }
     
     var sectionHeaderDate: String {
-        if Calendar.current.compare(date, to: Date(), toGranularity: .day) == .orderedSame {
+        if Calendar.current.compare(dateForSorting, to: Date(), toGranularity: .day) == .orderedSame {
             return "Today"
-        } else if (date as NSDate).days(to: Date()) == 1 {
+        } else if (dateForSorting as NSDate).days(to: Date()) == 1 {
             return "Yesterday"
-        } else if Calendar.current.compare(date, to: Date(), toGranularity: .year) == .orderedSame {
+        } else if Calendar.current.compare(dateForSorting, to: Date(), toGranularity: .year) == .orderedSame {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMMM d"
-            return dateFormatter.string(from: date)
+            return dateFormatter.string(from: dateForSorting)
         } else {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMMM d, yyyy"
-            return dateFormatter.string(from: date)
+            return dateFormatter.string(from: dateForSorting)
         }
         
     }
