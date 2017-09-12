@@ -136,6 +136,13 @@ class TransactionViewController: UIViewController {
                 self.sortTransactions()
                 self.tableView.reloadData()
                 self.collectionView.reloadData()
+                
+                if self.sections.count > 0 {
+                    self.removeTableViewEmptyMessage()
+                } else {
+                    self.showEmptyMessage(message: "Your recent transactions would go here. \n However... You haven't made any transactions in the last 60 days")
+                }
+                
                 self.hideLoadingHUD()
             }.catch { (error) in
                 print(error.localizedDescription)
@@ -297,6 +304,28 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
 }
 
 extension TransactionViewController: UITableViewDataSource {
+    
+    /// Helper Function to show a message on the tableView if the data source is empty
+    func showEmptyMessage(message:String) {
+        
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        messageLabel.text = message
+        let bubbleColor = UIColor(red: CGFloat(57)/255, green: CGFloat(81)/255, blue: CGFloat(104)/255, alpha :1)
+        
+        messageLabel.textColor = bubbleColor
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont.systemFont(ofSize: 20)
+        messageLabel.sizeToFit()
+        
+        tableView.backgroundView = messageLabel;
+        tableView.separatorStyle = .none;
+    }
+    
+    func removeTableViewEmptyMessage() {
+        tableView.backgroundView = nil
+        tableView.separatorStyle = .singleLine
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
