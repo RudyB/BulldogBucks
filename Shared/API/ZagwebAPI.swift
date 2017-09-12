@@ -181,17 +181,21 @@ final class ZagwebClient {
 				switch response.result {
 				case .success(let html):
                     
+                    var defaultSwipes = "0"
+                    var defaultTransactions: [Transaction] = []
+                    
 					guard let bulldogBucksRemaining = self.parseBalanceHTML(html: html) else {
 						reject(ClientError.htmlCouldNotBeParsed)
 						return
 					}
                     print("Balance Parsed")
                     
-                    guard let bulldogBuckTransactions = self.parseTransactionHTML(html: html) else {
-                        reject(ClientError.htmlCouldNotBeParsed)
-                        return
+                    if let bulldogBuckTransactions = self.parseTransactionHTML(html: html) {
+                        defaultTransactions = bulldogBuckTransactions
+                        print("Transactions Parsed")
+                    } else {
+                        print("No Transactions Parsed. Using Default")
                     }
-                    print("Transactions Parsed")
                     
                     guard let zagcardState = self.parseCardStatusHTML(html: html) else {
                         reject(ClientError.htmlCouldNotBeParsed)
@@ -199,13 +203,13 @@ final class ZagwebClient {
                     }
                     print("Card State Parsed")
                     
-                    guard let swipesRemaining = self.parseSwipesRemainingHTML(html: html) else {
-                        reject(ClientError.htmlCouldNotBeParsed)
-                        return
+                    if let swipesRemaining = self.parseSwipesRemainingHTML(html: html) {
+                        defaultSwipes = swipesRemaining
+                        print("Swipes Remaining Parsed")
+                    } else {
+                        print("Swipes Remaining Failed to Parse. Using Default")
                     }
-                    print("Swipes Remaining Parsed")
-                    
-					fulfill(bulldogBucksRemaining, bulldogBuckTransactions, zagcardState, swipesRemaining)
+                    fulfill((bulldogBucksRemaining, defaultTransactions, zagcardState, defaultSwipes))
 				case .failure(let error): reject(error); print("Error in Download HTML")
 				}
 			}
