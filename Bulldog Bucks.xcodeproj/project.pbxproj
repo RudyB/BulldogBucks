@@ -61,6 +61,10 @@
 		47D10B401DE11B4B0041064C /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */; };
 		47DAF0771DE5166E00499185 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
+		47DC90E51F83218D00A34B07 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC90E41F83218D00A34B07 /* Balance.swift */; };
+		47DC90E61F8341A500A34B07 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC90E41F83218D00A34B07 /* Balance.swift */; };
+		47DC90E71F8341A600A34B07 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC90E41F83218D00A34B07 /* Balance.swift */; };
+		47DC90E81F8341A700A34B07 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC90E41F83218D00A34B07 /* Balance.swift */; };
 		47EC152F1F5F6376004EDECD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479448001D9A4409007847BE /* NotificationCenter.framework */; };
 		47EC15321F5F6376004EDECD /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC15311F5F6376004EDECD /* TodayViewController.swift */; };
 		47EC15351F5F6376004EDECD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47EC15331F5F6376004EDECD /* MainInterface.storyboard */; };
@@ -207,6 +211,7 @@
 		47BF33131F5E3FD8005D162E /* ZagwebDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZagwebDataSet.swift; sourceTree = "<group>"; };
 		47BF33141F5E3FD8005D162E /* ZagwebDataSetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZagwebDataSetManager.swift; sourceTree = "<group>"; };
 		47D10B421DE1735D0041064C /* Bulldog Bucks Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks Widget.entitlements"; sourceTree = "<group>"; };
+		47DC90E41F83218D00A34B07 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		47EC152E1F5F6376004EDECD /* Bulldog Bucks - Swipes Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bulldog Bucks - Swipes Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47EC15311F5F6376004EDECD /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		47EC15341F5F6376004EDECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -304,6 +309,7 @@
 				47BF33131F5E3FD8005D162E /* ZagwebDataSet.swift */,
 				47BF33141F5E3FD8005D162E /* ZagwebDataSetManager.swift */,
 				4705B2571F5BAB4D004FAEAF /* Transaction.swift */,
+				47DC90E41F83218D00A34B07 /* Balance.swift */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -397,19 +403,19 @@
 		479447C01D99F2C1007847BE = {
 			isa = PBXGroup;
 			children = (
+				479447CB1D99F2C1007847BE /* Bulldog Bucks */,
 				47EC15441F5F9EE6004EDECD /* Bulldog Bucks - Swipes Widget.entitlements */,
 				4767B3B41F525AF3006AD1BE /* Bulldog Bucks - Watch.entitlements */,
-				4794B0191DE5061C00F71077 /* Bulldog Bucks.entitlements */,
-				478497EB1DA06BA800E8ADFA /* Shared */,
-				479447CB1D99F2C1007847BE /* Bulldog Bucks */,
-				479448021D9A4409007847BE /* Bulldog Bucks Widget */,
 				47EC15301F5F6376004EDECD /* Bulldog Bucks Swipes Widget */,
 				476E50F31E74FDD5005CD02C /* Bulldog Bucks Watch */,
 				476E51021E74FDD5005CD02C /* Bulldog Bucks Watch Extension */,
+				479448021D9A4409007847BE /* Bulldog Bucks Widget */,
+				4794B0191DE5061C00F71077 /* Bulldog Bucks.entitlements */,
 				47ED9C771F5A178000AE4426 /* Bulldog BucksMainAppTests */,
 				479447FF1D9A4409007847BE /* Frameworks */,
-				479447CA1D99F2C1007847BE /* Products */,
 				100961D36ED058D187FC87CD /* Pods */,
+				479447CA1D99F2C1007847BE /* Products */,
+				478497EB1DA06BA800E8ADFA /* Shared */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -653,11 +659,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					476E50F11E74FDD5005CD02C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = NZ8449Y9W6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -671,6 +678,7 @@
 					476E50FD1E74FDD5005CD02C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = NZ8449Y9W6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -687,6 +695,7 @@
 					479447C81D99F2C1007847BE = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NZ8449Y9W6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -700,6 +709,7 @@
 					479447FD1D9A4409007847BE = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NZ8449Y9W6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -713,6 +723,7 @@
 					47EC152D1F5F6376004EDECD = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = NZ8449Y9W6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -726,6 +737,7 @@
 					47ED9C751F5A178000AE4426 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = NZ8449Y9W6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 479447C81D99F2C1007847BE;
 					};
@@ -1042,6 +1054,7 @@
 				476E511B1E751B01005CD02C /* ZagwebAPI.swift in Sources */,
 				476E51041E74FDD5005CD02C /* InterfaceController.swift in Sources */,
 				476E51081E74FDD5005CD02C /* ComplicationController.swift in Sources */,
+				47DC90E81F8341A700A34B07 /* Balance.swift in Sources */,
 				476E51191E750A63005CD02C /* BDBKeychain.swift in Sources */,
 				47BF33181F5E3FDD005D162E /* ZagwebDataSet.swift in Sources */,
 				4705B2591F5BAB5D004FAEAF /* Transaction.swift in Sources */,
@@ -1071,6 +1084,7 @@
 				47234DA41DE19ABF00C25C8F /* CustomAlert.swift in Sources */,
 				47BF33101F5E1400005D162E /* ButtonCollectionViewCell.swift in Sources */,
 				4705B2581F5BAB4D004FAEAF /* Transaction.swift in Sources */,
+				47DC90E51F83218D00A34B07 /* Balance.swift in Sources */,
 				47BF33121F5E313C005D162E /* DetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1083,6 +1097,7 @@
 				47D10B401DE11B4B0041064C /* ZagwebAPI.swift in Sources */,
 				479448041D9A4409007847BE /* TodayViewController.swift in Sources */,
 				47DAF0771DE5166E00499185 /* Extensions.swift in Sources */,
+				47DC90E61F8341A500A34B07 /* Balance.swift in Sources */,
 				4761DF0D1E47D9C8004755EB /* BDBKeychain.swift in Sources */,
 				47BF33171F5E3FDC005D162E /* ZagwebDataSet.swift in Sources */,
 				47BF331A1F5E3FE2005D162E /* ZagwebDataSetManager.swift in Sources */,
@@ -1098,6 +1113,7 @@
 				47EC153D1F5F6445004EDECD /* ZagwebAPI.swift in Sources */,
 				47EC15421F5F9D3E004EDECD /* NetworkReachability.swift in Sources */,
 				47EC15431F5F9D5D004EDECD /* Extensions.swift in Sources */,
+				47DC90E71F8341A600A34B07 /* Balance.swift in Sources */,
 				47EC15411F5F9CF5004EDECD /* ZagwebDataSetManager.swift in Sources */,
 				47EC153F1F5F6B48004EDECD /* Transaction.swift in Sources */,
 				47EC15401F5F9CC0004EDECD /* ZagwebDataSet.swift in Sources */,
@@ -1203,7 +1219,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
@@ -1223,7 +1240,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
@@ -1243,7 +1261,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
@@ -1263,7 +1282,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
@@ -1279,7 +1299,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1287,7 +1309,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1331,7 +1357,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1339,7 +1367,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1379,7 +1411,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1397,7 +1430,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1418,7 +1452,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1437,7 +1472,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1456,7 +1492,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1474,7 +1511,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1489,7 +1527,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.rudybermudez.Bulldog-BucksMainAppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bulldog Bucks.app/Bulldog Bucks";
 			};
 			name = Debug;
@@ -1505,7 +1544,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.rudybermudez.Bulldog-BucksMainAppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bulldog Bucks.app/Bulldog Bucks";
 			};
 			name = Release;

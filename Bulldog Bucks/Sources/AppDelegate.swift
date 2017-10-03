@@ -111,7 +111,7 @@ extension AppDelegate: WCSessionDelegate {
     
     func setupWatchConnectivity() {
         if WCSession.isSupported() {
-            let session = WCSession.default()
+            let session = WCSession.default
             session.delegate = self
             session.activate()
         }
@@ -123,7 +123,7 @@ extension AppDelegate: WCSessionDelegate {
     
     func sessionDidDeactivate(_ session: WCSession) {
         print("WC Session did deactivate")
-        WCSession.default().activate()
+        WCSession.default.activate()
     }
     
     func session(_ session: WCSession, activationDidCompleteWith
@@ -141,7 +141,7 @@ extension AppDelegate: WCSessionDelegate {
         
         if WCSession.isSupported() {
             if let credentials = BDBKeychain.phoneKeychain.getCredentials() {
-                let session = WCSession.default()
+                let session = WCSession.default
                 if session.isWatchAppInstalled {
                     let dictionary = [
                         KeychainKey.studentID.rawValue: credentials.studentID,
@@ -151,7 +151,7 @@ extension AppDelegate: WCSessionDelegate {
                     print("Credentials Send to Watch")
                 }
             } else {
-                let session = WCSession.default()
+                let session = WCSession.default
                 if session.isWatchAppInstalled {
                     let dictionary = ["logout": true]
                     session.transferUserInfo(dictionary)
@@ -166,7 +166,7 @@ extension AppDelegate: WCSessionDelegate {
     func sendUserLogoutToWatch() {
         
         if WCSession.isSupported() {
-            let session = WCSession.default()
+            let session = WCSession.default
             if session.isWatchAppInstalled {
                 let dictionary = ["logout": true]
                 session.transferUserInfo(dictionary)

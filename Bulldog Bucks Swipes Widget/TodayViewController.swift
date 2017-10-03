@@ -126,6 +126,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     
     /// Updates the `timeUpdatedLabel` with the amount of time that has passed since the last update
+    @objc
     func updateTimeOfLastUpdate() {
         
         if let timeOfLastUpdate = ZagwebDataSetManager.dataSets.last?.date as NSDate? {

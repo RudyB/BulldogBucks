@@ -207,29 +207,29 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         switch family {
         case .modularSmall:
             let modularTemplate = CLKComplicationTemplateModularSmallSimpleText()
-            modularTemplate.textProvider = CLKSimpleTextProvider(text: "$\(dataSet.shortTextBucksForComplication)")
+            modularTemplate.textProvider = CLKSimpleTextProvider(text: "$\(dataSet.bucksRemaining.shortTextBucksForComplication)")
             return CLKComplicationTimelineEntry(date: dataSet.date, complicationTemplate: modularTemplate)
             
         case .modularLarge:
             let modularTemplate = CLKComplicationTemplateModularLargeStandardBody()
             modularTemplate.headerTextProvider = CLKSimpleTextProvider(text: "Bulldog Bucks")
-            modularTemplate.body1TextProvider = CLKSimpleTextProvider(text: "$\(dataSet.longTextBucksForComplication)")
+            modularTemplate.body1TextProvider = CLKSimpleTextProvider(text: "$\(dataSet.bucksRemaining.longTextBucksForComplication)")
             modularTemplate.body2TextProvider = CLKSimpleTextProvider(text: "\(dataSet.swipesRemaining) Swipes")
             return CLKComplicationTimelineEntry(date: dataSet.date, complicationTemplate: modularTemplate)
             
         case .utilitarianSmallFlat:
             let utilitarianTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
-            utilitarianTemplate.textProvider = CLKSimpleTextProvider(text: "$\(dataSet.shortTextBucksForComplication)")
+            utilitarianTemplate.textProvider = CLKSimpleTextProvider(text: "$\(dataSet.bucksRemaining.shortTextBucksForComplication)")
             return CLKComplicationTimelineEntry(date: dataSet.date, complicationTemplate: utilitarianTemplate)
             
         case .utilitarianLarge:
             let utilitarianTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
-            utilitarianTemplate.textProvider = CLKSimpleTextProvider(text: "$ \(dataSet.longTextBucksForComplication)")
+            utilitarianTemplate.textProvider = CLKSimpleTextProvider(text: "$ \(dataSet.bucksRemaining.longTextBucksForComplication)")
             return CLKComplicationTimelineEntry(date: dataSet.date, complicationTemplate: utilitarianTemplate)
             
         case .circularSmall:
             let circularTemplate = CLKComplicationTemplateCircularSmallSimpleText()
-            circularTemplate.textProvider = CLKSimpleTextProvider(text: "$\(dataSet.shortTextBucksForComplication)")
+            circularTemplate.textProvider = CLKSimpleTextProvider(text: "$\(dataSet.bucksRemaining.shortTextBucksForComplication)")
             return CLKComplicationTimelineEntry(date: dataSet.date, complicationTemplate: circularTemplate)
             
         default: return nil

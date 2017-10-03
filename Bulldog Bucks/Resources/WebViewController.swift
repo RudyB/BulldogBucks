@@ -51,18 +51,18 @@ class WebViewController: UIViewController {
     }
     
     
-    func reloadWebPage() {
+    @objc func reloadWebPage() {
         webView.reload()
     }
    
-    func goBack() {
+    @objc func goBack() {
         webView.goBack()
     }
     
-    func goForward() {
+    @objc func goForward() {
         webView.goForward()
     }
-    func closeWebView() {
+    @objc func closeWebView() {
         logoutFunc?(self)
     }
 
