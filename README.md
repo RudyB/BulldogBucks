@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/downloads-1.79K-brightgreen.svg)](https://itunes.apple.com/us/app/bulldog-buck-balance/id1178478896)
 [![Build Status](https://travis-ci.org/RudyB/BulldogBucks.svg?branch=master)](https://travis-ci.org/RudyB/BulldogBucks)
 [![codecov](https://codecov.io/gh/RudyB/BulldogBucks/branch/master/graph/badge.svg)](https://codecov.io/gh/RudyB/BulldogBucks)
-![Swift](http://img.shields.io/badge/swift-3.0-brightgreen.svg)
+![Swift](http://img.shields.io/badge/swift-4.0-brightgreen.svg)
 
 
 #### The Bulldog Buck Balance App allows Gonzaga University students to quickly and easily check their Bulldog Buck balance, swipes remaining, and recent transactions.
