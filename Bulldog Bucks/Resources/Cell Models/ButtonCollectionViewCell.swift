@@ -54,6 +54,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         logoutView.addGestureRecognizer(tap)
     }
     
+    @objc
     func logoutTapped(sender: UITapGestureRecognizer) {
         print("logout tapped")
         if let logoutAction = logoutAction {

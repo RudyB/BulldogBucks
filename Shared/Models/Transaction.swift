@@ -9,13 +9,13 @@
 import Foundation
 
 
-enum TransactionType: String {
+enum TransactionType: String, Codable {
     case sale
     case deposit
     case `return`
 }
 
-struct Transaction {
+struct Transaction: Codable {
     
     let date: Date
     

@@ -112,6 +112,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
      
      Called when notification is posted for `NSNotification.Name.UIKeyboardWillShow`
      */
+    @objc
 	func keyboardWillAppear(notification: NSNotification){
 		if let userInfoDict = notification.userInfo, let keyboardFrameValue = userInfoDict[UIKeyboardFrameEndUserInfoKey] as? NSValue {
 			let keyboardFrame = keyboardFrameValue.cgRectValue
@@ -130,6 +131,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
      
      Called when notification is posted for `NSNotification.Name.UIKeyboardDidHide`
      */
+    @objc
 	func keyboardWillDisappear(notification: NSNotification){
 		UIView.animate(withDuration: 0.5) {
 			self.loginButtonBottomConstraint.constant = 202.0

@@ -1,19 +1,19 @@
 PODS:
-  - Alamofire (4.5.0)
+  - Alamofire (4.5.1)
   - DGElasticPullToRefresh (1.1)
   - Kanna (2.2.1)
-  - KeychainAccess (3.0.2)
+  - KeychainAccess (3.1.0)
   - MBProgressHUD (1.0.0)
-  - PromiseKit (4.3.2):
-    - PromiseKit/Foundation (= 4.3.2)
-    - PromiseKit/QuartzCore (= 4.3.2)
-    - PromiseKit/UIKit (= 4.3.2)
-  - PromiseKit/CorePromise (4.3.2)
-  - PromiseKit/Foundation (4.3.2):
+  - PromiseKit (4.4.0):
+    - PromiseKit/Foundation (= 4.4.0)
+    - PromiseKit/QuartzCore (= 4.4.0)
+    - PromiseKit/UIKit (= 4.4.0)
+  - PromiseKit/CorePromise (4.4.0)
+  - PromiseKit/Foundation (4.4.0):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.3.2):
+  - PromiseKit/QuartzCore (4.4.0):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.3.2):
+  - PromiseKit/UIKit (4.4.0):
     - PromiseKit/CorePromise
 
 DEPENDENCIES:
@@ -25,12 +25,12 @@ DEPENDENCIES:
   - PromiseKit
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
-  KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  PromiseKit: 32430ae679605b17c15d6193679cae7bf60147f7
+  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
 
 PODFILE CHECKSUM: 6ea40bb94608ee354e65cb54485e996a9d8a6570
 

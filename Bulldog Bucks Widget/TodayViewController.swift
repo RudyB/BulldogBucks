@@ -60,7 +60,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (result, _, _, swipesRemaining) -> Void in
             self.showErrorMessage(false)
-            
+        
             let date = NSDate()
             let newDataSet = ZagwebDataSet(bucksRemaining: result, swipesRemaining: swipesRemaining, date: date as Date)
             ZagwebDataSetManager.add(dataSet: newDataSet)
@@ -98,7 +98,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         } else {
             self.activityIndicator.stopAnimating()
             self.timeUpdatedLabel.text = "Updated: \((lastBalance.date as NSDate).timeAgoInWords)"
-            self.remainingBdbLabel.attributedText = formatAmountLabel(withResult: lastBalance.bucksRemaining)
+            self.remainingBdbLabel.attributedText = formatAmountLabel(withResult: lastBalance.bucksRemaining.prettyBalance)
         }
         
     }
@@ -121,8 +121,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func formatAmountLabel(withResult result: String) -> NSMutableAttributedString {
         
-        let dollarSignAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 30, weight: UIFontWeightRegular)]
-        let amountAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 50, weight: UIFontWeightRegular)]
+        let dollarSignAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.regular)]
+        let amountAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50, weight: UIFont.Weight.regular)]
         
         let dollarSignPart = NSMutableAttributedString(string: "$ ", attributes: dollarSignAttributes)
         let amountPart = NSMutableAttributedString(string: result, attributes: amountAttributes)
@@ -135,7 +135,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     /// Updates the `timeUpdatedLabel` with the amount of time that has passed since the last update
-    func updateTimeOfLastUpdate() {
+    @objc func updateTimeOfLastUpdate() {
         
         if let timeOfLastUpdate = ZagwebDataSetManager.dataSets.last?.date as NSDate? {
             self.timeUpdatedLabel.text = "Updated: \(timeOfLastUpdate.timeAgoInWords)"

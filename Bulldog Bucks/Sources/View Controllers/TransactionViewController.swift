@@ -39,7 +39,7 @@ class TransactionViewController: UIViewController {
     
     
     var transactions: [Transaction]?
-    var bulldogBuckBalance: String?
+    var bulldogBuckBalance: Balance?
     var swipesRemaining: String?
     var cardState: CardState?
     
@@ -244,14 +244,14 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
             cell.titleLabel.text = "Bulldog Bucks Remaining"
             if let bulldogBuckBalance = bulldogBuckBalance {
-                cell.amountLabel.text = "$\(bulldogBuckBalance)"
+                cell.amountLabel.text = "$\(bulldogBuckBalance.prettyBalance)"
             } else {
                 cell.amountLabel.text = "- - -"
             }
             
             let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
             if let bulldogBuckBalance = bulldogBuckBalance, weeksUntilEndOfSchoolYear > 0 {
-                let dailyBalance = Double(bulldogBuckBalance)! / Double(weeksUntilEndOfSchoolYear)
+                let dailyBalance = bulldogBuckBalance.value / Double(weeksUntilEndOfSchoolYear)
                 cell.weeklyLabel.text = String(format: "Budget $%.2f per week", dailyBalance)
             }
             return cell
@@ -264,7 +264,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             
             
             let weeksUntilEndOfSchoolYear = NSDate().weeks(to: self.lastDayOfSemester)
-            if let swipesRemaining = swipesRemaining, let swipesRemainingAsInt = Int(swipesRemaining), weeksUntilEndOfSchoolYear > 0 {
+            if let swipesRemaining = swipesRemaining, let swipesRemainingAsInt = Int(swipesRemaining), weeksUntilEndOfSchoolYear > 0, swipesRemainingAsInt != 0 {
                 let weeklyBalance = swipesRemainingAsInt / weeksUntilEndOfSchoolYear
                 cell.weeklyLabel.text = "Budget \(weeklyBalance) per week"
             }

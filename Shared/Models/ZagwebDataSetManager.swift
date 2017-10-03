@@ -30,13 +30,12 @@ final class ZagwebDataSetManager {
     
 }
 
-fileprivate final class ZagwebDataSetList: NSObject {
+fileprivate final class ZagwebDataSetList: Codable {
     
     let dataSets: [ZagwebDataSet]
     
     init(dataSets: [ZagwebDataSet]) {
         self.dataSets = dataSets
-        super.init()
     }
     
 }
@@ -45,42 +44,24 @@ fileprivate final class ZagwebDataSetList: NSObject {
 // MARK: Persistance
 extension ZagwebDataSetList {
     
-    private static var storePath: String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let docPath = paths.first!
-        return (docPath as NSString).appendingPathComponent("SavedZagwebDataSets")
-    }
-    
     static func loadDataSets() -> [ZagwebDataSet] {
-        if let data = try? Data(contentsOf: URL(fileURLWithPath: storePath)),
-            let savedDataSets = NSKeyedUnarchiver.unarchiveObject(with: data) as? ZagwebDataSetList {
-            return savedDataSets.dataSets
-        } else {
+        
+        guard let data = UserDefaults.standard.object(forKey: "SavedZagwebDataSets") as? Data,
+        let dataSets = try? JSONDecoder().decode([ZagwebDataSet].self, from: data) else {
             // Default
             return []
         }
+        return dataSets
     }
     
-    static func save(dataSets: [ZagwebDataSet]) -> Void {
+    static func save(dataSets: [ZagwebDataSet]) -> Bool {
         
-        NSKeyedArchiver.archiveRootObject(ZagwebDataSetList(dataSets: dataSets), toFile: storePath)
+        if let pageData = try? JSONEncoder().encode(dataSets) {
+            UserDefaults.standard.set(pageData, forKey: "SavedZagwebDataSets")
+            return true
+        }
+        return false
     }
 }
 
-// MARK: NSCoding
-extension ZagwebDataSetList: NSCoding {
-    
-    private struct CodingKeys {
-        static let dataSets = "ZagwebDataSets"
-    }
-    
-    convenience init(coder aDecoder: NSCoder) {
-        let dataSets = aDecoder.decodeObject(forKey: CodingKeys.dataSets) as! [ZagwebDataSet]
-        self.init(dataSets: dataSets)
-    }
-    
-    func encode(with encoder: NSCoder) {
-        encoder.encode(dataSets, forKey: CodingKeys.dataSets)
-    }
-}
 

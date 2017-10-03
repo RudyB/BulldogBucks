@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13196" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13051"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -29,7 +29,7 @@
                                 <label width="120" height="28" alignment="center" text="Bulldog Bucks" textAlignment="center" minimumScaleFactor="0.69999999999999996" id="veP-An-l1g" userLabel="header">
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
-                                <label width="140" alignment="center" verticalAlignment="center" textAlignment="center" id="l0K-g5-cjc" userLabel="amountLabel">
+                                <label width="140" alignment="center" verticalAlignment="center" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="l0K-g5-cjc" userLabel="amountLabel">
                                     <fontDescription key="font" type="system" pointSize="35"/>
                                 </label>
                                 <label height="6" alignment="center" verticalAlignment="center" text=" " textAlignment="center" minimumScaleFactor="0.90000000000000002" id="T9s-wh-ZrM" userLabel="Spacer">

@@ -11,7 +11,6 @@ import Alamofire
 import PromiseKit
 import Kanna
 
-typealias RawDollarBalance = String
 typealias SwipesRemaining = String
 
 /**
@@ -77,7 +76,7 @@ final class ZagwebClient {
                     
                     if (response.error == nil) {
                         print("Completed Setup Request")
-                        fulfill()
+                        fulfill(())
                     } else {
                         reject(response.error!)
                     }
@@ -130,7 +129,7 @@ final class ZagwebClient {
 					reject(ClientError.invalidCredentials)
 				} else {
                     print("Authentication Successful")
-					fulfill()
+					fulfill(())
 				}
 			}
 		}
@@ -151,7 +150,7 @@ final class ZagwebClient {
             setupRequest().then { (_) -> Promise<Void> in
                 return self.authenticationHelper(withStudentID: studentID, withPIN: PIN)
                 }.then { (result) in
-                    fulfill()
+                    fulfill(())
                 }.catch{ (error) in
                     reject(error)
             }
@@ -167,7 +166,7 @@ final class ZagwebClient {
      
      - Returns: A fulfilled or rejected `Promise`. If the authentication is successful, the `Promise` will be fulfilled and contain a `String` of the form "235.32" that denotes the amount of Bulldog Bucks Remaining.  If the authentication fails, the `Promise` will be rejected and contain `ClientError.htmlCouldNotBeParsed`. The explanation of this `ClientError` is noted in the `Throws` Section of documentation.
      */
-	private static func downloadHTML() -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> {
+	private static func downloadHTML() -> Promise<(Balance, [Transaction], CardState, SwipesRemaining)> {
 		return Promise { fulfill, reject in
 			let url = URL(string: "https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions")!
 			Alamofire.request(url, method: .post).validate().responseString(){ (response) in
@@ -223,14 +222,14 @@ final class ZagwebClient {
      - Parameter html: HTML source from https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions as a String
      - Returns: If successful, the amount of Bulldog Bucks remaining as String with format "235.21". If fails, returns nil
      */
-	private static func parseBalanceHTML(html: String) -> RawDollarBalance? {
+	private static func parseBalanceHTML(html: String) -> Balance? {
 		
 		if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8){
 			for name in doc.css("td, pllabel") {
 				if let text = name.text {
 					if text.contains("$") {
 						// I return immediately because it should always be the first occurrence
-						return text.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "$", with: "")
+						return Balance(rawBalance: text)
 					}
 				}
 			}
@@ -349,7 +348,7 @@ final class ZagwebClient {
                     
                     if (response.error == nil) {
                         print("Logout Complete")
-                        fulfill()
+                        fulfill(())
                     } else {
                         reject(response.error!)
                     }
@@ -373,18 +372,18 @@ final class ZagwebClient {
      
      - Returns: A fulfilled or rejected `Promise`. If successful, the amount of Bulldog Bucks remaining as String with format "235.21". If failed, a rejected `Promise` with a `ClientError`. The possible `ClientError` is noted in the `Throws` Section of documentation.
      */
-    public static func getBulldogBucks(withStudentID: String, withPIN: String) -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> {
+    public static func getBulldogBucks(withStudentID: String, withPIN: String) -> Promise<(Balance, [Transaction], CardState, SwipesRemaining)> {
         return Promise { fulfill, reject in
             
             firstly {
                 self.authenticate(withStudentID: withStudentID, withPIN: withPIN)
                 }
-            .then { (_) -> Promise<(RawDollarBalance, [Transaction], CardState, SwipesRemaining)> in
+            .then { (_) -> Promise<(Balance, [Transaction], CardState, SwipesRemaining)> in
                 return self.downloadHTML()
                 }
             .then { (balance, transactions, cardState, swipesRemaining) -> Void in
                 let _ = self.logout()
-                fulfill(balance, transactions, cardState, swipesRemaining)
+                fulfill((balance, transactions, cardState, swipesRemaining))
                 }
             .catch{ (error) in
                 reject(error)
@@ -411,7 +410,7 @@ final class ZagwebClient {
                     
                     Alamofire.request("https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions", method: .post, parameters: body, encoding: URLEncoding.default,headers: headers).validate().response() { (response) in
                         if (response.error == nil) {
-                            fulfill()
+                            fulfill(())
                             switch desiredCardState {
                             case .frozen : print("Successfully Froze Zagcard")
                             case .active: print("Successfully Activated Zagcard")
