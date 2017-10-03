@@ -224,7 +224,7 @@ final class ZagwebClient {
      */
 	private static func parseBalanceHTML(html: String) -> Balance? {
 		
-		if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8){
+		if let doc = try? Kanna.HTML(html: html, encoding: String.Encoding.utf8){
 			for name in doc.css("td, pllabel") {
 				if let text = name.text {
 					if text.contains("$") {
@@ -248,7 +248,7 @@ final class ZagwebClient {
      */
     private static func parseCardStatusHTML(html: String) -> CardState? {
         
-        if let doc = Kanna.HTML(html: html, encoding: .utf8),
+        if let doc = try? Kanna.HTML(html: html, encoding: .utf8),
             let body = doc.body?.content {
             if body.contains("Active") {
                 return CardState.active
@@ -269,7 +269,7 @@ final class ZagwebClient {
     private static func parseTransactionHTML(html: String) -> [Transaction]? {
         var transactions: [Transaction] = []
         
-        if let doc = Kanna.HTML(html: html, encoding: .utf8) {
+        if let doc = try? Kanna.HTML(html: html, encoding: .utf8) {
             
             // Get all the tables that contain the classname `plaintable`
             for table in doc.xpath("//table[contains(@class, 'plaintable')]") {
@@ -313,7 +313,7 @@ final class ZagwebClient {
     private static func parseSwipesRemainingHTML(html: String) -> SwipesRemaining? {
         var labelFound: Bool = false
         
-        if let doc = Kanna.HTML(html: html, encoding: .utf8) {
+        if let doc = try? Kanna.HTML(html: html, encoding: .utf8) {
             let labels = doc.xpath("//td[contains(@class, 'pllabel')]")
             for label in labels {
                 if labelFound {
