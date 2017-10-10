@@ -120,12 +120,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func formatAmountLabel(withResult result: String) -> NSMutableAttributedString {
-        
+        let resultWithoutDollarSign = result.replacingOccurrences(of: "$", with: "")
         let dollarSignAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.regular)]
         let amountAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50, weight: UIFont.Weight.regular)]
         
         let dollarSignPart = NSMutableAttributedString(string: "$ ", attributes: dollarSignAttributes)
-        let amountPart = NSMutableAttributedString(string: result, attributes: amountAttributes)
+        let amountPart = NSMutableAttributedString(string: resultWithoutDollarSign, attributes: amountAttributes)
         
         let attributedString = NSMutableAttributedString()
         attributedString.append(dollarSignPart)

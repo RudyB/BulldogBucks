@@ -244,7 +244,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
             cell.titleLabel.text = "Bulldog Bucks Remaining"
             if let bulldogBuckBalance = bulldogBuckBalance {
-                cell.amountLabel.text = "$\(bulldogBuckBalance.prettyBalance)"
+                cell.amountLabel.text = bulldogBuckBalance.prettyBalance
             } else {
                 cell.amountLabel.text = "- - -"
             }
