@@ -63,7 +63,7 @@ class InterfaceController: WKInterfaceController {
         } else {
             // If not, update the label with the last balance
             swipesLabel.setText("\(lastBalance.swipesRemaining) Swipes")
-            amountLabel.setText("$\(lastBalance.bucksRemaining.prettyBalance)")
+            amountLabel.setText(lastBalance.bucksRemaining.prettyBalance)
             self.detailGroup.setHidden(false)
         }
     }
@@ -88,7 +88,7 @@ class InterfaceController: WKInterfaceController {
                 ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (amount, _, _, swipes) -> Void in
     
                     
-                    self.amountLabel.setText("$\(amount.prettyBalance)")
+                    self.amountLabel.setText(amount.prettyBalance)
 					self.swipesLabel.setText("\(swipes) Swipes")
                     let date = NSDate()
                     
