@@ -43,7 +43,7 @@ struct Balance: Codable {
     
     var prettyBalance: String {
         let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.numberStyle = NumberFormatter.Style.currency
         return numberFormatter.string(from: NSNumber(value: balance))!
     }
     

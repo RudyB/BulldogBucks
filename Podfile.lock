@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
   - DGElasticPullToRefresh (1.1)
-  - Kanna (2.2.1)
+  - Kanna (4.0.0)
   - KeychainAccess (3.1.0)
   - MBProgressHUD (1.0.0)
   - PromiseKit (4.4.0):
@@ -31,13 +31,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Kanna:
-    :commit: d530d2afccfe6df8f2151aadec628e3912677526
+    :commit: 9091f84ed0e39b7fa8536da98a1812c3456bc4e3
     :git: https://github.com/tid-kijyun/Kanna.git
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
-  Kanna: 9d03f5e7aba03906fbb764eef5a83dbfb5c98fb5
+  Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
