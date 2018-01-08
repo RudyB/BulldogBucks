@@ -11,6 +11,7 @@
    pod 'KeychainAccess'
    pod 'DGElasticPullToRefresh'
    pod 'MBProgressHUD', '~> 1.0.0'
+   pod '1PasswordExtension', '~> 1.8.5'
    # Pods for Bulldog Bucks
 
  end

@@ -1,4 +1,5 @@
 PODS:
+  - 1PasswordExtension (1.8.5)
   - Alamofire (4.5.1)
   - DGElasticPullToRefresh (1.1)
   - Kanna (4.0.0)
@@ -17,6 +18,7 @@ PODS:
     - PromiseKit/CorePromise
 
 DEPENDENCIES:
+  - 1PasswordExtension (~> 1.8.5)
   - Alamofire
   - DGElasticPullToRefresh
   - Kanna (from `https://github.com/tid-kijyun/Kanna.git`, branch `feature/v4.0.0`)
@@ -35,6 +37,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/tid-kijyun/Kanna.git
 
 SPEC CHECKSUMS:
+  1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
@@ -42,6 +45,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
 
-PODFILE CHECKSUM: 1c0e79d78b5c49bf89fb0df2f78d382f2409ec44
+PODFILE CHECKSUM: af4cae93b21a24ed43ae75fa0967ddfea3bdb51d
 
 COCOAPODS: 1.3.1

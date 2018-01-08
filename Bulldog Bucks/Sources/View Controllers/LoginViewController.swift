@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OnePasswordExtension
 
 protocol LoginViewControllerDelegate {
 	func didLoginSuccessfully()
@@ -19,7 +20,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 	@IBOutlet weak var userIDTextField: UITextField!
 	@IBOutlet weak var userPinTextField: UITextField!
 	@IBOutlet weak var loginButton: TKTransitionSubmitButton!
-    
+	@IBOutlet weak var onepasswordSigninButton: UIButton!
+	
 	public static let storyboardIdentifier = "LoginViewController"
     
 	// MARK: - Properties
@@ -41,9 +43,39 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 		super.viewDidLoad()
 		setupNotificationCenter()
         setupGestureRecognizer()
+        onepasswordSigninButton.isHidden = !OnePasswordExtension.shared().isAppExtensionAvailable()
 	}
 
-    /**
+	
+    
+    /// Action will fill the `userIDTextField` & `userPinTextField` textfields with credentials from 1Password
+	@IBAction func findLoginFrom1Password() {
+		OnePasswordExtension.shared().findLogin(forURLString: "https://zagweb.gonzaga.edu", for: self, sender: self) { (loginDictionary, error) in
+            
+            if let error = error {
+                if !error.isCancelledError {
+                    NSLog("Error invoking 1Password App Extension for find login: %s", error.localizedDescription)
+                }
+                return
+            }
+            
+			guard let loginDictionary = loginDictionary,
+                loginDictionary.count != 0,
+                let username = loginDictionary[AppExtensionUsernameKey] as? String,
+                let password = loginDictionary[AppExtensionPasswordKey] as? String
+                else {
+				NSLog("Failed to unwrap LoginDictionary")
+				return
+			}
+			
+            self.userIDTextField.text = username
+            self.userPinTextField.text = password
+			
+		}
+	}
+	
+	
+	/**
      Login Action
      
      Checks if there is internet connection, checks to make sure fields are not empty, then attempts to authenticate by calling `self.login()`
