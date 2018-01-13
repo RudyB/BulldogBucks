@@ -67,9 +67,12 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 				NSLog("Failed to unwrap LoginDictionary")
 				return
 			}
-			
+			// Fill Credential Fields
             self.userIDTextField.text = username
             self.userPinTextField.text = password
+            
+            // Call Login Action
+            self.loginAction(self)
 			
 		}
 	}
@@ -80,7 +83,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
      
      Checks if there is internet connection, checks to make sure fields are not empty, then attempts to authenticate by calling `self.login()`
      
-     - Parameter sender: The instance of UIButton that sends the action
+     - Parameter sender: The instance that sends the action
      */
 
 	@IBAction func loginAction(_ sender: Any) {
