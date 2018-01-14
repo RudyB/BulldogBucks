@@ -54,6 +54,7 @@ extension ZagwebDataSetList {
         return dataSets
     }
     
+    @discardableResult
     static func save(dataSets: [ZagwebDataSet]) -> Bool {
         
         if let pageData = try? JSONEncoder().encode(dataSets) {
