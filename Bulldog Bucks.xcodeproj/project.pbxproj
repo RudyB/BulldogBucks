@@ -18,6 +18,7 @@
 		472F33151DE2BC6A001D4B4C /* TransitionSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33111DE2BC6A001D4B4C /* TransitionSubmitButton.swift */; };
 		472F331A1DE3D5E5001D4B4C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
 		472F331D1DE3DBAB001D4B4C /* DINPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 472F331C1DE3DBAB001D4B4C /* DINPro-Regular.ttf */; };
+		473EF4B42003FF9B006C34F7 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473EF4B32003FF9B006C34F7 /* 1Password.xcassets */; };
 		4761DF0C1E47D9C8004755EB /* BDBKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761DF0B1E47D9C8004755EB /* BDBKeychain.swift */; };
 		4761DF0D1E47D9C8004755EB /* BDBKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761DF0B1E47D9C8004755EB /* BDBKeychain.swift */; };
 		476E50F61E74FDD5005CD02C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 476E50F41E74FDD5005CD02C /* Interface.storyboard */; };
@@ -172,6 +173,7 @@
 		472F33111DE2BC6A001D4B4C /* TransitionSubmitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionSubmitButton.swift; sourceTree = "<group>"; };
 		472F33191DE3D5E5001D4B4C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		472F331C1DE3DBAB001D4B4C /* DINPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.ttf"; sourceTree = "<group>"; };
+		473EF4B32003FF9B006C34F7 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		4761DF0B1E47D9C8004755EB /* BDBKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BDBKeychain.swift; sourceTree = "<group>"; };
 		4765FC1B1DDFC6FA00BB2EBB /* ZagwebAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZagwebAPI.swift; sourceTree = "<group>"; };
 		4767B3B41F525AF3006AD1BE /* Bulldog Bucks - Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks - Watch.entitlements"; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				479447D31D99F2C1007847BE /* Assets.xcassets */,
+				473EF4B32003FF9B006C34F7 /* 1Password.xcassets */,
 				479447D01D99F2C1007847BE /* Main.storyboard */,
 				479447D51D99F2C1007847BE /* LaunchScreen.storyboard */,
 				479447D81D99F2C1007847BE /* Info.plist */,
@@ -695,7 +698,7 @@
 					479447C81D99F2C1007847BE = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NZ8449Y9W6;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -791,6 +794,7 @@
 				479447D71D99F2C1007847BE /* LaunchScreen.storyboard in Resources */,
 				4784980F1DA0721700E8ADFA /* Lato-SemiboldItalic.ttf in Resources */,
 				479447D41D99F2C1007847BE /* Assets.xcassets in Resources */,
+				473EF4B42003FF9B006C34F7 /* 1Password.xcassets in Resources */,
 				472F331D1DE3DBAB001D4B4C /* DINPro-Regular.ttf in Resources */,
 				4784980E1DA0721700E8ADFA /* Lato-Semibold.ttf in Resources */,
 				479447D21D99F2C1007847BE /* Main.storyboard in Resources */,
@@ -831,15 +835,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bulldog Bucks/Pods-Bulldog Bucks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/1PasswordExtension/OnePasswordExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna-iOS/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit-iOS/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit.default-CorePromise/PromiseKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OnePasswordExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
@@ -928,7 +934,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna-watchOS/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-watchOS/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit-watchOS/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit.root-CorePromise-Foundation/PromiseKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1404,6 +1410,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks.entitlements";
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks/Info.plist";
@@ -1411,6 +1418,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1423,6 +1431,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks.entitlements";
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks/Info.plist";

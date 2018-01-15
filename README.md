@@ -1,6 +1,6 @@
 # [![](http://i.imgur.com/gA6Z00Y.png)](https://itunes.apple.com/us/app/bulldog-buck-balance/id1178478896) Bulldog Buck Balance
 [![Itunes App Store](https://img.shields.io/itunes/v/1178478896.svg)](https://itunes.apple.com/us/app/bulldog-buck-balance/id1178478896)
-[![](https://img.shields.io/badge/downloads-1.79K-brightgreen.svg)](https://itunes.apple.com/us/app/bulldog-buck-balance/id1178478896)
+[![](https://img.shields.io/badge/downloads-3.06K-brightgreen.svg)](https://itunes.apple.com/us/app/bulldog-buck-balance/id1178478896)
 [![Build Status](https://travis-ci.org/RudyB/BulldogBucks.svg?branch=master)](https://travis-ci.org/RudyB/BulldogBucks)
 [![codecov](https://codecov.io/gh/RudyB/BulldogBucks/branch/master/graph/badge.svg)](https://codecov.io/gh/RudyB/BulldogBucks)
 ![Swift](http://img.shields.io/badge/swift-4.0-brightgreen.svg)

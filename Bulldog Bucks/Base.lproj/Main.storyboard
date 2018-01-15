@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,10 +29,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginPageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-4a-DZ9" userLabel="Background Image">
-                                <rect key="frame" x="16" y="40" width="288" height="528"/>
+                                <rect key="frame" x="16" y="20" width="288" height="548"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bulldog Bucks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sR2-7n-llm" userLabel="Main Label">
-                                <rect key="frame" x="28" y="94" width="264" height="43"/>
+                                <rect key="frame" x="28" y="74" width="264" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="264" id="4fd-Bb-L84"/>
                                     <constraint firstAttribute="height" constant="43" id="jca-t0-nAd"/>
@@ -45,7 +45,7 @@
                                 <rect key="frame" x="26" y="208" width="268" height="91"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Student ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sSY-Et-3y2">
-                                        <rect key="frame" x="59" y="10" width="180" height="30"/>
+                                        <rect key="frame" x="59" y="10" width="156" height="30"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="sPo-U5-zLB"/>
@@ -59,6 +59,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umd-24-LTL" userLabel="1Password Button">
+                                        <rect key="frame" x="223" y="10.5" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="3tk-gP-U8i"/>
+                                            <constraint firstAttribute="height" constant="30" id="dVv-Om-BQ2"/>
+                                        </constraints>
+                                        <state key="normal" image="onepassword-button-light"/>
+                                        <connections>
+                                            <action selector="findLoginFrom1Password" destination="BYZ-38-t0r" eventType="touchUpInside" id="Txi-Ju-KnS"/>
+                                        </connections>
+                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PIN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o6K-N6-le7">
                                         <rect key="frame" x="59" y="51" width="180" height="30"/>
                                         <constraints>
@@ -81,7 +92,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cW5-Hj-rYM">
-                                        <rect key="frame" x="29" y="45" width="210" height="1"/>
+                                        <rect key="frame" x="29" y="45" width="224" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="sYd-bV-e6c"/>
@@ -99,18 +110,20 @@
                                 <constraints>
                                     <constraint firstItem="R19-j1-T6v" firstAttribute="centerY" secondItem="o6K-N6-le7" secondAttribute="centerY" id="20Q-J5-onL"/>
                                     <constraint firstItem="lff-Yr-kGj" firstAttribute="centerY" secondItem="sSY-Et-3y2" secondAttribute="centerY" id="2kg-se-Kzh"/>
-                                    <constraint firstItem="o6K-N6-le7" firstAttribute="trailing" secondItem="sSY-Et-3y2" secondAttribute="trailing" id="CN6-EU-Jid"/>
+                                    <constraint firstAttribute="trailing" secondItem="umd-24-LTL" secondAttribute="trailing" constant="15" id="Bmg-Cq-MDs"/>
                                     <constraint firstItem="cW5-Hj-rYM" firstAttribute="top" secondItem="lff-Yr-kGj" secondAttribute="bottom" priority="999" constant="10" id="Dfi-3L-PeO"/>
+                                    <constraint firstAttribute="trailing" secondItem="o6K-N6-le7" secondAttribute="trailing" constant="29" id="Ffq-WX-kAp"/>
                                     <constraint firstItem="cW5-Hj-rYM" firstAttribute="leading" secondItem="lff-Yr-kGj" secondAttribute="leading" id="PM2-gf-evB"/>
                                     <constraint firstItem="lff-Yr-kGj" firstAttribute="top" secondItem="7y0-J0-E2Q" secondAttribute="top" constant="15" id="RGa-IU-U1j"/>
-                                    <constraint firstAttribute="trailing" secondItem="sSY-Et-3y2" secondAttribute="trailing" constant="29" id="T9B-3T-mLx"/>
                                     <constraint firstItem="cW5-Hj-rYM" firstAttribute="centerY" secondItem="7y0-J0-E2Q" secondAttribute="centerY" id="UrH-fV-zso"/>
                                     <constraint firstItem="o6K-N6-le7" firstAttribute="leading" secondItem="R19-j1-T6v" secondAttribute="trailing" constant="10" id="f5t-VK-3Kl"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="R19-j1-T6v" secondAttribute="bottom" constant="10" id="fsk-hw-xje"/>
+                                    <constraint firstItem="umd-24-LTL" firstAttribute="leading" secondItem="sSY-Et-3y2" secondAttribute="trailing" constant="8" id="gCI-Dv-o2A"/>
                                     <constraint firstAttribute="height" constant="91" id="jIC-TS-KIq"/>
-                                    <constraint firstItem="cW5-Hj-rYM" firstAttribute="trailing" secondItem="sSY-Et-3y2" secondAttribute="trailing" id="jxB-3I-RO8"/>
                                     <constraint firstItem="R19-j1-T6v" firstAttribute="top" secondItem="cW5-Hj-rYM" secondAttribute="bottom" priority="999" constant="10" id="lV5-2t-ftb"/>
+                                    <constraint firstItem="cW5-Hj-rYM" firstAttribute="trailing" secondItem="umd-24-LTL" secondAttribute="trailing" id="mV3-Wg-13L"/>
                                     <constraint firstItem="lff-Yr-kGj" firstAttribute="leading" secondItem="7y0-J0-E2Q" secondAttribute="leading" constant="29" id="mqv-XT-ByA"/>
+                                    <constraint firstItem="umd-24-LTL" firstAttribute="centerY" secondItem="sSY-Et-3y2" secondAttribute="centerY" id="rZB-12-e8O"/>
                                     <constraint firstItem="sSY-Et-3y2" firstAttribute="leading" secondItem="lff-Yr-kGj" secondAttribute="trailing" constant="10" id="taW-c1-ADJ"/>
                                     <constraint firstItem="R19-j1-T6v" firstAttribute="leading" secondItem="7y0-J0-E2Q" secondAttribute="leading" constant="29" id="wwF-z0-qnF"/>
                                 </constraints>
@@ -166,13 +179,14 @@
                     <connections>
                         <outlet property="loginButton" destination="PWc-ht-cXJ" id="p1z-BV-Nb3"/>
                         <outlet property="loginButtonBottomConstraint" destination="5Un-Eu-0rZ" id="Of3-pY-XAD"/>
+                        <outlet property="onepasswordSigninButton" destination="umd-24-LTL" id="C4I-dH-BPt"/>
                         <outlet property="userIDTextField" destination="sSY-Et-3y2" id="XMs-cD-LdQ"/>
                         <outlet property="userPinTextField" destination="o6K-N6-le7" id="ufM-vS-GzL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="129.98500749625188"/>
+            <point key="canvasLocation" x="135" y="129.92957746478874"/>
         </scene>
         <!--Transaction View Controller-->
         <scene sceneID="5EA-9w-Csj">
@@ -522,6 +536,7 @@
     <resources>
         <image name="loginPageBackground" width="2592" height="3872"/>
         <image name="logoutBlack" width="25" height="25"/>
+        <image name="onepassword-button-light" width="27" height="27"/>
         <image name="pinIcon" width="75" height="75"/>
         <image name="separator" width="316" height="1"/>
         <image name="userIcon" width="75" height="75"/>
