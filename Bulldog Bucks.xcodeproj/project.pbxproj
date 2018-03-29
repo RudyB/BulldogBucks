@@ -47,6 +47,9 @@
 		479448071D9A4409007847BE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 479448051D9A4409007847BE /* MainInterface.storyboard */; };
 		4794480B1D9A4409007847BE /* Bulldog Bucks - Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 479447FE1D9A4409007847BE /* Bulldog Bucks - Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4797116C1E75CC940060DC97 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
+		47A84CAD206D840F00A6A9E5 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A84CAC206D840F00A6A9E5 /* SideMenuViewController.swift */; };
+		47A84CAF206D84E000A6A9E5 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A84CAE206D84E000A6A9E5 /* SideMenuTableViewCell.xib */; };
+		47A84CB1206D84F100A6A9E5 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A84CB0206D84F100A6A9E5 /* SideMenuTableViewCell.swift */; };
 		47AEC5921F60C85000CAB36A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F33191DE3D5E5001D4B4C /* Extensions.swift */; };
 		47BF33091F5CF52C005D162E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF33081F5CF52C005D162E /* TransactionViewController.swift */; };
 		47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */; };
@@ -205,6 +208,9 @@
 		479448081D9A4409007847BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4794B0191DE5061C00F71077 /* Bulldog Bucks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks.entitlements"; sourceTree = "<group>"; };
 		479C4D0E1E76826F005DAC22 /* Bulldog Bucks - Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulldog Bucks - Watch Extension.entitlements"; sourceTree = "<group>"; };
+		47A84CAC206D840F00A6A9E5 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		47A84CAE206D84E000A6A9E5 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
+		47A84CB0206D84F100A6A9E5 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		47BF33081F5CF52C005D162E /* TransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		47BF330D1F5DDC0D005D162E /* GenericCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -485,6 +491,7 @@
 		4794B0161DE502AD00F71077 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47A84CAE206D84E000A6A9E5 /* SideMenuTableViewCell.xib */,
 				47BF330A1F5DC69C005D162E /* Cell Models */,
 				472F32F91DE2B6FA001D4B4C /* Custom Login Animation */,
 				478D1A091DFF6BF000B25164 /* WebViewController.swift */,
@@ -496,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				479447CE1D99F2C1007847BE /* LoginViewController.swift */,
+				47A84CAC206D840F00A6A9E5 /* SideMenuViewController.swift */,
 				47BF33081F5CF52C005D162E /* TransactionViewController.swift */,
 			);
 			path = "View Controllers";
@@ -505,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				47BF330B1F5DC6E7005D162E /* TransactionTableViewCell.swift */,
+				47A84CB0206D84F100A6A9E5 /* SideMenuTableViewCell.swift */,
 				47BF330D1F5DDC0D005D162E /* GenericCollectionViewCell.swift */,
 				47BF330F1F5E1400005D162E /* ButtonCollectionViewCell.swift */,
 				47BF33111F5E313C005D162E /* DetailCollectionViewCell.swift */,
@@ -798,6 +807,7 @@
 				472F331D1DE3DBAB001D4B4C /* DINPro-Regular.ttf in Resources */,
 				4784980E1DA0721700E8ADFA /* Lato-Semibold.ttf in Resources */,
 				479447D21D99F2C1007847BE /* Main.storyboard in Resources */,
+				47A84CAF206D84E000A6A9E5 /* SideMenuTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,20 +848,24 @@
 				"${BUILT_PRODUCTS_DIR}/1PasswordExtension/OnePasswordExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Houston-iOS/Houston.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna-iOS/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit.default-CorePromise/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OnePasswordExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Houston.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -932,6 +946,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bulldog Bucks - Watch Extension/Pods-Bulldog Bucks - Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Houston-watchOS/Houston.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna-watchOS/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-watchOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit.root-CorePromise-Foundation/PromiseKit.framework",
@@ -939,6 +954,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Houston.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -1075,8 +1091,10 @@
 				47BF330C1F5DC6E7005D162E /* TransactionTableViewCell.swift in Sources */,
 				47BF330E1F5DDC0D005D162E /* GenericCollectionViewCell.swift in Sources */,
 				47D47F321DDFCCCC0094D448 /* ZagwebAPI.swift in Sources */,
+				47A84CAD206D840F00A6A9E5 /* SideMenuViewController.swift in Sources */,
 				472F33131DE2BC6A001D4B4C /* FadeTransition.swift in Sources */,
 				47BF33151F5E3FD8005D162E /* ZagwebDataSet.swift in Sources */,
+				47A84CB1206D84F100A6A9E5 /* SideMenuTableViewCell.swift in Sources */,
 				47BF33161F5E3FD8005D162E /* ZagwebDataSetManager.swift in Sources */,
 				472F33141DE2BC6A001D4B4C /* SpinerLayer.swift in Sources */,
 				4761DF0C1E47D9C8004755EB /* BDBKeychain.swift in Sources */,

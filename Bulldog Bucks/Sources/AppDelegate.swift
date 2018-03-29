@@ -44,7 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         navigationController = UINavigationController()
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor(red: 112.0/255.0, green: 156.0/255.0, blue: 193.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         
         let loginVC = storyboard?.instantiateViewController(withIdentifier: LoginViewController.storyboardIdentifier) as! LoginViewController
         

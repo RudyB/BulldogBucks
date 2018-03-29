@@ -5,7 +5,9 @@
    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
    use_frameworks!
    platform :ios, '9.3'
-   pod "Kanna", :git => 'https://github.com/tid-kijyun/Kanna.git', :branch => 'feature/v4.0.0'
+   pod "Kanna"
+   pod 'SideMenu'	
+   pod "Houston"
    pod 'Alamofire'
    pod "PromiseKit"
    pod 'KeychainAccess'
@@ -28,7 +30,8 @@ target 'Bulldog Bucks - Watch Extension' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   platform :watchos, '3.0'
-  pod "Kanna", :git => 'https://github.com/tid-kijyun/Kanna.git', :branch => 'feature/v4.0.0'
+  pod "Kanna"
+  pod "Houston"
   pod 'Alamofire'
   pod "PromiseKit"
   pod 'KeychainAccess'
@@ -40,7 +43,8 @@ target 'Bulldog Bucks - Widget' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   platform :ios, '9.3'
-  pod "Kanna", :git => 'https://github.com/tid-kijyun/Kanna.git', :branch => 'feature/v4.0.0'
+  pod "Kanna"
+  pod "Houston"
   pod 'Alamofire'
   pod "PromiseKit"
   pod 'KeychainAccess'
@@ -51,7 +55,8 @@ end
 target 'Bulldog Bucks - Swipes Widget' do
 	use_frameworks!
 	platform :ios, '9.3'
-	pod "Kanna", :git => 'https://github.com/tid-kijyun/Kanna.git', :branch => 'feature/v4.0.0'
+  pod "Kanna"
+  pod "Houston"
 	pod 'Alamofire'
 	pod "PromiseKit"
 	pod 'KeychainAccess'

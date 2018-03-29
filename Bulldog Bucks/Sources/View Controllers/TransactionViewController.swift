@@ -10,6 +10,7 @@ import UIKit
 import DGElasticPullToRefresh
 import MBProgressHUD
 import StoreKit
+import SideMenu
 
 class TransactionViewController: UIViewController {
     
@@ -55,6 +56,16 @@ class TransactionViewController: UIViewController {
         super.viewDidLoad()
         setupPullToRefresh()
         showLoadingHUD()
+        configureSideMenu()
+        
+        // Setup Navigation Items
+        self.navigationItem.title = "Bulldog Bucks Remaining"
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        // Left Nav Item - Menu
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")!, style: .plain, target: self, action: #selector(toggleMenu))
+        
+        
         // Configure Delegates
         scrollView.delegate = self
         tableView.dataSource = self
@@ -72,6 +83,24 @@ class TransactionViewController: UIViewController {
     
     deinit {
         scrollView.dg_removePullToRefresh()
+    }
+    
+    func configureSideMenu() {
+        // Setup Side Menu
+        let sideMenuRootVC = storyboard!.instantiateViewController(withIdentifier: SideMenuViewController.storyboardIdentifier) as! SideMenuViewController
+        sideMenuRootVC.delegate = delegate
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuRootVC)
+        menuLeftNavigationController.leftSide = true
+        SideMenuManager.default.menuShadowColor = UIColor(red: 112.0/255.0, green: 156.0/255.0, blue: 193.0/255.0, alpha: 1.0)
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
+    }
+    
+    @objc func toggleMenu() {
+        UIView.animate(withDuration: 1.5) {
+           self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        }
+        
     }
     
     func setupPullToRefresh() {
@@ -232,7 +261,7 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -242,7 +271,6 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
         case 0:
             // Bulldog Buck Balance Section
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
-            cell.titleLabel.text = "Bulldog Bucks Remaining"
             if let bulldogBuckBalance = bulldogBuckBalance {
                 cell.amountLabel.text = bulldogBuckBalance.prettyBalance
             } else {
@@ -259,7 +287,6 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
         case 1:
             // Swipes Remaining Section
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as! DetailCollectionViewCell
-            cell.titleLabel.text = "Swipes Remaining"
             cell.amountLabel.text = swipesRemaining ?? "- - -"
             
             
@@ -267,26 +294,6 @@ extension TransactionViewController: UICollectionViewDataSource, UICollectionVie
             if let swipesRemaining = swipesRemaining, let swipesRemainingAsInt = Int(swipesRemaining), weeksUntilEndOfSchoolYear > 0, swipesRemainingAsInt != 0 {
                 let weeklyBalance = swipesRemainingAsInt / weeksUntilEndOfSchoolYear
                 cell.weeklyLabel.text = "Budget \(weeklyBalance) per week"
-            }
-            return cell
-            
-        case 2:
-            // Buttons Section
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.reuseIdentifier, for: indexPath) as! ButtonCollectionViewCell
-            
-            // Define Cell Actions
-            cell.logoutAction = logout
-            cell.toggleCardStatusAction = userChangedZagcardState(cardState:onCompletion:)
-            
-            if let cardState = cardState {
-                switch cardState {
-                case .active:
-                    cell.statusLabel.text = "ZAGCARD Active"
-                    cell.switchOutlet.isOn = true
-                case .frozen:
-                    cell.statusLabel.text = "ZAGCARD Frozen"
-                    cell.switchOutlet.isOn = false
-                }
             }
             return cell
             
@@ -378,6 +385,11 @@ extension TransactionViewController: UIScrollViewDelegate {
             // Implements better paging
             let pageWidth = scrollView.frame.width
             let currentPage = Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
+            if currentPage == 0 {
+                self.navigationItem.title = "Bulldog Bucks Remaining"
+            } else {
+                self.navigationItem.title = "Swipes Remaining"
+            }
             self.pageControl.currentPage = currentPage
         } else {
             // Make it so the user can only pull down, not up
