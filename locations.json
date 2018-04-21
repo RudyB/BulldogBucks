@@ -12,7 +12,7 @@
             "sunday": "10AM–5PM"
         },
         "formatted-phone": "+1 (509) 313-6390",
-        "phone": 5093136390,
+        "phone": "5093136390",
         "location": {
             "address": "801 E Desmet Ave, Spokane, WA 99202",
             "lat": 47.6675419,
@@ -34,7 +34,7 @@
             "sunday": "10AM-9PM"
         },
         "formatted-phone": "+1 (509) 327-4270",
-        "phone": 5093274270,
+        "phone": "5093274270",
         "location": {
             "address": "1724 N. Monroe, Spokane, WA 99205",
             "lat": 47.67388679999999,
@@ -56,7 +56,7 @@
             "saturday": "11AM – 8PM",
             "sunday": "11AM – 7PM"
         },
-        "phone": 5094131945,
+        "phone": "5094131945",
         "formatted-phone": "+1 (509) 413-1945",
         "location": {
             "address": "829 E Boone Ave, Spokane, WA 99202",
@@ -79,7 +79,7 @@
             "saturday": "6AM–12AM",
             "sunday": "6AM–12AM"
         },
-        "phone": 5093280889,
+        "phone": "5093280889",
         "formatted-phone": "+1 (509) 328-0889",
         "location": {
             "address": "1230 N Division St, Spokane, WA 99202",
@@ -102,7 +102,7 @@
             "saturday": "10:30AM–10PM",
             "sunday": "11AM–8PM"
         },
-        "phone": 5098680585,
+        "phone": "5098680585",
         "formatted-phone": "+1 (509) 868-0585",
         "location": {
             "address": "1120 N Division St, Suite A, Spokane, WA 99202",
