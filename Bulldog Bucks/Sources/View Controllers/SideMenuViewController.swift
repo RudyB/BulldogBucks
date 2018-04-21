@@ -9,7 +9,8 @@ import UIKit
 
 enum SideMenuOption: Int {
     case locations
-	case accountSettings
+	case freezeZagcard
+    case viewInBrowser
 	case logout
 	
 	init?(atIndex: Int) {
@@ -24,8 +25,10 @@ enum SideMenuOption: Int {
 		switch self {
         case .locations:
             return (#imageLiteral(resourceName: "location-black"), "Locations")
-		case .accountSettings:
+		case .freezeZagcard:
 			return (#imageLiteral(resourceName: "pause"), "Freeze Zagcard")
+        case .viewInBrowser:
+            return (#imageLiteral(resourceName: "openInBrowser-black"), "View in Browser")
 		case .logout:
 			return (#imageLiteral(resourceName: "logoutBlack"), "Logout")
 		}
@@ -69,11 +72,17 @@ class SideMenuViewController: UIViewController {
         }
     }
 	
-	func presentAccountSettings() {
-        // FIXME: RudyB 3/29
-//        let vc = storyboard?.instantiateViewController(withIdentifier: AccountSettingsViewController.storyboardIdentifier) as! AccountSettingsViewController
-//        self.navigationController?.pushViewController(vc, animated: false)
-	}
+    func presentLocationsVC() {
+        
+    }
+    
+    func toggleFreezeZagcard() {
+        
+    }
+    
+    func openInBrowser() {
+        
+    }
 
 }
 
@@ -93,10 +102,13 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.row == SideMenuOption.accountSettings.rawValue {
-			presentAccountSettings()
-		}
-		else if indexPath.row == SideMenuOption.logout.rawValue {
+		if indexPath.row == SideMenuOption.freezeZagcard.rawValue {
+            toggleFreezeZagcard()
+        } else if indexPath.row == SideMenuOption.locations.rawValue {
+            presentLocationsVC()
+        } else if indexPath.row == SideMenuOption.viewInBrowser.rawValue {
+            openInBrowser()
+        } else if indexPath.row == SideMenuOption.logout.rawValue {
 			logout()
 		}
 	}

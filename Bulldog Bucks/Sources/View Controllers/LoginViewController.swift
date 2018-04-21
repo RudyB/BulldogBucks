@@ -46,6 +46,15 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         onepasswordSigninButton.isHidden = !OnePasswordExtension.shared().isAppExtensionAvailable()
 	}
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 	
     
     /// Action will fill the `userIDTextField` & `userPinTextField` textfields with credentials from 1Password

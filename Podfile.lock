@@ -30,6 +30,18 @@ DEPENDENCIES:
   - PromiseKit
   - SideMenu
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - 1PasswordExtension
+    - Alamofire
+    - DGElasticPullToRefresh
+    - Houston
+    - Kanna
+    - KeychainAccess
+    - MBProgressHUD
+    - PromiseKit
+    - SideMenu
+
 SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -43,4 +55,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3fd66ee30334b9659f64467d2d451fee73fd13b9
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

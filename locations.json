@@ -1,0 +1,86 @@
+[
+    {
+        "name":"Zag Shop",
+        "desc":"Gonzaga University Apparel, Textbooks, Merchandise and Gifts",
+        "hours": {
+            "monday":"9AM–6PM",
+            "tuesday": "9AM–6PM",
+            "wednesday": "9AM–6PM",
+            "thursday": "9AM–6PM",
+            "friday": "9AM–6PM",
+            "saturday": "10AM–5PM",
+            "sunday": "10AM–5PM"
+        },
+        "phone": "+1 (509) 313-6390",
+        "location": {
+            "address": "801 E Desmet Ave, Spokane, WA 99202",
+            "lat": 47.6679069,
+            "long": -117.3973057
+        },
+        "url":"https://www.bkstr.com/gonzagazagshopstore/home",
+        "category": "shopping"
+    },
+    {
+        "name":"Aloha Island Grill",
+        "desc":"Hawaiian favorites like kalua pork & rice bowls",
+        "hours": {
+            "monday":"10AM - 9PM",
+            "tuesday": "10AM - 9PM",
+            "wednesday": "10AM - 9PM",
+            "thursday": "10AM - 9PM",
+            "friday": "10AM - 9PM",
+            "saturday": "10AM - 9PM",
+            "sunday": "10AM - 9PM"
+        },
+        "phone": "+1 (509) 327-4270",
+        "location": {
+            "address": "1724 N. Monroe, Spokane, WA 99205",
+            "lat": 47.6738697,
+            "long": -117.496505
+        },
+        "url":"http://www.eataloha.com",
+        "menu-url": "http://www.eataloha.com/files/76056162.pdf"
+    },
+    {
+        "name":"Bruchi's",
+        "desc":"Sandwich chain offering cheesesteaks, subs, burgers & salads in a basic setting.",
+        "hours": {
+            "monday":"10:30AM – 8PM",
+            "tuesday": "10:30AM – 8PM",
+            "wednesday": "10:30AM – 8PM",
+            "thursday": "10:30AM – 8PM",
+            "friday": "10:30AM – 8PM",
+            "saturday": "11AM – 8PM",
+            "sunday": "11AM – 7PM"
+        },
+        "phone": "+1 (509) 413-1945",
+        "location": {
+            "address": "829 E Boone Ave, Spokane, WA 99202",
+            "lat": 47.6687197,
+            "long": -117.4669076
+        },
+        "url": "http://www.bruchis.com",
+        "menu-url": "http://www.bruchis.com/menu/"
+    },
+    {
+        "name":"Carl's Jr.",
+        "desc":"1230 N Division St, Spokane, WA 99202",
+        "hours": {
+            "monday":"6AM–12AM",
+            "tuesday": "6AM–12AM",
+            "wednesday": "6AM–12AM",
+            "thursday": "6AM–12AM",
+            "friday": "6AM–12AM",
+            "saturday": "6AM–12AM",
+            "sunday": "6AM–12AM"
+        },
+        "phone": "+1 (509) 328-0889",
+        "location": {
+            "address": "1230 N Division St, Spokane, WA 99202",
+            "lat": 47.6691787,
+            "long": -117.4807197
+        },
+        "url": "https://www.carlsjr.com",
+        "menu-url": "https://www.carlsjr.com/menu"
+    }
+]

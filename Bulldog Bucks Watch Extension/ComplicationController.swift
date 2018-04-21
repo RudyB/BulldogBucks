@@ -78,7 +78,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             sortedBalances.removeSubrange(0..<numberToRemove)
         }
     
-        let entries = sortedBalances.flatMap { balance in
+        let entries = sortedBalances.compactMap { balance in
             self.timelineEntryFor(balance, family: complication.family)
         }
 
@@ -98,7 +98,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             sortedBalances.removeSubrange(limit..<sortedBalances.count)
         }
         
-        let entries = sortedBalances.flatMap { balance in
+        let entries = sortedBalances.compactMap { balance in
             timelineEntryFor(balance, family: complication.family)
         }
         
