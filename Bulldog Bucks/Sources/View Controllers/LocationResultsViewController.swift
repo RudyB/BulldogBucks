@@ -58,7 +58,6 @@ class LocationResultsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")!, style: .plain, target: self, action: #selector(toggleMenu))
         
         navigationItem.title = "Locations"
-        setMapRegion() // This should only be set once
     }
     
     
@@ -127,18 +126,16 @@ extension LocationResultsViewController: MKMapViewDelegate {
     func addMapAnnotations() {
         removeMapAnnotations()
         
-        if venues.count > 0 {
-            let annotations: [MKPointAnnotation] = venues.map { venue in
-                let point = MKPointAnnotation()
-                
-                point.coordinate = CLLocationCoordinate2D(latitude: venue.location.lat, longitude: venue.location.long)
-                point.title = venue.name
-//                point.subtitle = "\(venue.description)"
-                
-                return point
-            }
-            mapView.addAnnotations(annotations)
+        guard venues.count > 0 else { return }
+        
+        let annotations: [MKPointAnnotation] = venues.map { venue in
+            let point = MKPointAnnotation()
+            point.coordinate = CLLocationCoordinate2D(latitude: venue.location.lat, longitude: venue.location.long)
+            point.title = venue.name
+            return point
         }
+        //mapView.addAnnotations(annotations)
+        mapView.showAnnotations(annotations, animated: false)
     }
     
     func removeMapAnnotations() {

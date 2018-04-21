@@ -11,7 +11,8 @@
             "saturday": "10AM–5PM",
             "sunday": "10AM–5PM"
         },
-        "phone": "+1 (509) 313-6390",
+        "formatted-phone": "+1 (509) 313-6390",
+        "phone": 5093136390,
         "location": {
             "address": "801 E Desmet Ave, Spokane, WA 99202",
             "lat": 47.6675419,
@@ -24,15 +25,16 @@
         "name":"Aloha Island Grill",
         "desc":"Hawaiian favorites like kalua pork & rice bowls",
         "hours": {
-            "monday":"10AM - 9PM",
-            "tuesday": "10AM - 9PM",
-            "wednesday": "10AM - 9PM",
-            "thursday": "10AM - 9PM",
-            "friday": "10AM - 9PM",
-            "saturday": "10AM - 9PM",
-            "sunday": "10AM - 9PM"
+            "monday":"10AM-9PM",
+            "tuesday": "10AM-9PM",
+            "wednesday": "10AM-9PM",
+            "thursday": "10AM-9PM",
+            "friday": "10AM-9PM",
+            "saturday": "10AM-9PM",
+            "sunday": "10AM-9PM"
         },
-        "phone": "+1 (509) 327-4270",
+        "formatted-phone": "+1 (509) 327-4270",
+        "phone": 5093274270,
         "location": {
             "address": "1724 N. Monroe, Spokane, WA 99205",
             "lat": 47.67388679999999,
@@ -54,7 +56,8 @@
             "saturday": "11AM – 8PM",
             "sunday": "11AM – 7PM"
         },
-        "phone": "+1 (509) 413-1945",
+        "phone": 5094131945,
+        "formatted-phone": "+1 (509) 413-1945",
         "location": {
             "address": "829 E Boone Ave, Spokane, WA 99202",
             "lat": 47.668741,
@@ -76,7 +79,8 @@
             "saturday": "6AM–12AM",
             "sunday": "6AM–12AM"
         },
-        "phone": "+1 (509) 328-0889",
+        "phone": 5093280889,
+        "formatted- phone": "+1 (509) 328-0889",
         "location": {
             "address": "1230 N Division St, Spokane, WA 99202",
             "lat": 47.6692148,
@@ -85,5 +89,28 @@
         "url": "https://www.carlsjr.com",
         "menu-url": "https://www.carlsjr.com/menu",
         "category": "food"
+    },
+    {
+        "name":"Caruso's",
+        "desc":"Sandwiches and Artisan Pizza",
+        "hours": {
+            "monday":"10:30AM–9PM",
+            "tuesday": "10:30AM–9PM",
+            "wednesday": "10:30AM–9PM",
+            "thursday": "10:30AM–9PM",
+            "friday": "10:30AM–10PM",
+            "saturday": "10:30AM–10PM",
+            "sunday": "11AM–8PM"
+        },
+        "phone": 5098680585,
+        "formatted-phone": "+1 (509) 868-0585",
+        "location": {
+            "address": "1120 N Division St, Suite A, Spokane, WA 99202",
+            "lat": 47.6680234,
+            "long": -117.4108043
+        },
+        "url": "http://carusosandco.com/",
+        "menu-url": "http://carusosandco.com/menus/u-district",
+	    "category": "food"
     }
 ]

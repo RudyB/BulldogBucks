@@ -21,9 +21,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var callStackView: UIStackView!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var websiteStackView: UIStackView!
-    @IBOutlet weak var websiteAddressLabel: UILabel!
+    @IBOutlet weak var websiteAddressButton: UIButton!
     
     var venue: LocationData?
 	
@@ -41,10 +41,11 @@ class DetailViewController: UIViewController {
         titleLabel.text = venue.name
         categoryLabel.text = venue.category.rawValue.capitalized
         addressLabel.text = venue.location.address
-        phoneNumberLabel.text = venue.phone
+        phoneNumberButton.setTitle(venue.formattedPhone, for: .normal)
+        
         
         if let website = venue.url {
-            self.websiteAddressLabel.text = website.absoluteString
+            websiteAddressButton.setTitle(website.absoluteString, for: .normal)
             self.websiteStackView.isHidden = false
         } else {
             self.websiteStackView.isHidden = true
