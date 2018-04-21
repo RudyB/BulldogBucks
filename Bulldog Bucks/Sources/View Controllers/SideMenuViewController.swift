@@ -8,6 +8,7 @@
 import UIKit
 
 enum SideMenuOption: Int {
+    case transactions
     case locations
 	case freezeZagcard
     case viewInBrowser
@@ -23,6 +24,8 @@ enum SideMenuOption: Int {
 	
 	func toCell() -> (image: UIImage, label: String) {
 		switch self {
+        case .transactions:
+            return (#imageLiteral(resourceName: "transaction"), "Transactions")
         case .locations:
             return (#imageLiteral(resourceName: "location-black"), "Locations")
 		case .freezeZagcard:
@@ -72,8 +75,15 @@ class SideMenuViewController: UIViewController {
         }
     }
 	
-    func presentLocationsVC() {
+    func presentTransactionsVC () {
+        let transactionsVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
         
+        navigationController?.show(transactionsVC, sender: self)
+    }
+    
+    func presentLocationsVC() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: LocationResultsViewController.storyboardIdentifier) as! LocationResultsViewController
+        navigationController?.show(vc, sender: self)
     }
     
     func toggleFreezeZagcard() {
@@ -89,7 +99,7 @@ class SideMenuViewController: UIViewController {
 extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3
+		return 5
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +112,9 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.row == SideMenuOption.freezeZagcard.rawValue {
+        if indexPath.row == SideMenuOption.transactions.rawValue {
+            presentTransactionsVC()
+        }else if indexPath.row == SideMenuOption.freezeZagcard.rawValue {
             toggleFreezeZagcard()
         } else if indexPath.row == SideMenuOption.locations.rawValue {
             presentLocationsVC()

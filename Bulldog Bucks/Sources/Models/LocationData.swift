@@ -44,6 +44,7 @@ struct LocationData: Decodable {
         case description = "desc"
         case hours
         case phone
+        case location
         case url
         case menuUrl = "menu-url"
         case category

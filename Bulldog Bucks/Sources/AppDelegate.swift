@@ -8,6 +8,7 @@
 
 import UIKit
 import WatchConnectivity
+import SideMenu
 
 
 /// `String` constant for `NSNotification.Name() for when the user logs out of the application`
@@ -27,10 +28,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return NotificationCenter.default
     }()
     
+    func configureSideMenu() {
+        // Setup Side Menu
+        let sideMenuRootVC = storyboard!.instantiateViewController(withIdentifier: SideMenuViewController.storyboardIdentifier) as! SideMenuViewController
+        sideMenuRootVC.delegate = self
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuRootVC)
+        menuLeftNavigationController.leftSide = true
+        SideMenuManager.default.menuShadowColor = UIColor(red: 112.0/255.0, green: 156.0/255.0, blue: 193.0/255.0, alpha: 1.0)
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         setupWatchConnectivity()
         setupNotificationCenter()
+        
         
         if BDBKeychain.phoneKeychain.isLoggedIn() {
             sendUserLoginToWatch()
@@ -41,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+        configureSideMenu()
         
         navigationController = UINavigationController()
         navigationController?.setNavigationBarHidden(false, animated: false)
@@ -57,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if BDBKeychain.phoneKeychain.isLoggedIn() {
             let transactionVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
-            transactionVC.delegate = self
+    
             navigationController?.pushViewController(transactionVC, animated: false)
         }
         
@@ -186,9 +198,8 @@ extension AppDelegate: AuthenticationStateDelegate {
     
     func didLoginSuccessfully() {
         self.notificationCenter.post(name: Notification.Name(UserLoggedInNotificaiton), object: nil)
-        let transactionsVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
         
-        transactionsVC.delegate = self
+        let transactionsVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
         navigationController?.pushViewController(transactionsVC, animated: true)
     }
     

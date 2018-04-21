@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SideMenu
 
 class LocationResultsViewController: UIViewController {
     
@@ -25,6 +26,12 @@ class LocationResultsViewController: UIViewController {
 	
 	var regionHasBeenSet = false
     
+    var data: [LocationData]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
 	
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
@@ -35,19 +42,45 @@ class LocationResultsViewController: UIViewController {
 		searchController.searchBar.isTranslucent = false
 		definesPresentationContext = true
 		stackView.insertArrangedSubview(searchController.searchBar, at: 0)
+        
 		self.view.layoutIfNeeded()
 	}
 	
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Left Nav Item - Menu
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")!, style: .plain, target: self, action: #selector(toggleMenu))
+        
+        navigationItem.title = "Locations"
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = UIColor(red: 238.0/255.0, green: 37.0/255.0, blue: 16.0/255.0, alpha: 1.0)
-        navigationController?.navigationBar.tintColor = UIColor.white
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
 		
+        LocationAPI.getLocations { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.data = data
+            }
+        }
+        
 		manager.getPermission()
         manager.onLocationFix = { [weak self] coordinate in
             
             self?.coordinate = coordinate
            
+        }
+    }
+    
+    @objc func toggleMenu() {
+        UIView.animate(withDuration: 1.5) {
+            self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
         }
     }
 
@@ -57,13 +90,15 @@ extension LocationResultsViewController: UITableViewDataSource, UITableViewDeleg
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationTableViewCell
         // TODO: Rudy - Add functionality, name, description, category etc
-        cell.LocationTitleLabel.text = ""
+        guard let data = data else { return cell }
+        
+        cell.LocationTitleLabel.text = data[indexPath.row].name
         return cell
     }
 	

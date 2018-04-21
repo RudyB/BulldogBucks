@@ -23,8 +23,6 @@ class TransactionViewController: UIViewController {
     
     public static let storyboardIdentifier = "TransactionViewControllerID"
     
-    var delegate: AuthenticationStateDelegate?
-    
     lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
     }()
@@ -56,7 +54,8 @@ class TransactionViewController: UIViewController {
         super.viewDidLoad()
         setupPullToRefresh()
         showLoadingHUD()
-        configureSideMenu()
+        
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
         
         // Setup Navigation Items
         self.navigationItem.title = "Bulldog Bucks Remaining"
@@ -85,22 +84,10 @@ class TransactionViewController: UIViewController {
         scrollView.dg_removePullToRefresh()
     }
     
-    func configureSideMenu() {
-        // Setup Side Menu
-        let sideMenuRootVC = storyboard!.instantiateViewController(withIdentifier: SideMenuViewController.storyboardIdentifier) as! SideMenuViewController
-        sideMenuRootVC.delegate = delegate
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuRootVC)
-        menuLeftNavigationController.leftSide = true
-        SideMenuManager.default.menuShadowColor = UIColor(red: 112.0/255.0, green: 156.0/255.0, blue: 193.0/255.0, alpha: 1.0)
-        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
-    }
-    
     @objc func toggleMenu() {
         UIView.animate(withDuration: 1.5) {
            self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
         }
-        
     }
     
     func setupPullToRefresh() {
@@ -206,9 +193,7 @@ class TransactionViewController: UIViewController {
         }
         ZagwebDataSetManager.purgeDataSets()
         let logoutSuccess = BDBKeychain.phoneKeychain.deleteCredentials()
-        if logoutSuccess {
-            delegate?.didLogoutSuccessfully()
-        } else {
+        if !logoutSuccess {
             // This should never happen, but it is good to handle the error just in case.
             showAlert(target: self, title: "Houston we have a problem!", message: "Logout failed. Please try again.")
         }
