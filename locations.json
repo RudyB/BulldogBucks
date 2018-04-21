@@ -42,7 +42,7 @@
         },
         "url":"http://www.eataloha.com",
         "menu-url": "http://www.eataloha.com/files/76056162.pdf",
-        "category": "food"
+        "category": "dining"
     },
     {
         "name":"Bruchi's",
@@ -65,7 +65,7 @@
         },
         "url": "http://www.bruchis.com",
         "menu-url": "http://www.bruchis.com/menu/",
-        "category": "food"
+        "category": "dining"
     },
     {
         "name":"Carl's Jr.",
@@ -88,7 +88,7 @@
         },
         "url": "https://www.carlsjr.com",
         "menu-url": "https://www.carlsjr.com/menu",
-        "category": "food"
+        "category": "dining"
     },
     {
         "name":"Caruso's",
@@ -111,6 +111,148 @@
         },
         "url": "http://carusosandco.com/",
         "menu-url": "http://carusosandco.com/menus/u-district",
-	    "category": "food"
+	    "category": "dining"
+    },
+    {
+        "name":"Clark's Fork",
+        "desc":"Hearty sandwiches, house-made soups, a salad bar and dozens of tempting breakfast and lunch options featuring locally sourced ingredients – quick-served in a fun, kid-friendly dynamic atmosphere.",
+        "hours": {
+            "monday":"6:30AM-8:00PM",
+            "tuesday": "6:30AM-8:00PM",
+            "wednesday": "6:30AM-8:00PM",
+            "thursday": "6:30AM-8:00PM",
+            "friday": "6:30AM-8:00PM",
+            "saturday": "6:30AM-8:00PM",
+            "sunday": "7:30AM-3:00PM"
+        },
+        "phone": "+15098680585",
+        "formatted-phone": "+1 (509) 868-0585",
+        "location": {
+            "address": "1028 N Hamilton St #100, Spokane, WA 99202",
+            "lat": 47.6668427,
+            "long": -117.39624179999998
+        },
+        "url": "http://www.clarksfork.com/",
+        "menu-url": "http://www.clarksfork.com/menu",
+        "category": "dining"
+    },
+    {
+        "name":"Domino's",
+        "desc":"Delivery/carryout chain offering a wide range of pizza, plus chicken & other sides.",
+        "hours": {
+            "monday":"10AM–2AM",
+            "tuesday": "10AM–2AM",
+            "wednesday": "10AM–2AM",
+            "thursday": "10AM–2AM",
+            "friday": "10AM–3AM",
+            "saturday": "10AM–3AM",
+            "sunday": "10AM–2AM"
+        },
+        "phone": "+15095341910",
+	    "formatted-phone": "+1 (509) 534-1910",
+        "location": {
+            "address": "3031 E Mission Ave, Spokane, WA 99202",
+            "lat": 47.67228979999999,
+            "long": -117.36578029999998
+        },
+        "url": "https://www.dominos.com",
+        "menu-url": "https://www.dominos.com/en/pages/order/menu.jsp?utm_source=locallistings&utm_medium=loclist&utm_campaign=localmapsmenuclick#/menu/category/viewAll/",
+        "category": "dining"
+    },
+    {
+        "name":"Dutch Bros",
+        "desc":"Drive-thru chain known for specialty java & espresso drinks, plus teas & smoothies.",
+        "hours": {
+            "monday":"Open 24 hours",
+            "tuesday": "Open 24 hours",
+            "wednesday": "Open 24 hours",
+            "thursday": "Open 24 hours",
+            "friday": "Open 24 hours",
+            "saturday": "Open 24 hours",
+            "sunday": "Open 24 hours"
+        },
+        "phone": "+15093260115",
+        "formatted-phone": "+1 (509) 326-0115",
+        "location": {
+            "address": "1306 N Division St, Spokane, WA 99202",
+            "lat": 47.6698229,
+            "long": -117.4108683
+        },
+        "url": "https://www.dutchbros.com/",
+        "menu-url": "https://www.dutchbros.com/menu",
+        "category": "dining"
+    },
+    {
+        "name":"Forza Coffee",
+        "desc":"This local chain offers gourmet coffee drinks in a relaxed setting with a drive-thru window.",
+        "hours": {
+            "monday":"6AM–9PM",
+            "tuesday": "6AM–9PM",
+            "wednesday": "6AM–9PM",
+            "thursday": "6AM–9PM",
+            "friday": "6AM–9PM",
+            "saturday": "7AM–7PM",
+            "sunday": "7AM–5PM"
+        },
+        "phone": "+15097037240",
+        "formatted-phone": "+1 (509) 703-7240",
+        "location": {
+            "address": "1028 N Hamilton St, Spokane, WA 99202",
+            "lat": 0,
+            "long": 0
+        },
+        "url": "http://www.forzacoffeeco.com",
+        "menu-url": "http://www.forzacoffeeco.com/project/uploads/2018/01/Forza-Main-Menu1.pdf",
+        "category": "dining"
+    },
+    {
+        "name":"Froyo Earth",
+        "desc":"Spokane's premier self-serve yogurt shop ",
+        "hours": {
+            "monday":"12–10PM",
+            "tuesday": "12–10PM",
+            "wednesday": "12–10PM",
+            "thursday": "12–10PM",
+            "friday": "12–11PM",
+            "saturday": "12–11PM",
+            "sunday": "12–10PM"
+        },
+        "phone": "+15093155034",
+        "formatted-phone": "+1 (509) 315-5034",
+        "location": {
+            "address": "829 E Boone Ave #5, Spokane, WA 99202",
+            "lat": 47.668741,
+            "long": -117.39686790000002
+        },
+        "url": "http://froyoearth.com/",
+        "menu-url": "http://froyoearth.com/menuFlavors.htm",
+        "category": "dining"
+    },
+    {
+        "name":"Jimmy John's",
+        "desc":"Counter-serve chain specializing in sub & club sandwiches, plus signature potato chips.",
+        "hours": {
+            "monday":"11AM–1AM",
+            "tuesday": "11AM–1AM",
+            "wednesday": "11AM–1AM",
+            "thursday": "11AM–3AM",
+            "friday": "11AM–3AM",
+            "saturday": "11AM–3AM",
+            "sunday": "11AM–1AM"
+        },
+        "phone": "+15093273278",
+        "formatted-phone": "+1 (509) 327-3278",
+        "location": {
+            "address": "105 E Mission Ave, Spokane, WA 99202",
+            "lat": 47.6721133,
+            "long": -117.4091214
+        },
+        "url": "https://www.jimmyjohns.com/",
+        "menu-url": "https://www.jimmyjohns.com/menu/#/",
+        "category": "dining"
     }
+
+
+
+
 ]
