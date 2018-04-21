@@ -10,14 +10,11 @@ import UIKit
 
 typealias WebViewAction = ((WebViewController) -> Void)
 
-/**
- WebViewController is a ViewController than contains a `UINavigationBar` and a `UIWebView` that loads `https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions`
-*/
 class WebViewController: UIViewController {
 
     public static let storyboardIdentifier: String = "webView"
     
-    var logoutFunc: WebViewAction?
+    var url: String!
     
 	@IBOutlet weak var webView: UIWebView!
 	@IBOutlet weak var backBarButton: UIBarButtonItem!
@@ -27,11 +24,12 @@ class WebViewController: UIViewController {
 	
 	
     override func viewWillAppear(_ animated: Bool) {
-		closeNavButton.action = #selector(self.closeWebView)
-        refreshNavButton.action = #selector(self.reloadWebPage)
-        backBarButton.action = #selector(self.goBack)
-        forwardBarButton.action = #selector(self.goForward)
+		closeNavButton.action = #selector(closeWebView)
+        refreshNavButton.action = #selector(reloadWebPage)
+        backBarButton.action = #selector(goBack)
+        forwardBarButton.action = #selector(goForward)
         self.webView.delegate = self
+        loadWebView()
     }
     
     
@@ -46,7 +44,11 @@ class WebViewController: UIViewController {
  
     
     func loadWebView() {
-        let request = URLRequest(url: URL(string: "https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions")!)
+        guard
+            let url = URL(string: url)
+        else { return }
+        print(url)
+        let request = URLRequest(url: url)
         webView.loadRequest(request)
     }
     
@@ -62,8 +64,9 @@ class WebViewController: UIViewController {
     @objc func goForward() {
         webView.goForward()
     }
+    
     @objc func closeWebView() {
-        logoutFunc?(self)
+        dismiss(animated: true, completion: nil)
     }
 
 }

@@ -33,7 +33,7 @@ struct LocationData: Decodable {
     let name: String
     let description: String
     let hours: Hours
-    let phone: Int
+    let phone: String
     let formattedPhone: String
     let location: Location
     let url: URL?

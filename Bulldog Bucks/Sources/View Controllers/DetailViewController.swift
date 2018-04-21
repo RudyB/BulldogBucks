@@ -42,18 +42,39 @@ class DetailViewController: UIViewController {
         categoryLabel.text = venue.category.rawValue.capitalized
         addressLabel.text = venue.location.address
         phoneNumberButton.setTitle(venue.formattedPhone, for: .normal)
+        phoneNumberButton.addTarget(self, action: #selector(callVenue(_:)), for: .touchUpInside)
         
         
         if let website = venue.url {
             websiteAddressButton.setTitle(website.absoluteString, for: .normal)
+            websiteAddressButton.addTarget(self, action: #selector(openURL(_:)), for: .touchUpInside)
             self.websiteStackView.isHidden = false
         } else {
             self.websiteStackView.isHidden = true
         }
-        
-        
     }
 	
+    
+    @IBAction func openURL(_ sender: UIButton) {
+        guard let url = sender.title(for: .normal) else { return }
+        
+        let webView = storyboard?.instantiateViewController(withIdentifier: WebViewController.storyboardIdentifier) as! WebViewController
+        webView.url = url
+        present(webView, animated: true, completion: nil)
+    }
+    
+    @IBAction func callVenue(_ sender: UIButton) {
+        print("Attempt to call venue")
+        guard
+            let venue = venue,
+            let number = URL(string: "tel://" + venue.phone)
+        else { return }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(number)
+        } else {
+            UIApplication.shared.openURL(number)
+        }
+    }
 
 }
 
