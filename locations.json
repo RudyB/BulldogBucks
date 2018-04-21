@@ -39,7 +39,8 @@
             "long": -117.496505
         },
         "url":"http://www.eataloha.com",
-        "menu-url": "http://www.eataloha.com/files/76056162.pdf"
+        "menu-url": "http://www.eataloha.com/files/76056162.pdf",
+        "category": "food"
     },
     {
         "name":"Bruchi's",
@@ -60,7 +61,8 @@
             "long": -117.4669076
         },
         "url": "http://www.bruchis.com",
-        "menu-url": "http://www.bruchis.com/menu/"
+        "menu-url": "http://www.bruchis.com/menu/",
+        "category": "food"
     },
     {
         "name":"Carl's Jr.",
@@ -81,6 +83,7 @@
             "long": -117.4807197
         },
         "url": "https://www.carlsjr.com",
-        "menu-url": "https://www.carlsjr.com/menu"
+        "menu-url": "https://www.carlsjr.com/menu",
+        "category": "food"
     }
 ]
