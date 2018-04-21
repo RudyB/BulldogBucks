@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var websiteStackView: UIStackView!
     @IBOutlet weak var websiteAddressLabel: UILabel!
     
+    var venue: LocationData?
 	
 
     override func viewDidLoad() {
@@ -35,6 +36,20 @@ class DetailViewController: UIViewController {
     func setupView() {
         addMapAnnotations()
         setMapRegion()
+        
+        guard let venue = venue else { return }
+        titleLabel.text = venue.name
+        categoryLabel.text = venue.category.rawValue.capitalized
+        addressLabel.text = venue.location.address
+        phoneNumberLabel.text = venue.phone
+        
+        if let website = venue.url {
+            self.websiteAddressLabel.text = website.absoluteString
+            self.websiteStackView.isHidden = false
+        } else {
+            self.websiteStackView.isHidden = true
+        }
+        
         
     }
 	
@@ -50,7 +65,10 @@ extension DetailViewController: MKMapViewDelegate {
         removeMapAnnotations()
         
         let point = MKPointAnnotation()
-        
+        guard let venue = venue else { return }
+        point.coordinate = CLLocationCoordinate2D(latitude: venue.location.lat, longitude: venue.location.long)
+        point.title = venue.name
+        mapView.addAnnotation(point)
     }
     
 

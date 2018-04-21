@@ -14,8 +14,8 @@
         "phone": "+1 (509) 313-6390",
         "location": {
             "address": "801 E Desmet Ave, Spokane, WA 99202",
-            "lat": 47.6679069,
-            "long": -117.3973057
+            "lat": 47.6675419,
+            "long": -117.39747740000001
         },
         "url":"https://www.bkstr.com/gonzagazagshopstore/home",
         "category": "shopping"
@@ -35,8 +35,8 @@
         "phone": "+1 (509) 327-4270",
         "location": {
             "address": "1724 N. Monroe, Spokane, WA 99205",
-            "lat": 47.6738697,
-            "long": -117.496505
+            "lat": 47.67388679999999,
+            "long": -117.42647770000002
         },
         "url":"http://www.eataloha.com",
         "menu-url": "http://www.eataloha.com/files/76056162.pdf",
@@ -57,8 +57,8 @@
         "phone": "+1 (509) 413-1945",
         "location": {
             "address": "829 E Boone Ave, Spokane, WA 99202",
-            "lat": 47.6687197,
-            "long": -117.4669076
+            "lat": 47.668741,
+            "long": -117.39686790000002
         },
         "url": "http://www.bruchis.com",
         "menu-url": "http://www.bruchis.com/menu/",
@@ -66,7 +66,7 @@
     },
     {
         "name":"Carl's Jr.",
-        "desc":"1230 N Division St, Spokane, WA 99202",
+        "desc":"Fast-food chain known for its variety of piled-high burgers & meal combos, plus shakes.",
         "hours": {
             "monday":"6AM–12AM",
             "tuesday": "6AM–12AM",
@@ -79,8 +79,8 @@
         "phone": "+1 (509) 328-0889",
         "location": {
             "address": "1230 N Division St, Spokane, WA 99202",
-            "lat": 47.6691787,
-            "long": -117.4807197
+            "lat": 47.6692148,
+            "long": -117.4106916
         },
         "url": "https://www.carlsjr.com",
         "menu-url": "https://www.carlsjr.com/menu",

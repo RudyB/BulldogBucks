@@ -26,12 +26,16 @@ class LocationResultsViewController: UIViewController {
 	
 	var regionHasBeenSet = false
     
-    var data: [LocationData]? {
+    var unfilteredData: [LocationData] = []
+    
+    var venues: [LocationData] = [] {
         didSet {
-            tableView.reloadData()
+            if venues.count > 0 {
+                tableView.reloadData()
+                addMapAnnotations()
+            }
         }
     }
-    
 	
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
@@ -54,6 +58,7 @@ class LocationResultsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")!, style: .plain, target: self, action: #selector(toggleMenu))
         
         navigationItem.title = "Locations"
+        setMapRegion() // This should only be set once
     }
     
     
@@ -65,8 +70,9 @@ class LocationResultsViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print(error)
-            case .success(let data):
-                self.data = data
+            case .success(let venues):
+                self.unfilteredData = venues
+                self.venues = venues
             }
         }
         
@@ -90,22 +96,21 @@ extension LocationResultsViewController: UITableViewDataSource, UITableViewDeleg
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data?.count ?? 0
+        return venues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationTableViewCell
         // TODO: Rudy - Add functionality, name, description, category etc
-        guard let data = data else { return cell }
         
-        cell.LocationTitleLabel.text = data[indexPath.row].name
+        cell.LocationTitleLabel.text = venues[indexPath.row].name
         return cell
     }
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
 		let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.storyboardID) as! DetailViewController
-		
+		vc.venue = venues[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
 	}
     
@@ -122,7 +127,18 @@ extension LocationResultsViewController: MKMapViewDelegate {
     func addMapAnnotations() {
         removeMapAnnotations()
         
-        
+        if venues.count > 0 {
+            let annotations: [MKPointAnnotation] = venues.map { venue in
+                let point = MKPointAnnotation()
+                
+                point.coordinate = CLLocationCoordinate2D(latitude: venue.location.lat, longitude: venue.location.long)
+                point.title = venue.name
+//                point.subtitle = "\(venue.description)"
+                
+                return point
+            }
+            mapView.addAnnotations(annotations)
+        }
     }
     
     func removeMapAnnotations() {
@@ -135,7 +151,8 @@ extension LocationResultsViewController: MKMapViewDelegate {
 
     func setMapRegion() {
         var region = MKCoordinateRegion()
-        region.center = mapView.userLocation.coordinate
+//        region.center = mapView.userLocation.coordinate
+        region.center = CLLocationCoordinate2D(latitude: 47.6671926, longitude: -117.4045736)
         region.span.latitudeDelta = 0.03
         region.span.longitudeDelta = 0.03
         mapView.setRegion(region, animated: false)
@@ -150,16 +167,25 @@ extension LocationResultsViewController: MKMapViewDelegate {
 	}
  
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotations = view.annotation?.title, let title = annotations else {
-            return
-        }
-       
+        guard
+            let annotation = view.annotation?.title,
+            let title = annotation,
+            let row = venues.index(where: { $0.name == title })
+        else { return }
+        
+        tableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .top)
+        
+        
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        guard let annotations = view.annotation?.title, let title = annotations else {
-            return
-        }
+        guard
+            let annotation = view.annotation?.title,
+            let title = annotation,
+            let row = venues.index(where: { $0.name == title })
+        else { return }
+        
+        tableView.deselectRow(at: IndexPath(row: row, section: 0), animated: true)
        
     }
 }
@@ -169,6 +195,12 @@ extension LocationResultsViewController: MKMapViewDelegate {
 extension LocationResultsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text else {
+            venues = unfilteredData
+            return
+        }
+        guard !query.isEmpty else { venues = unfilteredData; return }
+        venues = unfilteredData.filter { $0.name.lowercased().contains(query.lowercased()); }
     }
     
 }
