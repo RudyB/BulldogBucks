@@ -198,8 +198,8 @@
         "formatted-phone": "+1 (509) 703-7240",
         "location": {
             "address": "1028 N Hamilton St, Spokane, WA 99202",
-            "lat": 0,
-            "long": 0
+            "lat": 47.6668427,
+            "long": -117.39624179999998
         },
         "url": "http://www.forzacoffeeco.com",
         "menu-url": "http://www.forzacoffeeco.com/project/uploads/2018/01/Forza-Main-Menu1.pdf",
@@ -207,7 +207,7 @@
     },
     {
         "name":"Froyo Earth",
-        "desc":"Spokane's premier self-serve yogurt shop ",
+        "desc":"Spokane's premier self-serve yogurt shop",
         "hours": {
             "monday":"12–10PM",
             "tuesday": "12–10PM",
@@ -251,8 +251,4 @@
         "menu-url": "https://www.jimmyjohns.com/menu/#/",
         "category": "dining"
     }
-
-
-
-
 ]
