@@ -25,8 +25,8 @@ struct Location: Decodable {
 }
 
 enum LocationType: String, Decodable {
-    case shopping
-    case food
+    case retail
+    case dining
 }
 
 struct LocationData: Decodable {

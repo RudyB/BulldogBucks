@@ -17,13 +17,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var checkinsLabel: UILabel!
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var callStackView: UIStackView!
     @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var websiteStackView: UIStackView!
     @IBOutlet weak var websiteAddressButton: UIButton!
+    @IBOutlet weak var menuStackView: UIStackView!
+    @IBOutlet weak var menuAdressButton: UIButton!
+    
     
     var venue: LocationData?
 	
@@ -51,6 +53,14 @@ class DetailViewController: UIViewController {
             self.websiteStackView.isHidden = false
         } else {
             self.websiteStackView.isHidden = true
+        }
+        
+        if let menu = venue.menuUrl {
+            menuAdressButton.setTitle(menu.absoluteString, for: .normal)
+            menuAdressButton.addTarget(self, action: #selector(openURL(_:)), for: .touchUpInside)
+            self.websiteStackView.isHidden = false
+        } else {
+            websiteStackView.isHidden = true
         }
     }
 	

@@ -25,7 +25,7 @@ enum SideMenuOption: Int {
 	func toCell() -> (image: UIImage, label: String) {
 		switch self {
         case .transactions:
-            return (#imageLiteral(resourceName: "transaction"), "Transactions")
+            return (#imageLiteral(resourceName: "transactions"), "Transactions")
         case .locations:
             return (#imageLiteral(resourceName: "location-black"), "Locations")
 		case .freezeZagcard:
