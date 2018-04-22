@@ -536,11 +536,11 @@
 		47BC3AB31DA09C9B001C3FD2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				478D40BB208A86220012107A /* DetailViewController.swift */,
-				478D40BC208A86220012107A /* LocationResultsViewController.swift */,
 				479447CE1D99F2C1007847BE /* LoginViewController.swift */,
-				47A84CAC206D840F00A6A9E5 /* SideMenuViewController.swift */,
 				47BF33081F5CF52C005D162E /* TransactionViewController.swift */,
+				478D40BC208A86220012107A /* LocationResultsViewController.swift */,
+				478D40BB208A86220012107A /* DetailViewController.swift */,
+				47A84CAC206D840F00A6A9E5 /* SideMenuViewController.swift */,
 				478D1A091DFF6BF000B25164 /* WebViewController.swift */,
 			);
 			path = "View Controllers";
@@ -709,7 +709,7 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = NZ8449Y9W6;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -723,7 +723,7 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = NZ8449Y9W6;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -740,7 +740,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NZ8449Y9W6;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -754,7 +754,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NZ8449Y9W6;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -768,7 +768,7 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = NZ8449Y9W6;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1200,11 +1200,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks - Watch.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				IBSC_MODULE = "$(PRODUCT_NAME:c99extidentifier)";
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks Watch/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f1cf2283-c133-4d14-97fd-7338eecd1393";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development co.rudybermudez.Bulldog-Bucks.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1221,11 +1224,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks - Watch.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				IBSC_MODULE = "$(PRODUCT_NAME:c99extidentifier)";
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks Watch/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3ad04235-05a0-4e6e-955d-b623c53bbf76";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore co.rudybermudez.Bulldog-Bucks.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1242,11 +1249,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks Watch Extension/Bulldog Bucks - Watch Extension.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "14163811-1947-43d7-98da-476c0aa2b3c3";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development co.rudybermudez.Bulldog-Bucks.watchkitapp.watchkitextension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1263,11 +1273,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks Watch Extension/Bulldog Bucks - Watch Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "d639136e-4853-4f9b-82c5-e739fd79b0fb";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore co.rudybermudez.Bulldog-Bucks.watchkitapp.watchkitextension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1398,12 +1412,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b322c2c8-c25c-438e-9324-5d81ad898a62";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development co.rudybermudez.Bulldog-Bucks";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1419,12 +1436,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "$(SRCROOT)/Bulldog Bucks/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "05975ed6-a267-42a6-9950-99b74a3f2397";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore co.rudybermudez.Bulldog-Bucks";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1438,14 +1459,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks Widget/Bulldog Bucks Widget.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "Bulldog Bucks Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "328d805d-49a1-416b-8e5b-5f586b49b132";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development co.rudybermudez.Bulldog-Bucks.Widget";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1459,13 +1481,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks Widget/Bulldog Bucks Widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "Bulldog Bucks Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1a7aa7b-5866-4f33-8117-d91124376c77";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore co.rudybermudez.Bulldog-Bucks.Widget";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1480,12 +1506,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks - Swipes Widget.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "Bulldog Bucks Swipes Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "aa09a663-878e-41a8-a87a-48728f0b1313";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1499,12 +1528,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "Bulldog Bucks - Swipes Widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NZ8449Y9W6;
 				INFOPLIST_FILE = "Bulldog Bucks Swipes Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4fb1f40b-b372-428b-9f58-bbfe7eb18707";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;

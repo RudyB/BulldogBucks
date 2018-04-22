@@ -34,8 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sideMenuRootVC.delegate = self
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuRootVC)
         menuLeftNavigationController.leftSide = true
-        SideMenuManager.default.menuShadowColor = UIColor(red: 112.0/255.0, green: 156.0/255.0, blue: 193.0/255.0, alpha: 1.0)
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.defaultManager.menuAnimationBackgroundColor = UIColor(red: 114.0/255.0, green: 157.0/255.0, blue: 191.0/255.0, alpha: 1.0)
+        SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
+        SideMenuManager.defaultManager.menuFadeStatusBar = true
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

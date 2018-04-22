@@ -50,6 +50,11 @@ class TransactionViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .blackOpaque
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPullToRefresh()
@@ -78,10 +83,6 @@ class TransactionViewController: UIViewController {
         if #available(iOS 10.3, *), getNumberOfLaunches() > 5 {
             SKStoreReviewController.requestReview()
         }
-    }
-    
-    deinit {
-        scrollView.dg_removePullToRefresh()
     }
     
     @objc func toggleMenu() {
@@ -148,7 +149,7 @@ class TransactionViewController: UIViewController {
                 self.bulldogBuckBalance = amount
                 self.swipesRemaining = swipesRemaining
                 self.cardState = cardState
-                
+                SideMenuDataManager.shared.cardState = cardState
                 self.sortTransactions()
                 self.tableView.reloadData()
                 self.collectionView.reloadData()
@@ -196,20 +197,6 @@ class TransactionViewController: UIViewController {
         if !logoutSuccess {
             // This should never happen, but it is good to handle the error just in case.
             showAlert(target: self, title: "Houston we have a problem!", message: "Logout failed. Please try again.")
-        }
-    }
-    
-    func userChangedZagcardState(cardState: CardState, onCompletion: @escaping (Bool) -> Void ) {
-        guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
-            onCompletion(false)
-            return
-        }
-        ZagwebClient.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
-            onCompletion(true)
-            return
-            }.catch { (error) in
-                onCompletion(false)
-                return
         }
     }
     

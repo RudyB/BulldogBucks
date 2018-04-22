@@ -29,6 +29,7 @@ class DetailViewController: UIViewController {
     
     var venue: LocationData?
 	
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +58,11 @@ class DetailViewController: UIViewController {
         
         if let menu = venue.menuUrl {
             menuAdressButton.setTitle(menu.absoluteString, for: .normal)
+            menuAdressButton.tag = 1
             menuAdressButton.addTarget(self, action: #selector(openURL(_:)), for: .touchUpInside)
-            self.websiteStackView.isHidden = false
+            self.menuStackView.isHidden = false
         } else {
-            websiteStackView.isHidden = true
+            menuStackView.isHidden = true
         }
     }
 	
@@ -70,6 +72,7 @@ class DetailViewController: UIViewController {
         
         let webView = storyboard?.instantiateViewController(withIdentifier: WebViewController.storyboardIdentifier) as! WebViewController
         webView.url = url
+        webView.title = sender.tag == 1 ? "Menu" : "Website"
         present(webView, animated: true, completion: nil)
     }
     

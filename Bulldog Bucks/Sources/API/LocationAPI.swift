@@ -15,6 +15,8 @@ class LocationAPI {
     }
     
     static func getLocations(onCompletion: @escaping (Result<[LocationData]>) -> Void ) {
+        
+        
         let locationJSONurl = "https://raw.githubusercontent.com/RudyB/BulldogBucks/feature/locations/locations.json"
         Alamofire.request(locationJSONurl).validate().responseData { (response) in
             switch response.result {

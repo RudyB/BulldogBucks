@@ -36,6 +36,10 @@ class LocationResultsViewController: UIViewController {
             }
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 	
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
@@ -58,6 +62,7 @@ class LocationResultsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")!, style: .plain, target: self, action: #selector(toggleMenu))
         
         navigationItem.title = "Locations"
+        
     }
     
     

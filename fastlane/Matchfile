@@ -1,0 +1,9 @@
+git_url("git@github.com:RudyB/BulldogBucks-certificates.git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+
+ app_identifier(["co.rudybermudez.Bulldog-Bucks", "co.rudybermudez.Bulldog-Bucks.Widget", "co.rudybermudez.Bulldog-Bucks.Bulldog-Bucks-Swipes-Widget", "co.rudybermudez.Bulldog-Bucks.watchkitapp", "co.rudybermudez.Bulldog-Bucks.watchkitapp.watchkitextension"])
+ username("rudymatthewbermudez@gmail.com") # Your Apple Developer Portal username
+team_id("NZ8449Y9W6")
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options
