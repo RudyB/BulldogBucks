@@ -8,12 +8,19 @@
 
 import Foundation
 
+/// Models Coordinates
 struct Coordinate {
+
+    /// Latitude Component
     let latitude: Double
+
+    /// Longitude Component
     let longitude: Double
 }
 
 extension Coordinate: CustomStringConvertible {
+
+    /// Formats latitude and longitude in a human readable format
     var description: String {
         return "\(latitude),\(longitude)"
     }

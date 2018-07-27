@@ -32,8 +32,8 @@ class TransactionViewController: UIViewController {
 
     /// Last Day of the Current of Semester in UNIX time
     /// This is used to calculate the amount of money remaining per week
-    /// Updated for the Spring Semester of the 2017 - 2018 Academic School year
-    let lastDayOfSemester = Date(timeIntervalSince1970: 1526108400)
+    /// Updated for the Fall Semester of the 2018 - 2019 Academic School year
+    let lastDayOfSemester = Date(timeIntervalSince1970: 1545026400)
 
     var transactions: [Transaction]?
     var bulldogBuckBalance: Balance?
