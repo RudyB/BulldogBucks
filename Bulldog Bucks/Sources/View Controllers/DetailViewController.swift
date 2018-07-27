@@ -13,6 +13,10 @@ class DetailViewController: UIViewController {
 
 	public static let storyboardID: String = "detailViewController"
 
+    
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -30,6 +34,14 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.contentSize = CGSize(
+            width: stackView.frame.width,
+            height: stackView.frame.height + 25
+        )
     }
 
     func setupView() {

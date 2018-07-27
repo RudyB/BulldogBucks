@@ -52,3 +52,4 @@ fastlane/screenshots
 fastlane/test_output
 /Pods
 .DS_Store
+/Bulldog Bucks.xcworkspace/xcuserdata

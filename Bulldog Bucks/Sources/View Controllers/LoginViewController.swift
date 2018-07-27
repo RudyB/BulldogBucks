@@ -201,10 +201,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                 throw KeychainError.DidNotSaveCredentials
             }
 
-            print("logged in")
-
 		}.catch { (error) in
-            print(error)
 			if let error = error as? ClientError {
                 switch error {
                 case .invalidCredentials:
@@ -215,7 +212,10 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                     showAlert(target: self, title: "Networking Error", message: error.domain())
                 }
 
-			}
+            } else {
+                self.loginButton.returnToOriginalState()
+                showAlert(target: self, title: "Unexpected Error", message: error.localizedDescription)
+            }
             _ = self.keychain.deleteCredentials()
 		}
 	}
