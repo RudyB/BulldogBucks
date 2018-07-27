@@ -10,14 +10,13 @@ import UIKit
 import MBProgressHUD
 
 class ButtonCollectionViewCell: UICollectionViewCell {
-    
+
     public static let reuseIdentifier = "ButtonCollectionViewCell"
-    
+
     @IBOutlet weak var logoutView: UIView!
     @IBOutlet weak var switchOutlet: UISwitch!
     @IBOutlet weak var statusLabel: UILabel!
-    
-    
+
 	@IBAction func switchToggled() {
         print("Switch Toggled")
         var status: CardState!
@@ -43,17 +42,17 @@ class ButtonCollectionViewCell: UICollectionViewCell {
                 MBProgressHUD.hide(for: self, animated: true)
             }
         }
-		
+
 	}
     var logoutAction: (() -> Void)?
     var toggleCardStatusAction: ((CardState, @escaping((Bool) -> Void)) -> Void)?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(logoutTapped(sender:)))
         logoutView.addGestureRecognizer(tap)
     }
-    
+
     @objc
     func logoutTapped(sender: UITapGestureRecognizer) {
         print("logout tapped")
@@ -61,6 +60,5 @@ class ButtonCollectionViewCell: UICollectionViewCell {
             logoutAction()
         }
     }
-    
-    
+
 }

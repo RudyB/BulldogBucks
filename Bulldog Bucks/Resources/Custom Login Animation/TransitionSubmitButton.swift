@@ -2,27 +2,27 @@ import Foundation
 import UIKit
 
 @IBDesignable
-public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDelegate, CAAnimationDelegate {
-    
+public class TKTransitionSubmitButton: UIButton, UIViewControllerTransitioningDelegate, CAAnimationDelegate {
+
     lazy var spiner: SpinerLayer! = {
         let s = SpinerLayer(frame: self.frame)
         self.layer.addSublayer(s)
         return s
     }()
-    
+
     @IBInspectable public var spinnerColor: UIColor = UIColor.white {
         didSet {
             spiner.spinnerColor = spinnerColor
         }
     }
-    
-    public var didEndFinishAnimation : (()->())? = nil
+
+    public var didEndFinishAnimation : (() -> Void)?
 
     let springGoEase = CAMediaTimingFunction(controlPoints: 0.45, -0.36, 0.44, 0.92)
     let shrinkCurve = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
     let expandCurve = CAMediaTimingFunction(controlPoints: 0.95, 0.02, 1, 0.05)
     let shrinkDuration: CFTimeInterval  = 0.1
-    public var normalCornerRadius:CGFloat? = 0.0{
+    public var normalCornerRadius: CGFloat? = 0.0 {
         didSet {
             self.layer.cornerRadius = normalCornerRadius!
         }
@@ -46,32 +46,32 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
     }
 
     public func startLoadingAnimation() {
-        
+
         if(spiner.frame != self.frame) {
             spiner.removeFromSuperlayer()
-            
+
             let s = SpinerLayer(frame: self.frame)
             s.spinnerColor = spinnerColor
             self.layer.addSublayer(s)
-            
+
             spiner = s
         }
-        
+
         self.cachedTitle = title(for: .normal)
         self.setTitle("", for: .normal)
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.layer.cornerRadius = self.frame.height / 2
-            }) { (done) -> Void in
+            }) { (_) -> Void in
                 self.shrink()
-                
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + self.shrinkDuration - 0.25) {
                     self.spiner.animation()
                 }
         }
-        
+
     }
 
-    public func startFinishAnimation(delay: TimeInterval = 0, completion:(()->())? = {}) {
+    public func startFinishAnimation(delay: TimeInterval = 0, completion:(() -> Void)? = {}) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             self.didEndFinishAnimation = completion
             self.expand()
@@ -79,7 +79,7 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
         }
     }
 
-    public func animate(duration: TimeInterval, completion:(()->())?) {
+    public func animate(duration: TimeInterval, completion:(() -> Void)?) {
         startLoadingAnimation()
         startFinishAnimation(delay: duration, completion: completion)
     }
@@ -88,7 +88,7 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
         self.returnToOriginalState()
         self.spiner.stopAnimation()
     }
-    
+
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         let a = anim as! CABasicAnimation
         if a.keyPath == "transform.scale" {
@@ -98,14 +98,14 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
             }
         }
     }
-    
+
     public func returnToOriginalState() {
-        
+
         self.layer.removeAllAnimations()
         self.setTitle(self.cachedTitle, for: .normal)
         self.spiner.stopAnimation()
     }
-    
+
     func shrink() {
         let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
         shrinkAnim.fromValue = frame.width
@@ -116,7 +116,7 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
         shrinkAnim.isRemovedOnCompletion = false
         layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
     }
-    
+
     func expand() {
         let expandAnim = CABasicAnimation(keyPath: "transform.scale")
         expandAnim.fromValue = 1.0
@@ -128,5 +128,5 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
         expandAnim.isRemovedOnCompletion = false
         layer.add(expandAnim, forKey: expandAnim.keyPath)
     }
-    
+
 }

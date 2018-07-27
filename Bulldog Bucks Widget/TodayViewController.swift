@@ -10,35 +10,33 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-	
+
     // MARK: - Properties
-	
+
 	@IBOutlet weak var remainingBdbLabel: UILabel!
 	@IBOutlet weak var timeUpdatedLabel: UILabel!
 	@IBOutlet weak var errorMessageLabel: UILabel!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-	
+
     /// Class Instance of ZagwebClient
-    
+
     let keychain = BDBKeychain.phoneKeychain
-    
-	
+
     // MARK: - UIViewController
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         preferredContentSize = CGSize(width: self.view.bounds.width, height: 100.0)
         setFontColor()
         if keychain.isLoggedIn() {
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimeOfLastUpdate), userInfo: nil, repeats: true)
         }
-        
+
 	}
-	
-	
+
     // MARK: - UI Helper Functions
-    
+
     /**
      If enabled, hides all labels except for `errorMessageLabel` and sets `errorMessageLabel` with message `withText`. Else, hides `errorMessageLabel`
      
@@ -50,24 +48,23 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         remainingBdbLabel.isHidden = enabled
         timeUpdatedLabel.isHidden = enabled
     }
-	
+
     func downloadData() {
-        
+
         guard let credentials = keychain.getCredentials() else {
             self.showErrorMessage(true)
             return
         }
-        
+
         ZagwebClient.getBulldogBucks(withStudentID: credentials.studentID, withPIN: credentials.PIN).then { (result, _, _, swipesRemaining) -> Void in
             self.showErrorMessage(false)
-        
+
             let date = NSDate()
             let newDataSet = ZagwebDataSet(bucksRemaining: result, swipesRemaining: swipesRemaining, date: date as Date)
             ZagwebDataSetManager.add(dataSet: newDataSet)
-        
-            
+
             self.updateRemainderTextLabel()
-            
+
             }.catch { (error) in
                 if let error = error as? ClientError {
                     switch error {
@@ -77,21 +74,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     default:
                         self.showErrorMessage(true, withText: "An error occured while trying to update your balance. Please try again.")
                         self.activityIndicator.stopAnimating()
-                        
+
                     }
                 }
         }
     }
-    
+
     /// Updates the `remainingBdbLabel` with the latest data from Zagweb
     func updateRemainderTextLabel() {
-        
-        
+
         guard let lastBalance = ZagwebDataSetManager.dataSets.last else {
             downloadData()
             return
         }
-        
+
         // Check to see if it has been 5 minutes from the last update,
         if NSDate().minutes(fromDate: lastBalance.date as NSDate) > 5 {
              downloadData()
@@ -100,9 +96,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.timeUpdatedLabel.text = "Updated: \((lastBalance.date as NSDate).timeAgoInWords)"
             self.remainingBdbLabel.attributedText = formatAmountLabel(withResult: lastBalance.bucksRemaining.prettyBalance)
         }
-        
+
     }
-        
+
     /// Sets labels `textColor = UIColor.white` if User is using iOS 9 and black if on iOS 10
     func setFontColor() {
         if #available(iOS 9, *) {
@@ -118,41 +114,40 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.activityIndicator.color = UIColor.gray
         }
     }
-    
+
     func formatAmountLabel(withResult result: String) -> NSMutableAttributedString {
         let resultWithoutDollarSign = result.replacingOccurrences(of: "$", with: "")
         let dollarSignAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.regular)]
         let amountAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 50, weight: UIFont.Weight.regular)]
-        
+
         let dollarSignPart = NSMutableAttributedString(string: "$ ", attributes: dollarSignAttributes)
         let amountPart = NSMutableAttributedString(string: resultWithoutDollarSign, attributes: amountAttributes)
-        
+
         let attributedString = NSMutableAttributedString()
         attributedString.append(dollarSignPart)
         attributedString.append(amountPart)
-        
+
         return attributedString
     }
-    
+
     /// Updates the `timeUpdatedLabel` with the amount of time that has passed since the last update
     @objc func updateTimeOfLastUpdate() {
-        
+
         if let timeOfLastUpdate = ZagwebDataSetManager.dataSets.last?.date as NSDate? {
             self.timeUpdatedLabel.text = "Updated: \(timeOfLastUpdate.timeAgoInWords)"
         } else {
             self.timeUpdatedLabel.text = "Updated: Never"
         }
     }
-	
+
     /// Launches the Main App only when user taps error message that shows "Please Open the App to Login"
 	@IBAction func openMainApp() {
         let url = URL(string: "bdb://")!
         extensionContext?.open(url, completionHandler: nil)
 	}
-	
-	
+
     // MARK: - ZagwebAPI Helpers
-	
+
     /// Essentially the main function of the ViewController.
 	func update() {
 		if keychain.isLoggedIn() {
@@ -166,13 +161,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 			showErrorMessage(true)
 		}
 	}
-	
+
     // MARK: - NCWidgetProviding
     func widgetPerformUpdate(completionHandler: @escaping ((NCUpdateResult) -> Void)) {
-        
+
         update()
         completionHandler(.newData)
-        
+
     }
-	
+
 }

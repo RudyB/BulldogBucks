@@ -11,11 +11,11 @@ import UIKit
 class TransactionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var venueLabel: UILabel!
-    
+
     @IBOutlet weak var amountLabel: UILabel!
-    
+
     public static let storyboardIdentifier = "transactionCell"
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -8,16 +8,15 @@
 
 import UIKit
 
-
 extension NSDate {
-    
+
     /**
      Creates a pretty printed `String` representation of the difference in time from `timeIntervalSinceNow` to the time initialized in the instance of NSDate.
      */
 	var timeAgoInWords: String {
 		let intervalInSeconds = fabs(timeIntervalSinceNow)
 		let intervalInMinutes = round(intervalInSeconds / 60.0)
-		
+
 		if intervalInMinutes >= 0 && intervalInMinutes <= 1 {
 			if intervalInSeconds >= 0 && intervalInSeconds < 5 {
 				return "just now"
@@ -43,27 +42,26 @@ extension NSDate {
 		} else if intervalInMinutes >= 525600 && intervalInMinutes <= 1051199 {
 			return "1 year ago"
 		}
-		
+
 		return "\(Int(ceil(intervalInMinutes / 525600.0))) years ago"
 	}
-    
+
     /// Returns the amount of days from another date. If the amount of days is negative it will return -1
     func days(to date: Date) -> Int {
         if Calendar.current.dateComponents([.day], from: self as Date, to: date).day ?? -1 < 0 {
             return -1
-        }
-        else {
+        } else {
             return Calendar.current.dateComponents([.day], from: self as Date, to: date).day ?? -1
         }
-        
+
     }
-    
+
     func weeks(to date: Date) -> Int {
        return days(to: date)/7
     }
-    
+
     func minutes(fromDate date: NSDate) -> Int {
         return Calendar.current.dateComponents([.minute], from: date as Date, to: self as Date).minute!
     }
-    
+
 }
