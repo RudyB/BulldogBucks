@@ -176,6 +176,7 @@
 		2D3B0904DC0D5337113456AE /* Pods-Bulldog Bucks - Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulldog Bucks - Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bulldog Bucks - Widget/Pods-Bulldog Bucks - Widget.release.xcconfig"; sourceTree = "<group>"; };
 		419FB610336D91890E621897 /* Pods-Bulldog Bucks - Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bulldog Bucks - Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bulldog Bucks - Watch Extension/Pods-Bulldog Bucks - Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		4705B2571F5BAB4D004FAEAF /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		470F211E210BA24400261688 /* Spokane Fake Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spokane Fake Location.gpx"; sourceTree = "<group>"; };
 		47234DA31DE19ABF00C25C8F /* CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		472F330E1DE2BC6A001D4B4C /* CGRectEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectEx.swift; sourceTree = "<group>"; };
 		472F330F1DE2BC6A001D4B4C /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
@@ -526,6 +527,7 @@
 		4794B0161DE502AD00F71077 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				470F211E210BA24400261688 /* Spokane Fake Location.gpx */,
 				47A84CAE206D84E000A6A9E5 /* SideMenuTableViewCell.xib */,
 				47BF330A1F5DC69C005D162E /* Cell Models */,
 				472F32F91DE2B6FA001D4B4C /* Custom Login Animation */,

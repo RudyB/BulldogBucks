@@ -14,7 +14,7 @@ enum SideMenuOption: Int {
 	case freezeZagcard
     case viewInBrowser
 	case logout
-	
+
 	init?(atIndex: Int) {
 		if let instance = SideMenuOption(rawValue: atIndex) {
 			self = instance
@@ -22,7 +22,7 @@ enum SideMenuOption: Int {
 			return nil
 		}
 	}
-	
+
 	func toCell() -> (image: UIImage, label: String) {
 		switch self {
         case .transactions:
@@ -44,7 +44,7 @@ enum SideMenuOption: Int {
 }
 
 class SideMenuDataManager {
-    
+
     static var shared: SideMenuDataManager = SideMenuDataManager()
     var cardState: CardState?
 }
@@ -52,15 +52,15 @@ class SideMenuDataManager {
 class SideMenuViewController: UIViewController {
 
 	public static let storyboardIdentifier = "sideMenu"
-	
+
 	@IBOutlet weak var tableview: UITableView!
-	
+
 	var delegate: AuthenticationStateDelegate?
-	
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.tableview.dataSource = self
@@ -69,12 +69,12 @@ class SideMenuViewController: UIViewController {
 		// Sets the navigation Bar hidden for the SideMenu and SideMenu Only
 		self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-	
+
     func logout() {
-        
+
         let cookieStorage: HTTPCookieStorage = HTTPCookieStorage.shared
         let cookies = cookieStorage.cookies(for: URL(string: "zagweb.gonzaga.edu")!)
-        
+
         if let cookies = cookies {
             for cookie in cookies {
                 cookieStorage.deleteCookie(cookie as HTTPCookie)
@@ -90,20 +90,20 @@ class SideMenuViewController: UIViewController {
             showAlert(target: self, title: "Houston we have a problem!", message: "Logout failed. Please try again.")
         }
     }
-	
+
     func presentTransactionsVC () {
         let transactionsVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
 
         navigationController?.show(transactionsVC, sender: self)
     }
-    
+
     func presentLocationsVC() {
- 
+
         let vc = storyboard?.instantiateViewController(withIdentifier: LocationResultsViewController.storyboardIdentifier) as! LocationResultsViewController
-        
+
         navigationController?.show(vc, sender: self)
     }
-    
+
     func updateCardState(for cell: SideMenuTableViewCell) {
         showLoadingHUD()
         guard let state = SideMenuDataManager.shared.cardState else { return }
@@ -114,7 +114,7 @@ class SideMenuViewController: UIViewController {
                 return CardState.active
             }
         }()
-        
+
         userChangedZagcardState(cardState: toggledState) { (success) in
             self.hideLoadingHUD()
             guard success else { return }
@@ -128,71 +128,71 @@ class SideMenuViewController: UIViewController {
                 cell.optionImage.image = #imageLiteral(resourceName: "resume")
             }
         }
-        
+
     }
-    
+
     /// Displays a Loading View
     fileprivate func showLoadingHUD() {
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.label.text = "Loading..."
         hud.hide(animated: true, afterDelay: 10)
     }
-    
+
     /// Hides the Loading View
     fileprivate func hideLoadingHUD() {
         MBProgressHUD.hide(for: view, animated: true)
     }
-    
+
     func userChangedZagcardState(cardState: CardState, onCompletion: @escaping (Bool) -> Void ) {
         guard let credentials = BDBKeychain.phoneKeychain.getCredentials() else {
             onCompletion(false)
             return
         }
-        ZagwebClient.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then{ () -> () in
+        ZagwebClient.freezeUnfreezeZagcard(withStudentID: credentials.studentID, withPIN: credentials.PIN, desiredCardState: cardState).then { () -> Void in
             onCompletion(true)
             return
-            }.catch { (error) in
+            }.catch { (_) in
                 onCompletion(false)
                 return
         }
     }
-    
+
     func openInBrowser() {
         guard let credential = BDBKeychain.phoneKeychain.getCredentials() else { return }
-       
-        ZagwebClient.authenticate(withStudentID: credential.studentID, withPIN: credential.PIN).then { (_) -> () in
+
+        ZagwebClient.authenticate(withStudentID: credential.studentID, withPIN: credential.PIN).then { (_) -> Void in
              let webVC = self.storyboard?.instantiateViewController(withIdentifier: WebViewController.storyboardIdentifier) as! WebViewController
             webVC.logoutFunc = { webView in
-                let _ = ZagwebClient.logout()
+                _ = ZagwebClient.logout()
             }
             self.present(webVC, animated: true, completion: nil)
             }.catch { (error) in
                 print(error)
         }
-        
+
     }
 
 }
 
 extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
-	
+
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 5
 	}
-	
+
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let currentOption = SideMenuOption(atIndex: indexPath.row)?.toCell()
 		let cell = tableview.dequeueReusableCell(withIdentifier: SideMenuTableViewCell.cellIdentifier, for: indexPath) as! SideMenuTableViewCell
-		
+
 		cell.optionImage.image = currentOption?.image
 		cell.label.text = currentOption?.label
 		return cell
 	}
-	
+
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == SideMenuOption.transactions.rawValue {
             presentTransactionsVC()
-        }else if indexPath.row == SideMenuOption.freezeZagcard.rawValue {
+        } else if indexPath.row == SideMenuOption.freezeZagcard.rawValue {
             updateCardState(for: tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell)
         } else if indexPath.row == SideMenuOption.locations.rawValue {
             presentLocationsVC()
@@ -202,5 +202,5 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
 			logout()
 		}
 	}
-	
+
 }

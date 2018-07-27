@@ -9,16 +9,15 @@
 import Foundation
 
 final class ZagwebDataSet: Codable {
-    
+
     let bucksRemaining: Balance
     let swipesRemaining: String
     let date: Date
-    
-    init(bucksRemaining: Balance, swipesRemaining: String,  date: Date) {
+
+    init(bucksRemaining: Balance, swipesRemaining: String, date: Date) {
         self.bucksRemaining = bucksRemaining
         self.date = date
         self.swipesRemaining = swipesRemaining
     }
-    
-}
 
+}

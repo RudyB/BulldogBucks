@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Hours: Decodable {
     let monday: String
     let tuesday: String
@@ -39,7 +38,7 @@ struct LocationData: Decodable {
     let url: URL?
     let menuUrl: URL?
     let category: LocationType
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case description = "desc"
@@ -52,4 +51,3 @@ struct LocationData: Decodable {
         case category
     }
 }
-

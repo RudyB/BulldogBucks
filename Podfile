@@ -9,7 +9,7 @@
    pod 'SideMenu'	
    pod "Houston"
    pod 'Alamofire'
-   pod "PromiseKit"
+   pod "PromiseKit", '~> 4.5.1'
    pod 'KeychainAccess'
    pod 'DGElasticPullToRefresh'
    pod 'MBProgressHUD', '~> 1.0.0'
@@ -33,7 +33,7 @@ target 'Bulldog Bucks - Watch Extension' do
   pod "Kanna"
   pod "Houston"
   pod 'Alamofire'
-  pod "PromiseKit"
+  pod "PromiseKit", '~> 4.5.1'
   pod 'KeychainAccess'
   # Pods for Bulldog Buck Balance Extension
 
@@ -46,7 +46,7 @@ target 'Bulldog Bucks - Widget' do
   pod "Kanna"
   pod "Houston"
   pod 'Alamofire'
-  pod "PromiseKit"
+  pod "PromiseKit", '~> 4.5.1'
   pod 'KeychainAccess'
   # Pods for Bulldog Bucks - Widget
 
@@ -58,7 +58,7 @@ target 'Bulldog Bucks - Swipes Widget' do
   pod "Kanna"
   pod "Houston"
 	pod 'Alamofire'
-	pod "PromiseKit"
+  pod "PromiseKit", '~> 4.5.1'
 	pod 'KeychainAccess'
 
 end

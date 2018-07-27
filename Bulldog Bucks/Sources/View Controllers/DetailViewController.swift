@@ -9,11 +9,10 @@
 import UIKit
 import MapKit
 
-
 class DetailViewController: UIViewController {
-	
+
 	public static let storyboardID: String = "detailViewController"
-	
+
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -25,29 +24,25 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var websiteAddressButton: UIButton!
     @IBOutlet weak var menuStackView: UIStackView!
     @IBOutlet weak var menuAdressButton: UIButton!
-    
-    
+
     var venue: LocationData?
-	
-   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-    
+
     func setupView() {
         addMapAnnotations()
         setMapRegion()
-        
+
         guard let venue = venue else { return }
         titleLabel.text = venue.name
         categoryLabel.text = venue.category.rawValue.capitalized
         addressLabel.text = venue.location.address
         phoneNumberButton.setTitle(venue.formattedPhone, for: .normal)
         phoneNumberButton.addTarget(self, action: #selector(callVenue(_:)), for: .touchUpInside)
-        
-        
+
         if let website = venue.url {
             websiteAddressButton.setTitle(website.absoluteString, for: .normal)
             websiteAddressButton.addTarget(self, action: #selector(openURL(_:)), for: .touchUpInside)
@@ -55,7 +50,7 @@ class DetailViewController: UIViewController {
         } else {
             self.websiteStackView.isHidden = true
         }
-        
+
         if let menu = venue.menuUrl {
             menuAdressButton.setTitle(menu.absoluteString, for: .normal)
             menuAdressButton.tag = 1
@@ -65,17 +60,16 @@ class DetailViewController: UIViewController {
             menuStackView.isHidden = true
         }
     }
-	
-    
+
     @IBAction func openURL(_ sender: UIButton) {
         guard let url = sender.title(for: .normal) else { return }
-        
+
         let webView = storyboard?.instantiateViewController(withIdentifier: WebViewController.storyboardIdentifier) as! WebViewController
         webView.url = url
         webView.title = sender.tag == 1 ? "Menu" : "Website"
         present(webView, animated: true, completion: nil)
     }
-    
+
     @IBAction func callVenue(_ sender: UIButton) {
         print("Attempt to call venue")
         guard
@@ -94,18 +88,16 @@ class DetailViewController: UIViewController {
 // MARK: MKMAPViewDelegate
 
 extension DetailViewController: MKMapViewDelegate {
-    
-    
+
     func addMapAnnotations() {
         removeMapAnnotations()
-        
+
         let point = MKPointAnnotation()
         guard let venue = venue else { return }
         point.coordinate = CLLocationCoordinate2D(latitude: venue.location.lat, longitude: venue.location.long)
         point.title = venue.name
         mapView.addAnnotation(point)
     }
-    
 
     func removeMapAnnotations() {
         if mapView.annotations.count != 0 {
@@ -114,7 +106,7 @@ extension DetailViewController: MKMapViewDelegate {
             }
         }
     }
-    
+
     func setMapRegion() {
         guard let annotationLocation = mapView.annotations.first?.coordinate else {
             return
@@ -124,6 +116,6 @@ extension DetailViewController: MKMapViewDelegate {
         region.span.latitudeDelta = 0.01
         region.span.longitudeDelta = 0.01
         mapView.setRegion(region, animated: false)
-        
+
     }
 }

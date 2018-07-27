@@ -12,7 +12,7 @@ class SideMenuTableViewCell: UITableViewCell {
 
 	@IBOutlet weak var optionImage: UIImageView!
 	@IBOutlet weak var label: UILabel!
-	
+
 	public static let nibName = "SideMenuTableViewCell"
 	public static let cellIdentifier = "SideMenuTableViewCell"
 

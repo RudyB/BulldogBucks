@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /** Easily Create, Customize, and Present an UIAlertController on a UIViewController
  
  - Parameters:
@@ -19,7 +18,7 @@ import UIKit
     - actionList: A list of `UIAlertAction`. If no action is added, `[UIAlertAction(title: "OK", style: .default, handler: nil)]` will be added.
  
  */
-func showAlert(target: UIViewController, title: String, message: String? = nil, style: UIAlertControllerStyle = .alert, actionList:[UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)] ) {
+func showAlert(target: UIViewController, title: String, message: String? = nil, style: UIAlertControllerStyle = .alert, actionList: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)] ) {
 	let alert = UIAlertController(title: title, message: message, preferredStyle: style)
 	for action in actionList {
 		alert.addAction(action)

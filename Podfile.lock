@@ -1,23 +1,23 @@
 PODS:
   - 1PasswordExtension (1.8.5)
-  - Alamofire (4.6.0)
+  - Alamofire (4.7.3)
   - DGElasticPullToRefresh (1.1)
   - Houston (0.2.1)
   - Kanna (4.0.0)
-  - KeychainAccess (3.1.0)
+  - KeychainAccess (3.1.1)
   - MBProgressHUD (1.0.0)
-  - PromiseKit (4.5.1):
-    - PromiseKit/Foundation (= 4.5.1)
-    - PromiseKit/QuartzCore (= 4.5.1)
-    - PromiseKit/UIKit (= 4.5.1)
-  - PromiseKit/CorePromise (4.5.1)
-  - PromiseKit/Foundation (4.5.1):
+  - PromiseKit (4.5.2):
+    - PromiseKit/Foundation (= 4.5.2)
+    - PromiseKit/QuartzCore (= 4.5.2)
+    - PromiseKit/UIKit (= 4.5.2)
+  - PromiseKit/CorePromise (4.5.2)
+  - PromiseKit/Foundation (4.5.2):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.5.1):
+  - PromiseKit/QuartzCore (4.5.2):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.5.1):
+  - PromiseKit/UIKit (4.5.2):
     - PromiseKit/CorePromise
-  - SideMenu (3.1.5)
+  - SideMenu (4.0.0)
 
 DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - Kanna
   - KeychainAccess
   - MBProgressHUD (~> 1.0.0)
-  - PromiseKit
+  - PromiseKit (~> 4.5.1)
   - SideMenu
 
 SPEC REPOS:
@@ -44,15 +44,15 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Houston: 0efbaa54a60b1e157e723de4c48d8167b3372027
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  PromiseKit: 445dac9b2c3c3b4b31b5f842bc325700b848a8bd
-  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
 
-PODFILE CHECKSUM: 3fd66ee30334b9659f64467d2d451fee73fd13b9
+PODFILE CHECKSUM: 15a7b852f74e7945cc4224876481b348ce17e75e
 
 COCOAPODS: 1.5.0

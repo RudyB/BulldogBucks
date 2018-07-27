@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum TransactionType: String, Codable {
     case sale
     case deposit
@@ -16,21 +15,20 @@ enum TransactionType: String, Codable {
 }
 
 struct Transaction: Codable {
-    
+
     let date: Date
-    
+
     let venue: String
-    
+
     let amount: Double
-    
+
     let type: TransactionType
-    
-    
+
     init?(date: String, venue: String, amount: String, type: String) {
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy hh:mm:ss a"
-        
+
         guard let amountDouble = Double(amount
             .replacingOccurrences(of: "$", with: "")
             .replacingOccurrences(of: "(", with: "")
@@ -40,7 +38,7 @@ struct Transaction: Codable {
             let transactionType = TransactionType(rawValue: type.lowercased()) else {
             return nil
         }
-        
+
         self.amount = amountDouble
         self.venue = venue
             .replacingOccurrences(of: "UD ", with: "")
@@ -49,30 +47,30 @@ struct Transaction: Codable {
         self.date = formattedDate
         self.type = transactionType
     }
-    
+
 }
 
 extension Transaction: CustomStringConvertible {
     var description: String {
         return "\n\(prettyDate)  \(venue)  \(prettyAmount)"
     }
-    
+
     var prettyDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy hh:mm a"
         return dateFormatter.string(from: date)
     }
-    
+
     // Just the date without the time
     var dateForSorting: Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy"
-        
+
         let dateWithoutTime = dateFormatter.string(from: date)
-        
+
         return dateFormatter.date(from: dateWithoutTime)!
     }
-    
+
     var sectionHeaderDate: String {
         if Calendar.current.compare(dateForSorting, to: Date(), toGranularity: .day) == .orderedSame {
             return "Today"
@@ -87,9 +85,9 @@ extension Transaction: CustomStringConvertible {
             dateFormatter.dateFormat = "MMMM d, yyyy"
             return dateFormatter.string(from: dateForSorting)
         }
-        
+
     }
-    
+
     var prettyAmount: String {
         switch type {
         case .deposit:

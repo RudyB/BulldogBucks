@@ -2,4 +2,133 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/API/ZagwebAPI.swift"
+            timestampString = "554410372.7964309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "authenticationHelper(withStudentID:withPIN:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bulldog Bucks/Sources/View Controllers/LoginViewController.swift"
+            timestampString = "554409266.844008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "login(studentID:PIN:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bulldog Bucks/Sources/View Controllers/LoginViewController.swift"
+            timestampString = "554409266.844311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "checkCredentials(withStudentID:withPIN:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bulldog_Bucks.LoginViewController.(checkCredentials in _E749FDA3BC6278B9B11CFD1E64EBCBCB)(withStudentID: Swift.String, withPIN: Swift.String) -&gt; ()"
+                  moduleName = "Bulldog Bucks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rudybermudez/Documents/BulldogBucks/Bulldog%20Bucks/Sources/View%20Controllers/LoginViewController.swift"
+                  timestampString = "554409266.962536"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "543">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (()) throws -&gt; () in Bulldog_Bucks.LoginViewController.(checkCredentials in _E749FDA3BC6278B9B11CFD1E64EBCBCB)(withStudentID: Swift.String, withPIN: Swift.String) -&gt; ()"
+                  moduleName = "Bulldog Bucks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rudybermudez/Documents/BulldogBucks/Bulldog%20Bucks/Sources/View%20Controllers/LoginViewController.swift"
+                  timestampString = "554409266.964144"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "1124">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Error) -&gt; () in Bulldog_Bucks.LoginViewController.(checkCredentials in _E749FDA3BC6278B9B11CFD1E64EBCBCB)(withStudentID: Swift.String, withPIN: Swift.String) -&gt; ()"
+                  moduleName = "Bulldog Bucks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rudybermudez/Documents/BulldogBucks/Bulldog%20Bucks/Sources/View%20Controllers/LoginViewController.swift"
+                  timestampString = "554409266.966331"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bulldog Bucks/Sources/View Controllers/LoginViewController.swift"
+            timestampString = "554409266.8444999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "checkCredentials(withStudentID:withPIN:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bulldog Bucks/Sources/View Controllers/LoginViewController.swift"
+            timestampString = "554409407.415857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "checkCredentials(withStudentID:withPIN:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -13,7 +13,7 @@ protocol LoginViewControllerDelegate {
 	func didLoginSuccessfully()
 }
 
-class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate{
+class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
 	// MARK: - IBOutlets
 	@IBOutlet weak var loginButtonBottomConstraint: NSLayoutConstraint!
@@ -21,24 +21,23 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 	@IBOutlet weak var userPinTextField: UITextField!
 	@IBOutlet weak var loginButton: TKTransitionSubmitButton!
 	@IBOutlet weak var onepasswordSigninButton: UIButton!
-	
+
 	public static let storyboardIdentifier = "LoginViewController"
-    
+
 	// MARK: - Properties
     private let keychain = BDBKeychain.phoneKeychain
-    
+
 	var delegate: AuthenticationStateDelegate?
-	
+
 	lazy var notificationCenter: NotificationCenter = {
 		return NotificationCenter.default
 	}()
-	
-    
+
 	// MARK: - UIViewController
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNotificationCenter()
@@ -50,24 +49,23 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-	
-    
+
     /// Action will fill the `userIDTextField` & `userPinTextField` textfields with credentials from 1Password
 	@IBAction func findLoginFrom1Password() {
 		OnePasswordExtension.shared().findLogin(forURLString: "https://zagweb.gonzaga.edu", for: self, sender: self) { (loginDictionary, error) in
-            
+
             if let error = error {
                 if !error.isCancelledError {
                     NSLog("Error invoking 1Password App Extension for find login: %s", error.localizedDescription)
                 }
                 return
             }
-            
+
 			guard let loginDictionary = loginDictionary,
                 loginDictionary.count != 0,
                 let username = loginDictionary[AppExtensionUsernameKey] as? String,
@@ -79,14 +77,13 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 			// Fill Credential Fields
             self.userIDTextField.text = username
             self.userPinTextField.text = password
-            
+
             // Call Login Action
             self.loginAction(self)
-			
+
 		}
 	}
-	
-	
+
 	/**
      Login Action
      
@@ -105,29 +102,29 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                 return
             } else {
                 self.loginButton.startLoadingAnimation()
-                login(studentID: userIDTextFieldText,PIN: userPinTextFieldText)
+                login(studentID: userIDTextFieldText, PIN: userPinTextFieldText)
             }
         } else {
             showAlert(target: self, title: "No Active Connection to Internet")
         }
 	}
-    
+
     /**
      Login Action
      
      Checks if there is internet connection, then attempts to authenticate by calling `self.checkCredentials()`
      
      */
-    private func login(studentID: String, PIN:String) {
+    private func login(studentID: String, PIN: String) {
         if isConnectedToNetwork() {
             checkCredentials(withStudentID: studentID, withPIN: PIN)
         } else {
             showAlert(target: self, title: "No Active Connection to Internet")
         }
     }
-	
+
     // MARK: - UI Helper Functions
-    
+
     /**
      Adds NotificationCenter Observers for when the Keyboard Appears and Disappears. 
      - When keyboard appears, `self.keyboardWillAppear()` is called
@@ -138,7 +135,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         notificationCenter.addObserver(self, selector: #selector(self.keyboardWillAppear(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         notificationCenter.addObserver(self, selector: #selector(self.keyboardWillDisappear(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
-	
+
     /**
      Adds a UITapGestureRecognizer to see if the user taps outside of the text field.
      
@@ -146,43 +143,43 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     */
     private func setupGestureRecognizer() {
         // Keyboard Dismissal
-        let tapper = UITapGestureRecognizer(target: view, action:#selector(UIView.endEditing))
+        let tapper = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tapper.cancelsTouchesInView = false
         view.addGestureRecognizer(tapper)
     }
-    
+
     /**
      Animation that moves the `loginButtonBottomConstraint` 20 points higher than the top of the keyboard frame.
      
      Called when notification is posted for `NSNotification.Name.UIKeyboardWillShow`
      */
     @objc
-	func keyboardWillAppear(notification: NSNotification){
+	func keyboardWillAppear(notification: NSNotification) {
 		if let userInfoDict = notification.userInfo, let keyboardFrameValue = userInfoDict[UIKeyboardFrameEndUserInfoKey] as? NSValue {
 			let keyboardFrame = keyboardFrameValue.cgRectValue
-			
+
 			UIView.animate(withDuration: 0.8) {
 				self.loginButtonBottomConstraint.constant = keyboardFrame.size.height
 					+ 20
 				self.view.layoutIfNeeded()
 			}
-			
+
 		}
 	}
-	
+
     /**
      Animation that moves the loginButtonBottomConstraint to it's original position.
      
      Called when notification is posted for `NSNotification.Name.UIKeyboardDidHide`
      */
     @objc
-	func keyboardWillDisappear(notification: NSNotification){
+	func keyboardWillDisappear(notification: NSNotification) {
 		UIView.animate(withDuration: 0.5) {
 			self.loginButtonBottomConstraint.constant = 202.0
 			self.view.layoutIfNeeded()
 		}
 	}
-	
+
     /**
      Checks to see if the authentication to Zagweb is successful. If successful, `delegate?.didLoginSuccessfully()` is called and transitions to `ViewController`. If fails, shows alert.
      
@@ -192,7 +189,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
      */
 	private func checkCredentials(withStudentID: String, withPIN: String) {
 		ZagwebClient.authenticate(withStudentID: withStudentID, withPIN: withPIN).then { (_) -> Void in
-            
+
             let success = self.keychain.addCredentials(studentID: withStudentID, PIN: withPIN)
             if success {
                 self.loginButton.startFinishAnimation {
@@ -203,9 +200,11 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             } else {
                 throw KeychainError.DidNotSaveCredentials
             }
-			
-			
+
+            print("logged in")
+
 		}.catch { (error) in
+            print(error)
 			if let error = error as? ClientError {
                 switch error {
                 case .invalidCredentials:
@@ -215,21 +214,20 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                     self.loginButton.returnToOriginalState()
                     showAlert(target: self, title: "Networking Error", message: error.domain())
                 }
-				
+
 			}
-            let _ = self.keychain.deleteCredentials()
+            _ = self.keychain.deleteCredentials()
 		}
 	}
-	
+
 	// MARK: - UIViewControllerTransitioningDelegate
 	func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		let fadeInAnimator = TKFadeInAnimator()
 		return fadeInAnimator
 	}
-	
+
 	func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		return nil
 	}
-	
-	
+
 }
