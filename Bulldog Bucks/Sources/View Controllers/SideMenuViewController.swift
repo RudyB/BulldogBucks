@@ -92,16 +92,17 @@ class SideMenuViewController: UIViewController {
     }
 
     func presentTransactionsVC () {
-        let transactionsVC = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
 
-        navigationController?.show(transactionsVC, sender: self)
+        let vc = storyboard?.instantiateViewController(withIdentifier: TransactionViewController.storyboardIdentifier) as! TransactionViewController
+
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 
     func presentLocationsVC() {
-
         let vc = storyboard?.instantiateViewController(withIdentifier: LocationResultsViewController.storyboardIdentifier) as! LocationResultsViewController
-
-        navigationController?.show(vc, sender: self)
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     func updateCardState(for cell: SideMenuTableViewCell) {

@@ -543,7 +543,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uAb-GF-tmQ">
-                                <rect key="frame" x="16" y="142" width="263" height="300"/>
+                                <rect key="frame" x="16" y="142" width="268" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="4Gy-ru-fd4"/>
@@ -552,7 +552,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="uAb-GF-tmQ" secondAttribute="trailing" constant="25" id="0hS-Hg-y3T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uAb-GF-tmQ" secondAttribute="trailing" constant="20" id="0hS-Hg-y3T"/>
                             <constraint firstItem="4zl-Hz-geb" firstAttribute="leading" secondItem="eYx-cV-sDG" secondAttribute="leadingMargin" constant="5" id="C3p-yZ-Wyj"/>
                             <constraint firstAttribute="trailing" secondItem="60B-bu-ocR" secondAttribute="trailing" id="Y9Q-nK-OzZ"/>
                             <constraint firstItem="60B-bu-ocR" firstAttribute="top" secondItem="4zl-Hz-geb" secondAttribute="bottom" constant="15" id="aXd-li-oPW"/>
