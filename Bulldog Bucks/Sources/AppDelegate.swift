@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sideMenuRootVC.delegate = self
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuRootVC)
         menuLeftNavigationController.leftSide = true
+        SideMenuManager.defaultManager.menuPushStyle = .preserveAndHideBackButton
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.defaultManager.menuAnimationBackgroundColor = UIColor(red: 114.0/255.0, green: 157.0/255.0, blue: 191.0/255.0, alpha: 1.0)
         SideMenuManager.defaultManager.menuAllowPushOfSameClassTwice = false
