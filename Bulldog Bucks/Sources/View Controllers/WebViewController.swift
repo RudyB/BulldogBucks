@@ -15,7 +15,7 @@ class WebViewController: UIViewController {
 
     public static let storyboardIdentifier: String = "webView"
 
-    var url: String = "https://zagweb.gonzaga.edu/pls/gonz/hwgwcard.transactions"
+    var url: String = "https://zagweb.gonzaga.edu/prod/hwgwcard.transactions"
 
     var logoutFunc: WebViewAction?
 
@@ -33,12 +33,12 @@ class WebViewController: UIViewController {
         backBarButton.action = #selector(goBack)
         forwardBarButton.action = #selector(goForward)
         self.webView.delegate = self
-        loadWebView()
 
         let bounds = navbar.bounds
         let height: CGFloat = 50 //whatever height you want to add to the existing height
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
         navigationController?.navigationBar.barStyle = .default
+        showLoadingHUD()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -104,9 +104,12 @@ extension WebViewController: UIWebViewDelegate {
 
     /// Stops animating the activity indicator when webView is done loading
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        hideLoadingHUD()
-        backBarButton.isEnabled = webView.canGoBack
-        forwardBarButton.isEnabled = webView.canGoForward
+        DispatchQueue.main.async {
+            self.hideLoadingHUD()
+            self.backBarButton.isEnabled = webView.canGoBack
+            self.forwardBarButton.isEnabled = webView.canGoForward
+        }
+
     }
 
 }

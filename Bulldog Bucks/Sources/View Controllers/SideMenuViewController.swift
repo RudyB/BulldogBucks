@@ -161,12 +161,14 @@ class SideMenuViewController: UIViewController {
     func openInBrowser() {
         guard let credential = BDBKeychain.phoneKeychain.getCredentials() else { return }
 
+        let webVC = self.storyboard?.instantiateViewController(withIdentifier: WebViewController.storyboardIdentifier) as! WebViewController
+        webVC.logoutFunc = { webView in
+            _ = ZagwebClient.logout()
+        }
+        present(webVC, animated: true, completion: nil)
+        
         ZagwebClient.authenticate(withStudentID: credential.studentID, withPIN: credential.PIN).then { (_) -> Void in
-             let webVC = self.storyboard?.instantiateViewController(withIdentifier: WebViewController.storyboardIdentifier) as! WebViewController
-            webVC.logoutFunc = { webView in
-                _ = ZagwebClient.logout()
-            }
-            self.present(webVC, animated: true, completion: nil)
+            webVC.loadWebView()
             }.catch { (error) in
                 print(error)
         }
